@@ -42,10 +42,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## 待调整的内容(0612)
 
-	- 首页第二部分 category 公共样式提取
-	- 首页第三部分 3-3-3 样式提取 公共样式提取
-	- header 组件重构 添加导航路由
-	- footer 组件重构 
+	- 首页第二部分 category 公共样式提取  ok
+	- 首页第三部分 3-3-3 样式提取 公共样式提取 ok
+	- header 组件重构 添加导航路由 ok
+	- footer 组件重构  ok
 	- js 菜单栏 重构
 	- 公共组件复用 - 注意组件内嵌的媒体查询的作用域问题
 	-  导航关联 的实现
@@ -70,7 +70,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   - 党建课堂  ok   /Courses
   - 书记讲党课    ok     /PartyLecture
 - 媒体查询公共样式提取
-  - index.css 还未调整  
+  - index.css 还未调整   ok
   - memorabilia.css(大事记页面) 提取完毕
   - courses.css(党建课堂页面) 提取完毕
 
@@ -90,4 +90,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 -  新闻详情页  https://bzcz.zhizhongdj.com/stories/a-5ee01a49dd315607481263
 - 
 
-### 111
+### 搜索页  0615
+- 每页有20个结果集
+- 带分页按钮
+- 要区分 有结果集 无结果集的情况
+- 同时结果集有分类 ，可以使用tab选项卡切换

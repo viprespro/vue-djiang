@@ -27,10 +27,16 @@ const routes = [{
 		component: () => import( /* webpackChunkName: "about" */ '../views/PartyLecture/PartyLecture.vue')
 	},
 	{
+		path: '/Search',
+		name: 'Search',
+		component: () => import( /* webpackChunkName: "about" */ '../views/Search/Search.vue')
+	},
+	{
 		path: '/Footer',
 		name: 'Footer',
 		component: () => import( /* webpackChunkName: "about" */ '../components/common/Footer.vue')
-	},{
+	},
+	{
 		path: '/Header',
 		name: 'Header',
 		component: () => import( /* webpackChunkName: "about" */ '../components/common/Header.vue')
