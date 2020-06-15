@@ -1,0 +1,109 @@
+@charset "utf-8";
+
+/* 盒子模型用border-box */
+*,
+:after,
+::before {
+	box-sizing: border-box;
+}
+
+/* // 版心 */
+.w {
+	width: 1180px;
+	margin: 0 auto;
+}
+
+/* //图片居中 */
+img {
+	vertical-align: middle;
+	border-style: none;
+}
+/*  */
+strong{
+	font-weight: bolder;
+}
+/* //基础a的样式 */
+a {
+	font-size: 14px;
+	color: #333;
+}
+
+/* //基础em的样式 */
+em {
+	color: #aaa;
+	font-weight: 500;
+}
+
+/* 内容块基本设置 */
+.c1,
+.c2,
+.c3 {
+	display: block;
+	padding: 0.5px 10px;
+}
+
+/*  */
+.c1 dl,
+.c1 ul,
+.c2 dl,
+.c2 ul,
+.c3 dl,
+.c3 ul {
+
+	margin-bottom: 0 !important;
+}
+
+/* 所有使用块集合墙纸通用样式 */
+.layout-1-wrapper,
+.layout-12-wrapper,
+.layout-123-wrapper,
+.layout-s-nav-wrapper,
+.layout-m-nav-wrapper,
+.layout-n-t-wrapper,
+.layout-s-news-wrapper,
+.layout-t-news-wrapper,
+.layout-ls-h-wrapper,
+.layout-vs-v4-wrapper,
+.layout-v-col4-wrapper,
+.layout-vb-ab-wrapper,
+.layout-vb-ab-wrapper{
+	width: 100%;
+	display: block;
+	clear: both;
+	/* background-color: #000; */
+}
+
+/* // 首页上半部分主题背景颜色-党 */
+.special-themes
+{
+	background-color: #900;
+}
+
+/* //正常灰色背景颜色 */
+.normal-themes {
+	background-color: #f5f5f5;
+}
+.divider{
+	display: inline-block;
+	padding:0 10px;
+	color:grba(0,0,0,0.1);
+}
+span{
+	color:#333;
+}
+a:hover {
+    color: #c01;
+}
+/* 表示 4 6 开 */
+.r-4-6{
+	
+}
+
+/*  3 3 3 */
+.r-3-3-3{
+	
+}
+/* 表示6 4开 */
+.r-6-4{
+	
+}

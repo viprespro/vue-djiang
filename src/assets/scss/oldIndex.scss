@@ -1,0 +1,137 @@
+//大于960 pc端
+	@media only screen and (min-width:961px) {
+		Swiper {
+			width: 100%;
+			height: 100%;
+		}
+
+		//样式穿透 swiper小圆点
+		.swiper-container-horizontal>.swiper-pagination-bullets,
+		.swiper-pagination-custom,
+		.swiper-pagination-fraction {
+			bottom: 52px;
+		}
+
+		//主要块
+		.layout-123-wrapper {
+			width: 100%;
+			height: 371px;
+			background: #990000;
+
+			.layout-123 {
+				//居中块
+				width: 1180px;
+				height: 331px;
+				margin: 0 auto;
+				padding: 20px 0;
+				background-color: yellow;
+
+				//左侧轮播图区域
+				.left-swiper-wrapper {
+
+					float: left;
+					width: 480px;
+					// height: 317px;
+					// background: green;
+
+					.left-swiper {
+
+						// swiper内容
+						.swiper-container {
+							height: 317px;
+							//相对定位 给跟随文本做定位点
+							position: relative;
+
+							// 一个轮播图区域
+							.swiper-slide {
+								a {
+
+									// 图片区域
+									img {
+										width: 100%;
+										// height:100%;
+									}
+
+									//跟随文本区域
+									.swiper-text {
+										// position: absolute;
+										// left:0;
+										// bottom:0;
+										height: 45px;
+										padding: 0 10px;
+										// width: 100%;
+										text-align: center;
+										line-height: 45px;
+										background-color: #fff;
+
+										font-size: 16px;
+
+										a {
+											color: #333;
+										}
+									}
+								}
+
+							}
+						}
+					}
+
+				}
+
+				//右侧村镇新闻
+				.cz-news-wrapper {
+					float: right;
+					// width: 100%;
+					// height: 317px;
+
+					margin: 0 40px;
+
+					//主要cz新闻区域
+					.cz-news {
+						width: 618px;
+						// height: 277px;
+						background-color: #fff;
+
+						ul {
+							display: block; //可能是给移动端用的
+							padding: 20px 30px;
+
+							li {
+								float: left;
+								position: relative; //给日期做定位点
+								width: 100%;
+								padding: 6px 0;
+								font-size: 16px;
+
+								a {
+									float: left;
+									width: -webkit-calc(100% - 65px); //css3的计算
+									height: 22px;
+									line-height: 22px;
+									font-size: 14px;
+									//超出隐藏
+									overflow: hidden;
+									text-overflow: ellipsis;
+									white-space: nowrap;
+								}
+
+								em {
+									float: right;
+									display: inline-block; //看不懂，可能是给移动端用的
+									width: 60px;
+									text-align: right;
+									font-size: 12px;
+									//下面这个定位 是让em在这个li右对齐 上下居中
+									position: absolute;
+									right: 0;
+									top: 50%;
+									margin-top: -8px;
+								}
+							}
+						}
+					}
+				}
+
+			}
+		}
+	}

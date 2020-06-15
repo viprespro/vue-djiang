@@ -1,0 +1,58 @@
+/* 8 */
+.mx-header-height {
+	background: url(../../assets/img/menu-bg.png) repeat-x;
+	background-color: #8b1d19;
+	background-size: auto 80px;
+}
+
+.mx-sheet-first a {
+	color: #c01;
+}
+
+/* 109 */
+.mx-column-list ul li a span strong {
+	color: #c01;
+}
+
+.mx-column-list ul li a span em,
+.mx-column-list-wrapper.extra ul li a span em {
+	color: #aaa;
+}
+
+/*114*/
+.mx-column-list-wrapper.special-themes ul li a {
+	border: 1px #ff5842 solid;
+}
+
+/* 116 */
+.mx-column-list-wrapper.special-themes ul li a,
+.mx-column-list ul li a i {
+	background: url(../img/column-bg.png);
+}
+
+/* 117 */
+.mx-column-list-wrapper.special-themes ul li a {
+	background-color: #d7322d;
+}
+
+/* 118 */
+.mx-column-list-wrapper.special-themes ul li a:after,
+.mx-column-list-wrapper.special-themes ul li a:before {
+	border: dashed 6px #94101d;
+}
+
+/* 119 */
+.mx-column-list-wrapper.special-themes ul li a:before {
+	border: 5px #c71715 solid;
+}
+
+/* 124 */
+.mx-column-list-wrapper.special-themes ul li a {
+	padding: 20px 10px;
+	height: 100px;
+}
+
+/* 147 */
+.footer-copyright {
+	border-top: 1px solid #721315;
+}

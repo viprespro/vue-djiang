@@ -1,0 +1,702 @@
+@charset "utf-8";
+/* header 组件样式 */
+
+/* footer组件样式 */
+.mx-footer{
+	background: #7c1618;
+}
+/* 通用样式表 */
+.mx-listing {
+	display: block;
+}
+
+/* 用来做外边距间隔 */
+.mx-m {
+	margin: 20px 0 0;
+}
+
+.mt {
+	margin: 20px 0 0;
+}
+
+/* 加载更多按钮 样式 */
+.mx-more-link {
+	display: block;
+	text-align: center;
+	font-size: 14px;
+	line-height: 40px;
+	background-color: #fff;
+}
+
+.mx-more-link a i {
+	font-size: 13px;
+}
+
+/*图片样式*/
+.mx-custom {
+	display: block;
+}
+
+.mx-custom img {
+	display: block;
+	/* 适应不同尺寸下的大小 */
+	max-width: 100%;
+}
+
+/* 列表项标题通用样式 */
+.mx-item-title {
+	padding: 20px 20px 0;
+	background: #fff;
+	display: block;
+}
+
+/*长标题  */
+.mx-item-long-title {
+	padding: 15px 20px;
+}
+
+.mx-item-title strong {
+	font-size: 18px;
+	margin: 5px 0 0;
+}
+
+.mx-item-title strong {
+	color: #c01 !important;
+}
+
+.mx-item-title span {
+	float: right;
+	height: auto !important;
+	line-height: 1.5;
+}
+
+.mx-item-title span a {
+	color: #aaa;
+}
+
+.mx-item-title span a i {
+	font-size: 12px !important;
+}
+
+.mx-item-title span a:hover {
+	color: #c01 !important;
+}
+
+.mx-item-more {
+	font-size: 12px;
+}
+
+/* dl定义列表-图文左右混排-通用样式-模板-首页最新发布 */
+.mx-listing dl {
+	display: block;
+	padding: 20px;
+	border-bottom: 1px solid #eee;
+	background-color: #fff;
+}
+
+.mx-listing dl dt {
+	float: left;
+	width: 200px;
+	position: relative;
+}
+
+.mx-listing dl dt img {
+	display: block;
+	width: 100%;
+}
+
+.mx-listing dl dd {
+	/* 注意的是左边的图片宽220px */
+	margin: 0 0 0 220px;
+}
+
+.mx-listing dl strong {
+	display: block;
+	font-size: 18px;
+	line-height: 30px;
+	height: 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrapper;
+
+	font-weight: bold;
+	color: #000;
+}
+
+.mx-listing dl span {
+	display: block;
+	color: #aaa;
+	padding: 5px 0 0;
+	/* 加字体 */
+	font-size: 14px;
+}
+
+.mx-listing-sum {
+	height: 49px;
+	line-height: 22px;
+	overflow: hidden;
+}
+
+.mx-listing dl em {
+	/* margin: 0 5px; */
+	color: #ddd;
+}
+
+.mx-listing em.user-time {
+	color: #aaa;
+	font-size: 14px;
+}
+
+.mx-listing dl span text {
+	display: inline-block;
+}
+
+/*缩略图形式-图文上下混排-通用样式-模板-右侧热点新闻*/
+.mx-thumbnails {
+	overflow: hidden;
+}
+
+.mx-thumbnails ul {
+	display: block;
+	margin-left: -10px;
+	margin-right: -10px;
+}
+
+.mx-thumbnails ul span {
+	display: block;
+	font-size: 15px;
+	line-height: 22px;
+	height: 54px;
+	padding: 10px 15px 0;
+	overflow: hidden;
+}
+
+.mx-thumbnails ul li {
+	width: 25%;
+	float: left;
+	padding: 0 10px;
+	margin-top: 20px;
+	box-sizing: border-box;
+}
+
+.mx-thumbnails ul li img {
+	display: block;
+	width: 100%;
+	position: absolute;
+	top: 0;
+}
+
+.mx-thumbnails-cos1 ul li {
+	display: block;
+	float: none;
+	width: auto;
+	padding: 20px 30px 0;
+	background-color: #fff;
+	/* 去掉每个li的外上边距 */
+	margin-top: 0;
+}
+
+.mx-thumbnails ul span {
+	/* display: block;
+	font-size:15px;
+	line-height:22px;
+	height:54px;
+	padding:10px 15px 0;
+	overflow:hidden; */
+}
+
+/* 视频 2-2 上下混排 样式 */
+.mx-thumbnails-cos2 ul li {
+	width: 50%;
+}
+
+.mx-thumbnails-cos2 ul span {
+	height: 59px;
+	padding: 11px 15px 0;
+}
+
+.mx-thumbnails-box {
+	display: block;
+	background-color: #fff;
+	padding: 56% 0 15px;
+	/* 给图片做定位点 */
+	position: relative;
+}
+
+/* 字体图标边框设置 ，用于音频 视频按钮 */
+.mx-thumbnails-box i {
+	position: absolute;
+	left: 10px;
+	top: -38px;
+	width: 32px;
+	height: 32px;
+	line-height: 28px;
+	border-radius: 100px;
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	border: 2px rgba(255, 255, 255, 0.8) solid;
+	text-align: center;
+	font-size: 18px;
+	margin-top: 56%;
+}
+
+.mx-thumbnails-sum {
+	line-height: 20px;
+	height: 40px;
+	font-size: 12px;
+	color: #aaa;
+	overflow: hidden;
+	padding: 0 15px;
+	background-color: #fff;
+	margin: 5px 0 0;
+}
+
+.mx-thumbnails-info {
+	margin-top: 5px;
+	line-height: 20px;
+	height: 20px;
+	font-size: 12px;
+	padding: 0 15px;
+	color: #aaa;
+	overflow: hidden;
+}
+
+.mx-thumbnails-cos1 ul li img {
+	display: block;
+	width: 100%;
+	position: absolute;
+	top: 0;
+}
+
+.mx-thumbnails-cos1 .mx-thumbnails-box {
+	padding: 56% 0 0px;
+}
+
+.mx-thumbnails-cos1 ul span {
+	padding: 10px 0 0;
+	display: block;
+	font-size: 14px;
+	line-height: 18px;
+	height: 46px;
+}
+
+/* 最后一个li*/
+.mx-thumbnails-cos1 ul li:last-child {
+	padding: 20px 30px;
+}
+
+/*  */
+/* //主题 category */
+
+/* 面包屑导航-样式 */
+.mx-bread-crumb {
+	display: block;
+	padding: 0 140px 0 0;
+	line-height: 18px;
+	height: 18px;
+	font-size: 14px;
+	position: relative;
+
+}
+
+.mx-bread-crumb a {
+	opacity: 0.7;
+	filter: opacity(70);
+}
+
+.mx-bread-crumb em {
+	color: #ddd;
+}
+
+/* 列表标题 样式*/
+.mx-column-title {
+	background: url(../img/column-title-bg.png) no-repeat right top;
+}
+
+.mx-column-title {
+	padding: 10px;
+	background-color: #fff;
+	background-size: auto 100%;
+}
+
+.mx-column-icon {
+	float: left;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 34px !important;
+	margin-right: 10px;
+}
+
+.mx-column-icon i {
+	font-size: 34px !important;
+}
+
+.mx-column-title:after {
+	content: " ";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+	line-height: 0;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.mx-column-text h2 {
+	font-size: 18px;
+	line-height: 22px;
+	overflow: hidden;
+	display: block;
+	color: rgba(0, 0, 0, .85);
+	font-weight: 700;
+}
+
+.mx-column-text em {
+	color: #aaa;
+	font-size: 12px;
+	line-height: 20px;
+	display: block;
+}
+
+.mx-column-class.mx-m {
+	padding: 10px;
+	margin: 1px 0 0;
+}
+
+.mx-column-class {
+	padding: 10px;
+	background: #fff;
+}
+
+.mx-column-class a {
+	display: inline-block;
+	line-height: 30px;
+	margin: 0 10px;
+}
+
+/* 导航激活样式 now */
+.mx-column-class .now {
+	background: #333;
+	color: #fff;
+	border-radius: 55px;
+	padding: 0 10px;
+}
+
+.mx-column-class .now {
+	background: #c01 !important;
+	color: #fff;
+	border-radius: 5px !important;
+}
+
+/* 轮播图样式 */
+.mx-sliding {
+	display: block;
+	background: #fff;
+	position: relative;
+}
+
+.mx-sliding-text {
+	display: block;
+	padding: 0 10px;
+	line-height: 45px;
+	height: 45px;
+	font-size: 16px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.mx-sliding-text a {
+	font-size: 16px;
+}
+
+.sliding-img-box {
+	width: 100%;
+}
+
+.sliding-img-box img {
+	width: 100%;
+	height: auto;
+}
+
+/*首页- 面板样式-新闻列表区域 */
+/* // height: 100%; */
+.mx-sheet {
+	display: block;
+	background: #fff;
+}
+
+.mx-sheet ul {
+	display: block;
+	padding: 20px 30px;
+	/* // background-color: red; */
+}
+
+.mx-sheet ul li {
+	float: left;
+	width: 100%;
+	padding: 6px 0;
+	position: relative;
+	/* //相对定位 给em提供定位点 */
+	font-size: 16px;
+
+
+	
+}
+
+.mx-sheet ul li a {
+	float: left;
+	
+	width: calc(100% - 65px);
+	width: -moz-calc(100% - 65px);
+	width: -webkit-calc(100% - 65px);
+	height: 22px;
+	line-height: 22px;
+	font-size: 14px;
+	/* //省略号 */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+}
+
+.mx-sheet ul li em {
+	float: right;
+	display: inline-block;
+	width: 60px;
+	text-align: right;
+	font-size: 12px;
+	color: #aaa;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	margin-top: -8px;
+}
+
+.mx-sheet ul li a img {
+	display: none;
+}
+
+/* // 第一个加重新闻标题 图文上下混排 */
+.mx-sheet-first-title a {
+	height: auto !important;
+	width: 100% !important;
+	font-size: 16px;
+	font-weight: bold;
+	border-bottom: 1px #eee solid;
+	padding-bottom: 15px;
+	position: relative;
+}
+
+.mx-sheet-first-title a img {
+	display: block !important;
+	width: 100%;
+	height: auto !important;
+	margin-bottom: 15px !important;
+
+}
+
+.mx-sheet-first-title em {
+	/* //隐藏 */
+	display: none !important;
+}
+
+/* 大事记-新闻列表下的字体大小 */
+.layout-s-news.r-4-6 .c2 .mx-sheet .mx-sheet-first a {
+	font-size: 20px;
+}
+
+/* category图标 */
+.mx-column-list {
+	padding: 10px 0;
+}
+
+.mx-column-list ul {
+	display: block;
+	margin-left: -10px;
+	margin-right: -10px;
+}
+
+.mx-column-list ul li {
+	float: left;
+	width: 25%;
+	width: 280px;
+	padding: 10px;
+}
+
+.mx-column-list ul li a {
+	display: block;
+	padding: 20px 10px;
+	height: 100px;
+	background: #d7322d;
+	background-image: url(../../assets/img/column-bg.png);
+	border: 1px solid #ff5842;
+	position: relative;
+}
+
+.mx-column-list ul li a::after,
+.mx-column-list ul li a::before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	border: 6px dashed transparent;
+	display: block;
+	padding: 5px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	box-sizing: border-box;
+	z-index: 101;
+}
+
+.mx-column-list ul li a:after {
+	border: 6px dashed #94101d;
+}
+
+.mx-column-list ul li a:before {
+	border: 5px solid #c71715;
+	z-index: 102;
+}
+
+.mx-column-list ul li a i {
+	float: left;
+	width: 58px;
+	height: 58px;
+	line-height: 58px;
+	text-align: center;
+	color: #fea;
+	margin: 0 5px 0 0;
+	font-size: 40px;
+	border-radius: 100px;
+	background: none;
+}
+
+.mx-column-list ul li a span {
+	display: block;
+}
+
+.mx-column-list ul li a span strong {
+	display: block;
+	height: 32px;
+	padding: 8px 0 0;
+	color: #fff;
+	font-size: 16px;
+	line-height: 24px;
+	overflow: hidden;
+}
+
+.mx-column-list ul li a span em {
+	display: block;
+	line-height: 18px;
+	font-size: 12px;
+	height: 18px;
+	color: #fff;
+	overflow: hidden;
+	opacity: 0.8;
+}
+
+/* 书本样式 */
+.mx-covers {
+	display: block;
+}
+/* 一列左浮动 */
+.mx-covers-ul {
+	float: left;
+	width: 100%;
+	position:relative;
+	background-color: #e9d2b0;
+	/* css3渐变 */
+	background-image: linear-gradient(#90683c 5%, #e2c594 35%, #e9d2b0 60%);
+	z-index: 101;
+}
+.mx-covers-ul li{
+	float:left;
+	width:25%;
+	text-align: center;
+	position: relative;
+	padding:30px 0 15px 0;
+	z-index:106;
+}
+/* 下面那段伪类 */
+.mx-covers-ul li:before, .mx-covers-ul:before {
+    content: '';
+    width: 100%;
+    height: 12px;
+    background-color: #f3e4a3;
+    background-image: linear-gradient(#f3e4a3, #f2d4a5);
+    display: block;
+    border-top: 1px #fff5c9 solid;
+    border-bottom: 1px #e7c9a2 solid;
+    position: absolute;
+    bottom: 0px;
+    z-index: 105;
+}
+.mx-covers-ul li a{
+	display: inline-block;
+	box-shadow: 0 0 15px rgba(112,67,18,0.9);
+	width:180px;
+	height:240px;
+	position:relative;
+	z-index:106;
+	bottom:0;
+	/* 加入动画 */
+	transition: all 0.3s ease;
+}
+.mx-covers-ul li a:hover{
+	bottom:3px;
+}
+.mx-covers-ul li a img{
+	width: 100%;
+	display: block;
+}
+.mx-covers-ul a span {
+    position: absolute;
+    z-index: 106;
+    display: block;
+    bottom: 0;
+    padding: 13px 10px 10px 20px;
+    background-color: #c01;
+    background-image: linear-gradient(-45deg, #d01, #ff505f);
+    width: 100%;
+    box-sizing: border-box;
+}
+.mx-covers-ul a span strong {
+	font-size:17px;
+	color:#fff;
+	display: block;
+	line-height:22px;
+	height:44px;
+	overflow: hidden;
+	text-align:left;
+}
+/* 音视频logo */
+.mx-covers-ul li a i {
+    border: 2px solid rgba(255,255,255,0.6);
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 100px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    line-height: 29px;
+    text-align: center;
+    font-size: 18px;
+    position: absolute;
+    left: 15px;
+    margin-top: 35%;
+}
+/* 注意这里 */
+/* 年月日样式 */
+.mx-covers-ul a span em {
+    display: block;
+    text-align: right;
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    line-height: 24px;
+}
+.mx-covers-day{
+	font-size:30px !important;
+	color:#fff!important;
+}

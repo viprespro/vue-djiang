@@ -1,0 +1,245 @@
+@charset "utf-8";
+
+/* 第一档 小于960 移动端  */
+@media only screen and (max-width:959px) {
+
+	/* 移动端-图片基本设置 start*/
+	img {
+		width: 100%;
+	}
+
+	/* 移动端-图片基本设置 end*/
+
+	/* 移动端-内容块基本设置start */
+	.c1,
+	.c2,
+	.c3 {
+		float: none !important;
+
+		width: 100% !important;
+
+		padding: 0 !important;
+
+	}
+
+	/* 移动端-内容块基本设置end */
+
+	/*移动端-通用居中块设置 start */
+	.layout-1,
+	.layout-12,
+	.layout-123,
+	.layout-ls-h,
+	.layout-s-nav,
+	.layout-m-nav,
+	.layout-s-news,
+	.layout-t-news,
+	.layout-n-t,
+	.layout-vs-v4,
+	.layout-v-col4,
+	.layout-vb-ab{
+		width: 100% !important;
+		margin: 0 auto;
+	}
+
+	/*移动端-通用居中块设置 end */
+
+	/* 移动端-占用块 start */
+	.mx-m {
+		margin: 10px 0 0;
+	}
+
+	/* 移动端-占用块 end */
+	/* 移动端-定义标题 start  */
+	.mx-item-title {
+		padding: 15px 15px 0;
+	}
+
+	/* 移动端-定义标题 end  */
+	/* 移动端-长定义标题 start  */
+	.mx-item-title {
+		padding: 15px 15px 0;
+	}
+
+	/* 移动端-长定义标题 end  */
+	/* 移动端-thumbnails-缩略图设置 start */
+	.mx-thumbnails ul {
+		margin: 0;
+	}
+
+	.mx-thumbnails ul li {
+		width: 50%;
+		margin-top: 0;
+		padding: 15px 15px 5px;
+		background: #fff;
+	}
+
+	/* 移动端-thumbnails-缩略图设置 end */
+	
+	/* 移动端- 书本-书架-样式 start */
+	.mx-covers-ul{
+		background-image: linear-gradient(#90683c 0%, #e2c594 10%, #e9d2b0 50%,#90683c 50%, #e2c594 60%, #e9d2b0 100%);
+	}
+	.mx-covers-ul li{
+		width:50%;
+		padding:20px 0 15px 0;
+	}
+	.mx-covers-ul li a{
+		width:150px;
+		height:200px;
+	}
+	.mx-covers-ul li a span{
+		padding: 8px 8px 8px 18px;
+	}
+	.mx-covers-ul a span strong{
+		font-size:15px;
+		line-height:20px;
+		height:40px;
+	}
+	.mx-covers-ul a span em{
+		font-size:12px;
+		line-height:20px;
+	}
+	.mx-covers-day{
+		font-size:24px !important;
+	}
+	/* 移动端- 书本-书架-样式 end */
+	/* swiper插件 样式重载 start */
+	Swiper {
+		width: 100%;
+		height: 100%;
+	}
+
+	/* 样式穿透 swiper小圆点 */
+	.swiper-container-horizontal>.swiper-pagination-bullets,
+	.swiper-pagination-custom,
+	.swiper-pagination-fraction {
+		bottom: 52px;
+	}
+
+	/* swiper插件 样式重载 end */
+
+
+
+
+
+
+
+
+}
+
+
+/* 第二档 960-1240 ipad 端 */
+@media only screen and (min-width:960px) and (max-width:1239px) {
+
+	/*960-通用居中块配置start */
+	.layout-1,
+	.layout-12,
+	.layout-123,
+	.layout-ls-h,
+	.layout-s-nav,
+	.layout-m-nav,
+	.layout-s-news,
+	.layout-t-news,
+	.layout-n-t,
+	.layout-vs-v4,
+	.layout-v-col4,
+	.layout-vb-ab {
+		width: 960px;
+		margin: 0 auto;
+
+	}
+
+	/*960-通用居中块配置end */
+	/* 960-一排书架ul的样式start */
+	.mx-covers-ul {
+		background-image: linear-gradient(#90683c 0%, #e2c594 10%, #e9d2b0 50%, #90683c 50%, #e2c594 60%, #e9d2b0 100%);
+	}
+
+	/* 960-一排书架ul的样式end */
+	/* 960- 一个书架的li的占比 start */
+	.mx-covers-ul li{
+		width:50%;
+		padding:20px 0 15px 0;
+	}
+	/* 960- 一个书架的li的占比 end */
+	/* 960- 一个书架的li a的占比 start */
+	.mx-covers-ul li a{
+		width:150px;
+		height:200px;
+	}
+	/* 960- 一个书架的li a的占比 end */
+	/* 960- 一个书架的li a span的占比 start */
+	.mx-covers-ul li a span{
+		padding:8px 8px 8px 18px;
+	}
+	/* 960- 一个书架的li a span的占比 end */
+	.mx-covers-ul a span strong{
+		font-size:15px;
+		line-height:20px;
+		height:40px;
+	}
+	.mx-covers-ul a span em{
+		font-size:12px;
+		line-height:20px;
+	}
+	.mx-covers-day{
+		font-size:24px !important;
+	}
+
+
+
+
+}
+
+/* 第三档 1240以上 pc端 */
+@media only screen and (min-width:1240px) {
+
+	/*1200-通用居中块配置start */
+	.layout-1,
+	.layout-12,
+	.layout-123,
+	.layout-ls-h,
+	.layout-s-nav,
+	.layout-m-nav,
+	.layout-s-news,
+	.layout-t-news,
+	.layout-n-t,
+	.layout-vs-v4,
+	.layout-v-col4,
+	.layout-vb-ab {
+		width: 1200px;
+		margin: 0 auto;
+
+	}
+
+	/*1200-通用居中块配置end */
+	/*1200-视频轮播图(左边)+ 4个上下视频(右边) start */
+	.layout-vs-v4 .c1 {
+		float: left;
+		width: 700px;
+	}
+
+	.layout-vs-v4 .c2 {
+		float: right;
+		width: 500px;
+	}
+
+	/*1200-视频轮播图(左边)+ 4个上下视频(右边) end */
+
+	/* swiper插件 样式重载 start */
+	Swiper {
+		width: 100%;
+		height: 100%;
+	}
+
+	/* 样式穿透 swiper小圆点 */
+	.swiper-container-horizontal>.swiper-pagination-bullets,
+	.swiper-pagination-custom,
+	.swiper-pagination-fraction {
+		bottom: 52px;
+	}
+
+	/* swiper插件 样式重载 end */
+
+
+}

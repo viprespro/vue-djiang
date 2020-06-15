@@ -1,0 +1,110 @@
+/* 通用样式表 */
+.dj-listing {
+	display: block;
+}
+
+.dj-m {
+	margin: 20px 0 0;
+}
+
+.mt {
+	margin: 20px 0 0;
+}
+
+/* 标题通用样式 */
+.dj-item-title {
+	padding: 20px 20px 0;
+	background: #fff;
+	display: block;
+}
+
+.dj-item-title strong {
+	font-size: 18px;
+	margin: 5px 0 0;
+}
+
+.dj-item-title strong,
+	{
+	color: #c01 !important;
+}
+
+.dj-item-title span {
+	float: right;
+	height: auto !important;
+	line-height: 2;
+}
+
+.dj-item-title span a {
+	color: #aaa;
+}
+
+.dj-item-title span a:hover {
+	color: #c01 !important;
+}
+
+.dj-item-more {
+	font-size: 12px;
+}
+
+/* dl定义列表通用样式 */
+.dj-listing dl {
+	display: block;
+	padding: 20px;
+	border-bottom: 1px solid #eee;
+	background-color: #fff;
+}
+
+.dj-listing dl dt {
+	float: left;
+	width: 200px;
+	position: relative;
+}
+
+.dj-listing dl dt img {
+	display: block;
+	width: 100%;
+}
+
+.dj-listing dl dd {
+	/* 注意的是左边的图片宽220px */
+	margin: 0 0 0 220px;
+}
+
+.dj-listing dl strong {
+	display: block;
+	font-size: 18px;
+	line-height: 30px;
+	height: 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	font-weight: bold;
+	color: #000;
+}
+
+.dj-listing dl span {
+	display: block;
+	color: #aaa;
+	padding: 5px 0 0;
+	/* 加字体 */
+	font-size: 14px;
+}
+
+.dj-listing-sum {
+	height: 49px;
+	line-height: 22px;
+	overflow: hidden;
+}
+
+.dj-listing dl em {
+	margin: 0 5px;
+	color: #ddd;
+}
+
+.dj-listing dl span text {
+	display: inline-block;
+}
+/* .dj-custome-wrapper{
+	
+} */

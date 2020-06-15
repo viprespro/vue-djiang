@@ -1,0 +1,213 @@
+@charset "utf-8";
+
+/* 第一档 小于960 移动端  */
+@media only screen and (max-width:959px) {
+	/* 移动端-图片基本设置 start*/
+	img {
+		width: 100%;
+	}
+	/* 移动端-图片基本设置 end*/
+	/* 移动端-内容块基本设置start */
+	.c1,
+	.c2,
+	.c3 {
+		float: none !important;
+	
+		width: 100% !important;
+	
+		padding: 0 !important;
+	
+	}
+	
+	/* 移动端-内容块基本设置end */
+	
+	/*移动端-通用居中块设置 start */
+	.layout-1,
+	.layout-12,
+	.layout-123,
+	.layout-ls-h,
+	.layout-s-nav,
+	.layout-m-nav,
+	.layout-s-news,
+	.layout-t-news,
+	.layout-n-t {
+		width: 100% !important;
+		margin: 0 auto;
+	}
+	
+	/*移动端-通用居中块设置 end */
+	
+	/*移动端-大事记页面-新闻thumb 1-1 start*/
+	.mx-thumbnails ul li {
+	    width: 50%;
+	    margin-top: 0;
+	    padding: 15px 15px 5px;
+	    background: #fff;
+	}
+	/*移动端-大事记页面-新闻thumb 1-1 end*/
+	
+	/* 移动端-大事记页面-hot新闻区域 1-1  start*/
+	.mx-thumbnails-cos1 ul li {
+	    padding: 15px;
+	    float: left;
+	    width: 50%;
+	    box-sizing: border-box;
+	}
+	/* 移动端-大事记页面-hot新闻区域 1-1  end*/
+	
+	/* swiper插件 样式重载 start */
+	Swiper {
+		width: 100%;
+		height: 100%;
+	}
+	
+	/* 样式穿透 swiper小圆点 */
+	.swiper-container-horizontal>.swiper-pagination-bullets,
+	.swiper-pagination-custom,
+	.swiper-pagination-fraction {
+		bottom: 52px;
+	}
+	
+	/* swiper插件 样式重载 end */
+	
+	
+}
+
+
+/* 第二档 960-1240 ipad 端 */
+@media only screen and (min-width:960px) and (max-width:1239px) {
+	/*960-通用居中块配置start */
+	.layout-1,
+	.layout-12,
+	.layout-123,
+	.layout-ls-h,
+	.layout-s-nav,
+	.layout-m-nav,
+	.layout-s-news,
+	.layout-t-news,
+	.layout-n-t {
+		width: 960px;
+		margin: 0 auto;
+	
+	}
+	
+	/*960-通用居中块配置end */
+	
+	/*960-轮播图+新闻列表区域 start */
+	/* 轮播图 */
+	.layout-s-news .c1 {
+		width: 400px;
+		float: left;
+	}
+	
+	/* 新闻列表 */
+	.layout-s-news .c2 {
+		width: 560px;
+		float: right;
+	}
+	
+	/*960-轮播图+新闻列表区域 end*/
+	
+	
+	
+	
+	
+	
+	
+	/*960-最新发布+hot新闻区域 start*/
+	/* 最新发布 */
+	.layout-ls-h .c1 {
+		width: 720px;
+		float: left;
+	}
+	
+	/* hot新闻 */
+	.layout-ls-h .c2 {
+		width: 240px;
+		float: left;
+	}
+	
+	/*960-最新发布+hot新闻区域 end*/
+	
+	/* swiper插件 样式重载 start */
+	Swiper {
+		width: 100%;
+		height: 100%;
+	}
+	
+	/* 样式穿透 swiper小圆点 */
+	.swiper-container-horizontal>.swiper-pagination-bullets,
+	.swiper-pagination-custom,
+	.swiper-pagination-fraction {
+		bottom: 52px;
+	}
+	
+	/* swiper插件 样式重载 end */
+}
+
+/* 第三档 1240以上 pc端 */
+@media only screen and (min-width:1240px) {
+
+	
+	/*1200-通用居中块配置start */
+	.layout-1,
+	.layout-12,
+	.layout-123,
+	.layout-ls-h,
+	.layout-s-nav,
+	.layout-m-nav,
+	.layout-s-news,
+	.layout-t-news,
+	.layout-n-t {
+		width: 1200px;
+		margin: 0 auto;
+	
+	}
+	
+	/*1200-通用居中块配置end */
+	
+	/*1200-轮播图+新闻列表区域 start */
+	/* 轮播图 */
+	.layout-s-news .c1 {
+		width: 500px;
+		float: left;
+	}
+	
+	/* 新闻列表 */
+	.layout-s-news .c2 {
+		width: 700px;
+		float: right;
+	}
+	
+	/*1200-轮播图+新闻列表区域 end*/
+	
+	/* 最新发布+热点区域 */
+	/* 1200-最新发布区域+hot新闻区域 start */
+	/* 最新发布 */
+	.layout-ls-h .c1 {
+		width: 900px;
+		float: left;
+	}
+	
+	/* hot新闻 */
+	.layout-ls-h .c2 {
+		width: 300px;
+		float: left;
+	}
+	
+	/* 1200-最新发布区域+hot新闻区域 end */
+	/* swiper插件 样式重载 start */
+	Swiper {
+		width: 100%;
+		height: 100%;
+	}
+	
+	/* 样式穿透 swiper小圆点 */
+	.swiper-container-horizontal>.swiper-pagination-bullets,
+	.swiper-pagination-custom,
+	.swiper-pagination-fraction {
+		bottom: 52px;
+	}
+	
+	/* swiper插件 样式重载 end */
+}

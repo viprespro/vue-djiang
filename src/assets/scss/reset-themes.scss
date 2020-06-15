@@ -1,0 +1,82 @@
+// $themeColor:#fea;
+//含有边框的盒子
+*, :after, ::before{
+	box-sizing: border-box;
+}
+//内容块基本设置
+.c1, .c2, .c3{
+	display: block;
+	padding:0 10px;
+	margin-top: 20px;
+	
+}
+//dl新闻+hot热点区域基本配置
+.layout-ls-h .c1{
+	width:900px;
+	float:left;
+	// background-color: blue;
+}
+.layout-ls-h .c2{
+	width:300px;
+	float:right;
+}
+.c1 dl, .c1 ul, .c2 dl, .c2 ul, .c3 dl, .c3 ul{
+	// 清除底边框
+	margin-bottom: 0 !important;
+}
+//所有使用块集合墙纸通用样式
+.layout-1-wrapper,.layout-12-wrapper,.layout-123-wrapper,.layout-l-h-wrapper{
+	width:100%;
+	display: block;
+	clear:both;
+	// background-color: #000;
+}
+// 首页上半部分主题背景颜色-党
+.layout-1-wrapper.special-themes,.layout-12-wrapper.special-themes {
+    background-color: #900;
+}
+
+//正常灰色背景颜色
+.normal-themes {
+    background-color: #f5f5f5;
+}
+
+// 版心
+.w{
+	width:1180px;
+	margin: 0 auto;
+}
+//图片居中
+img{
+	vertical-align: middle;
+	border-style: none;
+}
+//基础a的样式
+a{
+	 color:#333;
+}
+//基础em的样式
+em{
+	color:#aaa;
+}
+//主题 category
+.dj-column-list-wrap.special-themes ul li a{					
+	display: block;
+	padding:20px 10px;
+	height: 100px;
+	background-color: #d7322d;
+	background-image: url(../../assets/img/column-bg.png);
+	border:1px solid #ff5842; 
+
+}
+.dj-column-list-wrap.special-themes ul li a i{
+	 color:#fea !important;
+}
+//dj-m 用来指定 对应块的margin
+.dj-m {
+	margin:20px 0 0;
+	margin: 0;
+}
+.mt{
+	margin:20px 0 0;
+}

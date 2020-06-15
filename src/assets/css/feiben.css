@@ -1,0 +1,146 @@
+.mx-column-list {
+	display: block;
+	padding: 0;
+}
+
+.mx-column-list ul {
+	display: block;
+	margin-left: -10px;
+	margin-right: -10px;
+}
+
+.mx-column-list ul li {
+	float: left;
+	width: 25px;
+	padding: 10px;
+}
+
+.mx-column-list ul li a,
+.mx-column-list-wrapper.extra ul li a {
+	padding: 0 5px;
+	display: block;
+	height: 80px;
+	position: relative;
+}
+
+/* 1098 */
+.mx-column-list ul li a i {
+	background: #ccc;
+	background-repeat: repeat-x;
+	background-size: auto 100%;
+	background-position: top;
+	width: 80px;
+	height: 80px;
+	line-height: 80px;
+	margin: 0 15px 0 0;
+	float: left;
+	border-radius: 100px;
+	color: #fff;
+	font-size: 40px;
+	text-align: center;
+}
+
+/* 1100 */
+.mx-column-list ul li a span strong,
+.mx-column-list-wrapper.extra ul li a span strong {
+	color: #333;
+	padding: 18px 0 0;
+	height: 42px;
+	display: block;
+	font-size: 16px;
+	overflow: hidden;
+}
+
+/* 1102 */
+.mx-column-list ul li a span em,
+.mx-column-list-wrapper.extra ul li a span em {
+	color: #b5becc;
+	display: block;
+	line-height: 18px;
+	font-size: 12px;
+	height: 18px;
+	overflow: hidden;
+	opacity: 0.8;
+}
+
+.mx-column-list ul li a span strong {
+	color: #333;
+}
+
+/* 1111 */
+.mx-column-list-wrapper.special-themes ul li a:after,
+.mx-column-list-wrapper.special-themes ul li a:before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	border: dashed 6px transparent;
+	display: block;
+	padding: 5px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	box-sizing: border-box;
+	z-index: 101;
+}
+
+/* 1113 */
+.mx-column-list-wrapper.special-themes ul li a i {
+	float: left;
+	width: 58px;
+	height: 58px;
+	line-height: 58px;
+	text-align: center;
+	color: #fff;
+	margin: 0 5px 0 0;
+	border-radius: 100px;
+	background: none;
+}
+
+/* 1115 */
+.mx-column-list-wrapper.special-themes ul li a span {
+	display: block;
+}
+
+/* 1116 */
+.mx-column-list-wrapper.special-themes ul li a span strong {
+	line-height: 24px;
+	padding: 8px 0 0;
+	color: #fff;
+	height: 32px;
+}
+
+.mx-column-list-wrapper.special-themes ul li a {
+	display: block;
+	border: 1px transparent solid;
+	height: 80px;
+	padding: 10px;
+	position: relative;
+	background: #ccc;
+	background-repeat: repeat-x;
+	background-size: auto 100%;
+	background-position: top;
+}
+
+.mx-column-list-wrapper.special-themes ul li a:after,
+.mx-column-list-wrapper.special-themes ul li a:before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	border: dashed 6px transparent;
+	display: block;
+	padding: 5px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	box-sizing: border-box;
+	z-index: 101;
+}
+
+.mx-column-list-wrapper.special-themes ul li a:before {
+	border: 5px transparent solid;
+	z-index: 102;
+}
+
+.mx-column-list-wrapper.special-themes ul li a i {
+	color: #fea !important;
+}
