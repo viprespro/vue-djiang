@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require('webpack');
+
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
@@ -25,12 +26,10 @@ module.exports = {
       }
     },
     module: {
-      rules: [
-        {
-          test: /\.(html)(\?.*)?$/,
-          use: "vue-html-loader"
-        }
-      ]
+      rules: [{
+        test: /\.(html)(\?.*)?$/,
+        use: "vue-html-loader"
+      }]
     },
     //公共资源合并
     optimization: {
@@ -74,7 +73,7 @@ module.exports = {
       //生成文件的最大体积 整数类型（以字节为单位 300k）
       maxAssetSize: 30000000,
       //只给出 js 文件的性能提示
-      assetFilter: function(assetFilename) {
+      assetFilter: function (assetFilename) {
         return assetFilename.endsWith(".js");
       }
     }
@@ -95,20 +94,20 @@ module.exports = {
     //   .plugin("webpack-bundle-analyzer")
     //   .use(require("webpack-bundle-analyzer").BundleAnalyzerPlugin)
     //   .end();
-	//引入jquery.
-	config.plugin('provide').use(webpack.ProvidePlugin, [{
-	      $: 'jquery',
-	      jquery: 'jquery',
-	      jQuery: 'jquery',
-	      'window.jQuery': 'jquery'
-	    }])
-	//html-wepack-plugin
-	config.plugin('html').tap(args=>{
-		// args  https://cli.vuejs.org/zh/guide/webpack.html#%E4%BF%AE%E6%94%B9%E6%8F%92%E4%BB%B6%E9%80%89%E9%A1%B9
-		// console.log(args);
-		args[0].title='111';
-		return args;
-	})
+    //引入jquery.
+    config.plugin('provide').use(webpack.ProvidePlugin, [{
+      $: 'jquery',
+      jquery: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    }])
+    //html-wepack-plugin
+    config.plugin('html').tap(args => {
+      // args  https://cli.vuejs.org/zh/guide/webpack.html#%E4%BF%AE%E6%94%B9%E6%8F%92%E4%BB%B6%E9%80%89%E9%A1%B9
+      // console.log(args);
+      args[0].title = '111';
+      return args;
+    })
   },
   //打包输出路径
   outputDir: "dist/web",
@@ -129,7 +128,7 @@ module.exports = {
       }
     },
     // 启用 CSS modules for all css / pre-processor files.
-     requireModuleExtension: true
+    requireModuleExtension: true
   },
   //开发服务器http代理
   devServer: {
@@ -148,8 +147,8 @@ module.exports = {
   },
   // 第三方插件配置
   pluginOptions: {
-	  
+
   },
   //关闭eslint检测
-  lintOnSave:false
+  lintOnSave: false
 };

@@ -1,264 +1,109 @@
 @charset "utf-8";
 
-/* 第一档 小于960 移动端  */
-@media only screen and (max-width:959px) {
-	.c1,
-	.c2,
-	.c3{
-		float: none !important;
-		 
-		width: 100% !important; 
-		
-		padding: 0 !important; 
-		
-	}
-	/* 移动端-占用块 start */
-	.mx-m {
-		margin: 10px 0 0;
-	}
-	
-	/* 移动端-占用块 end */
-	.layout-1,
-	.layout-12,
-	.layout-123,
-	.layout-ls-h{
-		width: 100% !important;
-		margin: 0 auto;
-	}	
-	
-	img {
+.layout-1-wrapper {
 		width: 100%;
+		background-color: #900;
 	}
-	/* 首页 3-3-3 新闻列表样式 start */
-	.mx-sheet-ul{
-		padding:10px 15px;
-	}
-	.mx-sheet-ul li{
-		padding:5px 0!important;
-	}
-	.mx-sheet-first-title a{
-		font-size:14px;
-	}
-	/* 首页 3-3-3 新闻列表样式 end */
-	/* //swiper样式 */
-	Swiper {
-		width: 100%;
-		height: 100%;
-	}
-	
-	/* //样式穿透 swiper小圆点 */
-	.swiper-container-horizontal>.swiper-pagination-bullets,
-	.swiper-pagination-custom,
-	.swiper-pagination-fraction {
-		bottom: 52px;
-	}
-	
-	/* 首页-category样式 4排1-1样式 start*/
-	.mx-column-list ul {
-		
+
+	.layout-1-wrapper .layout-1 .c1-wrapper .c1 {
 		margin: 0 !important;
-		padding: 0 10px;
 	}
-	
-	.mx-column-list ul li {
+
+	.layout-1-wrapper .mx-column-list.mx-m {
+		margin: 0;
+	}
+
+	.layout-1-wrapper .mx-column-list {
+		padding: 10px 0;
+	}
+
+	.layout-1-wrapper .mx-column-list ul {
+		display: block;
+		margin-left: -10px;
+		margin-right: -10px;
+	}
+
+	.layout-1-wrapper .mx-column-list ul li {
 		float: left;
-		width: 50% !important; 
-		padding: 10px !important;
-		
-		box-sizing: border-box; 
+		width: 25%;
+		padding: 10px;
+	}
+
+	.layout-1-wrapper .mx-column-list ul li a {
+		display: block;
+		padding: 20px 10px;
+		height: 100px;
+		background: #d7322d;
+		background-image: url(../../assets/img/column-bg.png);
+		border: 1px solid #ff5842;
+		position: relative;
+	}
+
+	.layout-1-wrapper .mx-column-list ul li a::after,
+	.layout-1-wrapper .mx-column-list ul li a::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		border: 6px dashed transparent;
+		display: block;
+		padding: 5px;
+		position: absolute;
+		left: 0;
+		top: 0;
 		-webkit-box-sizing: border-box;
-	
-	}
-	/* 移动端-首页-category样式 4排1-1样式 end*/
-	/* 移动端-首页-item-title start */
-	.mx-item-title{
-		padding:15px 15px 0;
-	}
-	/* 移动端-首页-item-title end */
-	/* 热点新闻 hot 排版1-1 start */
-	.mx-thumbnails ul{
-		margin:0;
-	}
-	.mx-thumbnails ul li{
-		width:50%;
-		margin-top:0;
-		padding:15px 15px 15px;
-		background:#fff;
-	}
-	.mx-thumbnails-cos1 ul li{
-		padding:15px;
-		float:left;
-		width:50%;
-	}
-	.mx-thumbnails ul span {
-	    padding: 10px 0 0;
-	    border-bottom-width: 10px;
-	    font-size: 12px;
-	}
-	.mx-thumbnails-cos1 ul li span {
-	    height: 46px;
-	    overflow: hidden;
-	}
-	/* 热点新闻 hot 排版1-1 end */
-	
-	
-	
-	
-	
-	
-}
-
-
-/* 第二档 960-1240 ipad 端 */
-@media only screen and (min-width:960px) and (max-width:1239px) {
-	.layout-1,
-	.layout-12,
-	.layout-123,
-	.layout-ls-h,
-	.layout-s-nav,
-	.layout-m-nav,
-	.layout-s-news,
-	.layout-t-news,
-	.layout-n-t {
-		width: 960px;
-		margin: 0 auto;
-		
-	}
-	/* 轮播+新闻 */
-	.layout-s-news .c1 {
-		width: 400px;
-		float: left !important;
-	}
-	
-	.layout-s-news  .c2 {
-		width: 560px;
-		float: right !important;
-	}
-	
-	.cz-news ul {
-		padding: 20px;
-	}
-	
-	.mx-column-list ul li {
-		float: left;
-		width: 25% !important; 
-		padding: 10px !important;
-		
 		box-sizing: border-box;
-	
+		z-index: 101;
 	}
-	
-	.layout-123 .c1,.c2,.c3{
+
+	.layout-1-wrapper .mx-column-list ul li a:after {
+		border: 6px dashed #94101d;
+	}
+
+	.layout-1-wrapper .mx-column-list ul li a:before {
+		border: 5px solid #c71715;
+		z-index: 102;
+	}
+
+	.layout-1-wrapper .mx-column-list ul li a i {
 		float: left;
-	} 
-	/* //3个块  3-3-3 三等分 */
-	.r-3-3-3 .c1,
-	.r-3-3-3 .c2,
-	.r-3-3-3 .c3{
-		width:320px;
-	}
-	
-	
-	
-	/* Latest+ hot */
-	.layout-ls-h .c1{
-		width: 720px;
-		float:left;
-	}
-	.layout-ls-h .c2{
-		width: 240px;
-		float:left;
-	}
-	/* //swiper样式 */
-	Swiper {
-		width: 100%;
-		height: 100%;
-	}
-	
-	/* //样式穿透 swiper小圆点 */
-	.swiper-container-horizontal>.swiper-pagination-bullets,
-	.swiper-pagination-custom,
-	.swiper-pagination-fraction {
-		bottom: 52px;
-	}
-}
-
-/* 第三档 1240以上 pc端 */
-@media only screen and (min-width:1240px) {
-
-	
-	.layout-1,
-	.layout-12,
-	.layout-123,
-	.layout-ls-h,
-	.layout-s-nav,
-	.layout-m-nav,
-	.layout-s-news,
-	.layout-t-news,
-	.layout-n-t{
-		width: 1200px;
-		margin: 0 auto;
-		
+		width: 58px;
+		height: 58px;
+		line-height: 58px;
+		text-align: center;
+		color: #fea;
+		margin: 0 5px 0 0;
+		font-size: 40px;
+		border-radius: 100px;
+		background: none;
 	}
 
-	
-	/* //浮动 */
-	.layout-123 .c1,
-	.c2,
-	.c3 {
-		float: left;
+	.layout-1-wrapper .mx-column-list ul li a span {
+		display: block;
 	}
 
-	/* //3个块  3-3-3 三等分 */
-	 .r-3-3-3 .c1,
-	 .r-3-3-3 .c2,
-	 .r-3-3-3 .c3 {
-		width: 400px;
-	}
-	/* 轮播图+新闻列表区域4-6 开 */
-	
-	.layout-s-news .c1{
-		float: left;
-	}
-	.layout-s-news .c2{
-		float: right;
-	}
-	.layout-s-news  .c1{
-		width:500px;
-	}
-	.layout-s-news  .c2{
-		width: 700px;
-	}
-	/* 最新发布+热点区域 */
-	/* //第四个 最新新闻+hot区域 */
-	.layout-ls-h .c1 {
-		width: 900px;
-		float: left;
+	.layout-1-wrapper .mx-column-list ul li a span strong {
+		display: block;
+		height: 32px;
+		padding: 8px 0 0;
+		color: #fff;
+		font-size: 16px;
+		line-height: 24px;
+		overflow: hidden;
 	}
 
-	.layout-ls-h .c2 {
-		width: 300px;
-		float: left;
+	.layout-1-wrapper .mx-column-list ul li a span em {
+		display: block;
+		line-height: 18px;
+		font-size: 12px;
+		height: 18px;
+		color: #fff;
+		overflow: hidden;
+		opacity: 0.8;
 	}
 
-	/* //swiper样式 */
-	Swiper {
-		width: 100%;
-		height: 100%;
+	/* 背景 */
+	.layout-s-news-wrapper.special-themes .c2 .mx-sheet {
+		background-image: url(../../assets/img/column-title-bg.png);
+		background-repeat: no-repeat;
+		background-position: right top;
 	}
-
-	.mx-column-list ul li {
-		float: left;
-		width: 25% !important;
-		padding: 10px !important;
-		box-sizing: border-box;
-
-	}
-
-	/* //样式穿透 swiper小圆点 */
-	.swiper-container-horizontal>.swiper-pagination-bullets,
-	.swiper-pagination-custom,
-	.swiper-pagination-fraction {
-		bottom: 52px;
-	}
-}

@@ -1,0 +1,548 @@
+/* 移动端2倍距 */
+
+@media only screen and (max-width: 576px) {
+    .el-pagination__jump {
+        display: none !important;
+    }
+}
+
+
+/* 低于959尺寸 */
+
+@media only screen and (max-width:959px) {
+    /* 基本配置 start*/
+    $times: 2;
+    .c1,
+    .c2,
+    .c3 {
+        padding: 0 !important;
+    }
+    .mx-m {
+        margin: 10px*$times 0 0;
+    }
+    .touch {
+        white-space: nowrap;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+    .phone-none {
+        display: none;
+    }
+    .mx-bread-crumb {
+        display: block;
+        height: 18px*$times;
+        padding: 0 80px*$times 0 10px*$times;
+        line-height: 18px*$times;
+        color: #333;
+        position: relative;
+    }
+    .layout {
+        width: 100%;
+    }
+    .layout .c1,
+    .c2,
+    .c3 {
+        float: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    /* 基本配置 end */
+    /* 项目-标题 */
+    .mx-item-title {
+        /* 标准 */
+        /* padding: 15px 15px 0; */
+        /* 放大 */
+        padding: 15px*$times 15px*$times 0;
+    }
+    .mx-item-title strong {
+        /* font-size: 18px; */
+        font-size: 18px*$times;
+    }
+    /* 定义标题 */
+    .mx-listing dl {
+        /* padding:15px; */
+        padding: 15px*$times;
+        border-bottom: 1px*$times solid #eee;
+    }
+    .mx-listing dl strong {
+        display: block;
+        height: auto;
+        /* font-size:15px; */
+        /* line-height:20px; */
+        font-size: 15px*$times;
+        line-height: 20px*$times;
+        font-weight: normal;
+        white-space: normal;
+    }
+    .mx-listing dl em {
+        /* margin:0 5px; */
+        margin: 0 5px*$times;
+        color: #ddd;
+    }
+    .mx-listing dl dt {
+        /* width: 120px; */
+        width: 120px*$times;
+        font-weight: 500;
+    }
+    .mx-listing dl dd {
+        /* margin: 0 0 0 130px; */
+        margin: 0 0 0 130px*$times;
+    }
+    .mx-listing dl dd a {
+        display: block;
+    }
+    .mx-listing dl dd span {
+        /* font-size:12px; */
+        font-size: 12px*$times;
+        padding: 5px*$times 0 0;
+    }
+    .mx-listing dl dd em.user-time {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        font-size: 12px*$times;
+        height: 15px*$times;
+        line-height: 15px*$times;
+    }
+    .mx-listing dl dd em.time-phone {
+        margin: 0;
+        padding-top: 5px*$times;
+    }
+    .mx-listing dl dd span a {
+        display: inline-block;
+    }
+    .mx-listing-sum {
+        display: none !important;
+    }
+    /* 加载更多 */
+    .mx-more-link {
+        /* font-size:14px;
+		line-height:40px; */
+        font-size: 28px;
+        line-height: 80px;
+    }
+    .mx-more-link a {
+        display: block;
+    }
+    /* 缩略图形式 */
+    .mx-thumbnails ul {
+        margin: 0;
+    }
+    .mx-thumbnails ul li {
+        display: block;
+        margin-top: 0;
+        background: #fff;
+    }
+    .mx-thumbnails-cos1 ul li {
+        /* padding:15px; */
+        padding: 15px*$times;
+        float: left;
+        width: 50%;
+    }
+    .mx-thumbnails ul span {
+        display: block;
+        /* padding:10px 0 0;
+		border-bottom-width: 10px;
+		font-size:12px; */
+        padding: 10px*$times 0 0;
+        border-bottom-width: 10px*$times;
+        font-size: 12px*$times;
+    }
+    .mx-thumbnails-cos1 ul li span {
+        /* height:46px; */
+        /* height: 92px; */
+        line-height: 18px*$times;
+        /* overflow: hidden; */
+        height: auto;
+    }
+    /*  */
+    .mx-listing dl {
+        display: block;
+        padding: 15px*$times;
+        border-bottom: 1px*$times solid #eee;
+        background-color: #fff;
+    }
+    .mx-listing dl dt {
+        float: left;
+        font-weight: 500;
+        position: relative;
+        width: 120px*$times;
+    }
+    .mx-listing dl dd {
+        margin-left: 130px*$times;
+    }
+    .mx-listing dl dd a {
+        display: block;
+        color: #333;
+    }
+    .mx-listing dl strong {
+        display: block;
+        font-size: 15px*$times;
+        line-height: 20px*$times;
+        height: auto;
+        text-overflow: ellipsis;
+        overflow: visible;
+        white-space: normal;
+        font-weight: 400;
+    }
+    .mx-listing dl dd span {
+        color: #aaa;
+        font-size: 12px*$times;
+        padding: 5px*$times 0 0;
+    }
+    .mx-listing dl dd span a {
+        display: inline-block;
+        color: #333;
+    }
+    .mx-listing dl dd em.user-time {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        font-size: 12px*$times;
+        height: 15px*$times;
+        line-height: 15px*$times;
+    }
+    .mx-listing dl dd em.time-phone {
+        margin: 0;
+        padding-top: 5px*$times;
+    }
+    .mx-listing-sum {
+        display: none !important;
+    }
+    /*  */
+    .mx-tag {
+        display: block;
+    }
+    .mx-tag-box {
+        padding: 20px*$times;
+        display: block;
+        background-color: #fff;
+    }
+    .mx-tag-box {
+        padding: 15px*$times;
+    }
+    .mx-tag-box a {
+        display: inline-block;
+        border: 1px*$times solid #eee;
+        line-height: 24px*$times;
+        padding: 0 10px*$times;
+        margin: 0 8px*$times 8px*$times 0;
+        border-radius: 3px*$times;
+        background: #f9f9f9;
+    }
+    .mx-tag-box a {
+        color: #333;
+    }
+    /* 列表标题样式 start*/
+    .mx-column-title.mx-m {
+        margin: 0;
+    }
+    .mx-column-title {
+        padding: 10px*$times;
+        background-color: #fff;
+        background-size: auto 100%;
+    }
+    .mx-column-title {
+        background: url(../img/column-title-bg.png) no-repeat right top;
+    }
+    .mx-column-icon {
+        float: left;
+        width: 40px*$times;
+        height: 40px*$times;
+        line-height: 40px*$times;
+        text-align: center;
+        font-size: 34px*$times !important;
+        margin-right: 10px*$times;
+    }
+    .mx-column-icon i {
+        font-size: 34px*$times !important;
+    }
+    /* 追加 */
+    .mx-column-title:after {
+        content: " ";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        height: 0;
+        line-height: 0;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    .mx-column-text h2 {
+        font-size: 18px*$times;
+        line-height: 22px*$times;
+        overflow: hidden;
+        display: block;
+        color: rgba(0, 0, 0, .85);
+        font-weight: 700;
+    }
+    .mx-column-text em {
+        display: block;
+        color: #aaa;
+        font-size: 12px*$times;
+        line-height: 20px*$times;
+    }
+    /* 列表标题样式 end */
+    /* 列表类  二级导航 start */
+    .mx-column-class {
+        padding: 10px*$times;
+        font-size: 14px*$times;
+        background: #fff;
+        white-space: nowrap;
+        /* overflow-x:scroll; */
+        overflow-y: hidden;
+    }
+    .mx-column-class.mx-m {
+        padding: 10px*$times;
+        margin: 1px*$times 0 0;
+    }
+    .mx-column-class a {
+        display: inline-block;
+        margin: 0 10px*$times;
+        line-height: 30px*$times;
+        font-size: 14px*$times;
+    }
+    .mx-column-class em {
+        color: #ddd;
+    }
+    /* .mx-column-class a:hover{
+		color: #c01;
+	} */
+    .mx-column-class a strong {
+        font-weight: bolder;
+        font-size: 14px*$times;
+    }
+    /* 导航激活样式 now */
+    .mx-column-class .now {
+        background: #333;
+        color: #fff;
+        border-radius: 55px*$times;
+        padding: 0 10px*$times;
+    }
+    .mx-column-class .now {
+        background: #c01 !important;
+        color: #fff;
+        border-radius: 5px*$times !important;
+    }
+    /* 列表类  二级导航 end */
+    /*重置el-pagination 样式 start*/
+    .el-pagination {
+        /* height: 100px; */
+        margin: 0 !important;
+        padding: 0!important;
+        box-sizing: border-box;
+        color: rgba(0, 0, 0, 0.65);
+        font-size: 14px*$times;
+        font-variant: tabular-nums;
+        line-height: 1.5;
+        font-feature-settings: "tnum";
+        list-style: none;
+    }
+    .el-pagination button:hover {
+        color: #c01;
+    }
+    .el-pagination .btn-prev,
+    .el-pagination .btn-next {
+        /* background: red;  */
+        display: inline-block;
+        min-width: 32px*$times;
+        height: 32px*$times;
+        color: rgba(0, 0, 0, 0.65);
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 32px*$times;
+        text-align: center;
+        vertical-align: middle;
+        list-style: none;
+        border-radius: 4px*$times;
+        transition: all 0.3s;
+        /* margin-right: 8px; */
+        outline: none;
+    }
+    .el-pagination .btn-prev i,
+    .el-pagination .btn-next i {
+        font-size: 16px*$times !important;
+    }
+    .el-pagination .el-pager li {
+        display: inline-block;
+        list-style: none;
+        min-width: 32px*$times;
+        height: 32px*$times;
+        /* margin-right: 10px; */
+        line-height: 30px*$times;
+        text-align: center;
+        vertical-align: middle;
+        font-family: Arial, Helvetica, sans-serif;
+        /* border: 1px solid #d9d9d9; */
+        border-radius: 4px*$times;
+        outline: 0;
+        cursor: pointer;
+    }
+    .el-pagination .el-pager li:hover {
+        color: #c01;
+        cursor: pointer;
+        /* border:1px solid #c01; */
+    }
+    .el-pagination .el-pager li.active {
+        color: #c01;
+        /* border:1px solid #c01; */
+        box-shadow: none;
+        transition: all 0.3s;
+        /* cursor: default; */
+    }
+    .el-input.is-active .el-input__inner,
+    .el-input__inner:focus {
+        border-color: #c01;
+        outline: 0;
+    }
+    /*重置el-pagination 样式 end*/
+    /*topic 样式 移动端 start*/
+    .mx-topic ul li {
+        padding: 0;
+    }
+    .mx-topic ul li a {
+        display: block;
+        padding: 15px*$times !important;
+    }
+    .mx-topic-simple ul li a img {
+        width: 100px*$times;
+    }
+    .mx-topic-simple ul li a span {
+        margin-left: 110px*$times;
+        height: 56px*$times;
+        font-size: 16px*$times;
+        line-height: 1.5;
+        font-weight: normal;
+    }
+    .mx-topic-simple ul li a span strong {
+        font-size: 16px*$times;
+        line-height: 28px*$times;
+        height: 56px*$times !important;
+    }
+    /*topic 样式 移动端 end*/
+    /* sheet 基本样式 移动端 start*/
+    .mx-sheet ul {
+        padding: 10px*$times 15px*$times;
+    }
+    .mx-sheet ul li {
+        padding: 5px*$times 0 !important;
+        font-size: 16px*$times;
+    }
+    .mx-sheet ul li a {
+        float: left;
+        width: 78%;
+        width: -moz-calc(100% - 130px);
+        width: -webkit-calc(100% - 130px);
+        line-height: 22px*$times;
+        height: 22px*$times;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 14px*$times;
+    }
+    .mx-sheet ul li em {
+        float: right;
+        display: inline-block;
+        width: 60px*$times;
+        text-align: right;
+        font-size: 12px*$times;
+        color: #aaa;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -8px*$times;
+    }
+    /* sheet 基本样式 移动端 end*/
+    /* 音频 audio基本样式  移动端 start */
+    .mx-audio-play {}
+    .mx-audio-play-sum {
+        margin: 20px*$times 20px*$times 0;
+        border-radius: 5px*$times;
+        padding: 10px*$times 60px*$times 10px*$times 10px*$times;
+        font-size: 14px*$times;
+    }
+    .mx-audio-play-sum a {
+        position: absolute;
+        top: 10px*$times;
+        right: 10px*$times;
+    }
+    .mx-audio-play-title {
+        margin: 20px*$times 0 0;
+        padding: 0 20px*$times;
+        font-size: 18px*$times;
+    }
+    .mx-audio-play-ul li {
+        padding: 30px*$times 0;
+    }
+    .mx-audio-play-ul li a {
+        left: 50%;
+        margin-left: -140px*$times;
+        width: 180px*$times;
+        height: 240px*$times;
+        box-shadow: 0 0 15px*$times rgba(112, 67, 18, 0.9);
+    }
+    .mx-audio-play-ul li a::before {
+        width: 10px*$times;
+    }
+    .mx-audio-play-ul li a i {
+        border: 2px*$times solid rgba(255, 255, 255, 0.6);
+        width: 32px*$times;
+        height: 32px*$times;
+        line-height: 28px*$times;
+        font-size: 18px*$times;
+        margin-left: -15px*$times;
+        top: -15px*$times;
+    }
+    .mx-audio-play-ul li a span {
+        padding: 13px*$times 10px*$times 10px*$times 20px*$times;
+    }
+    .mx-audio-play-ul li a span strong {
+        font-size: 17px*$times;
+        line-height: 22px*$times;
+        height: 44px*$times;
+    }
+    .mx-audio-play-ul li a span em {
+        font-size: 14px*$times;
+        line-height: 24px*$times;
+    }
+    .mx-audio-play-day {
+        font-size: 30px*$times !important;
+        color: #fff !important;
+    }
+    .mx-audio-play-ctrl {
+        padding: 30px*$times 0;
+    }
+    .mx-audio-button {
+        font-size: 30px*$times;
+    }
+    .mx-audio-button span {
+        padding: 0 15px*$times;
+    }
+    .mx-audio-button span i {
+        font-size: 18px*$times !important;
+    }
+    /* 音频 audio基本样式  移动端 end */
+    /* 文章大小 start*/
+    .mx-media-text-body {
+        max-height: 888px;
+    }
+    /*点击张开 添加该样式*/
+    .mx-media-noheight {
+        max-height: none;
+    }
+    .mx-media-main p {
+        margin: 20px*$times 0 0;
+        font-size: 14px*$times;
+    }
+    /* 文章大小 end*/
+}
+
+
+/* 960 -1240尺寸 */
+
+@media only screen and (min-width:960px) and (max-width:1239px) {}
+
+
+/*1240尺寸以上 */
+
+@media only screen and (min-width:1240px) {}

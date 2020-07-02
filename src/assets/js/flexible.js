@@ -1,5 +1,5 @@
 
-;(function(win, lib) {
+(function(win, lib) {
     var doc = win.document;
     var docEl = doc.documentElement;
     var metaEl = doc.querySelector('meta[name="viewport"]');

@@ -1,0 +1,162 @@
+/* 移动端1倍距 */
+/* 低于959尺寸 */
+@media only screen and (max-width:959px){
+	/* 基本配置 start */
+	/* 去掉移动端c1  c2  c3所有padding */
+	
+	/* .mx-m{
+		margin:10px 0 0;
+	} */
+	.touch{
+		white-space: nowrap;
+		overflow-x: scroll;
+		overflow-y: hidden;
+	}
+	
+	.phone-none{
+		display: none;
+	}
+	
+	/* 基本配置 end */
+	.mx-bread-crumb{
+		display: block;
+		height: 18px;;
+		padding:0 80px 0 10px;
+		line-height: 18px;
+		color:#333;
+		position: relative;
+	}
+	.mx-item-title{
+		display: block;
+		padding:15px 15px 0;
+		background: #fff;
+		font-size: 14px;	
+	}
+	.mx-tag-box{
+		padding:15px;
+	}
+	.mx-listing dl{
+		display: block;
+		padding:15px;
+		border-bottom:1px solid #eee;
+		background-color: #fff;
+	}
+	.mx-listing dl dt{
+		float:left;
+		font-weight: 500;
+		position: relative;
+		width: 120px;
+	}
+	.mx-listing dl dd{
+		margin-left:130px;
+	}
+	.mx-listing dl dd a{
+		display: block;
+		color:#333;
+	}
+	.mx-listing dl strong{
+		display: block;
+		font-size:15px;
+		line-height:20px;
+		height:auto;
+		text-overflow: ellipsis;
+		overflow: visible;
+		white-space: normal;
+		font-weight:400;
+	}
+	.mx-listing dl dd span{
+		color:#aaa;
+		font-size: 12px;
+		padding:5px 0 0;
+	}
+	.mx-listing dl dd span a{
+		display: inline-block;
+		color:#333;
+	}
+	.mx-listing dl dd em.user-time {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		font-size: 12px;
+		height: 15px;
+		line-height: 15px;
+	}
+	
+	.mx-listing dl dd em.time-phone {
+		margin: 0;
+		padding-top: 5px;
+	}
+	.mx-listing-sum{
+		display: none!important;
+	}
+	/* 列表标题样式 start*/
+	.mx-column-title.mx-m{
+		margin: 0;
+	}
+	.mx-column-title {
+		padding: 10px;
+		background-color: #fff;
+		background-size: auto 100%;
+	}
+	.mx-column-title {
+		background: url(../img/column-title-bg.png) no-repeat right top;
+	}
+	
+	
+	.mx-column-icon {
+		float: left;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		font-size: 34px !important;
+		margin-right: 10px;
+	}
+	
+	.mx-column-icon i {
+		font-size: 34px !important;
+	}
+	/* 追加 */
+	.mx-column-title:after {
+		content: " ";
+		display: block;
+		clear: both;
+		visibility: hidden;
+		height: 0;
+		line-height: 0;
+		overflow: hidden;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.mx-column-text h2 {
+		font-size: 18px;
+		line-height: 22px;
+		overflow: hidden;
+		display: block;
+		color: rgba(0, 0, 0, .85);
+		font-weight: 700;
+	}
+	
+	.mx-column-text em {
+		display: block;
+		color: #aaa;
+		font-size: 12px;
+		line-height: 20px;
+		
+	}
+	/* 列表标题样式 end */
+	/* 乡村商品列表 样式 start */
+	.mx-custom-shop-list a{
+		width:50%;
+	}
+	/* 乡村商品列表 样式 end */
+}
+/* 960 -1240尺寸 */
+@media only screen and (min-width:960px) and (max-width:1239px) {
+	
+}
+/*1240尺寸以上 */
+@media only screen and (min-width:1240px){
+	
+}

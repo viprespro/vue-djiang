@@ -1,5 +1,5 @@
 <template>
-	<div id="footer" class="mx-footer mx-m">
+	<div  class="mx-footer mx-m">
 		<div class="layout-footer-wrapper">
 			<div class="layout-footer">
 				<div class="c1-wrapper">
@@ -30,6 +30,14 @@
 </script>
 
 <style scoped="scoped">
+	/* footer组件样式 */
+	.mx-footer {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: #7c1618;
+	}
 	/* 内容块基本设置 */
 	.c1,
 	.c2,
@@ -43,7 +51,7 @@
 		display: block;
 		clear: both;
 	}
-
+	
 	.footer-box {
 		display: block;
 		text-align: center;

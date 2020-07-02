@@ -33,6 +33,10 @@ em {
 	color: #aaa;
 	font-weight: 500;
 }
+h1,h2,h3,h4,h5,h6{
+	color:rgba(0,0,0,0.85);
+	font-weight: 700;
+}
 
 /* 内容块基本设置 */
 .c1,
@@ -53,25 +57,7 @@ em {
 	margin-bottom: 0 !important;
 }
 
-/* 所有使用块集合墙纸通用样式 */
-.layout-1-wrapper,
-.layout-12-wrapper,
-.layout-123-wrapper,
-.layout-s-nav-wrapper,
-.layout-m-nav-wrapper,
-.layout-n-t-wrapper,
-.layout-s-news-wrapper,
-.layout-t-news-wrapper,
-.layout-ls-h-wrapper,
-.layout-vs-v4-wrapper,
-.layout-v-col4-wrapper,
-.layout-vb-ab-wrapper,
-.layout-vb-ab-wrapper{
-	width: 100%;
-	display: block;
-	clear: both;
-	/* background-color: #000; */
-}
+
 
 /* // 首页上半部分主题背景颜色-党 */
 .special-themes
@@ -89,21 +75,82 @@ em {
 	color:grba(0,0,0,0.1);
 }
 span{
-	color:#333;
+	/* color:#333; */
 }
 a:hover {
     color: #c01;
 }
-/* 表示 4 6 开 */
-.r-4-6{
+/*重置el-pagination 样式*/
+.el-pagination {
+	/* height: 100px; */
+	margin: 0  !important;
+	padding:0 !important;
+	box-sizing: border-box;
+	color: rgba(0, 0, 0, 0.65);
+	font-size: 14px;
+	font-variant: tabular-nums;
+	line-height: 1.5;
+	font-feature-settings: "tnum";
+	list-style: none;
+}
+.el-pagination button:hover{
+	color: #c01;
+}
+.el-pagination .btn-prev,
+.el-pagination .btn-next {
+	/* background: red;  */
+	display: inline-block;
+    min-width: 32px;
+    height: 32px;
+    color: rgba(0, 0, 0, 0.65);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 32px;
+    text-align: center;
+    vertical-align: middle;
+    list-style: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+    /* margin-right: 8px; */
+    outline: none; 
 	
+}
+.el-pagination .btn-prev i,
+.el-pagination .btn-next i{
+	font-size: 16px !important;
 }
 
-/*  3 3 3 */
-.r-3-3-3{
-	
+.el-pagination .el-pager li {
+	display: inline-block;
+	list-style: none;
+	min-width: 32px;
+	height: 32px;
+	/* margin-right: 10px; */
+
+	line-height: 30px;
+	text-align: center;
+	vertical-align: middle;
+	font-family: Arial, Helvetica, sans-serif;
+	/* border: 1px solid #d9d9d9; */
+	border-radius: 4px;
+	outline: 0;
+	cursor: pointer;
 }
-/* 表示6 4开 */
-.r-6-4{
-	
+
+.el-pagination .el-pager li:hover{
+	color: #c01;
+	cursor: pointer;
+	/* border:1px solid #c01; */
 }
+.el-pagination .el-pager li.active {
+	color: #c01;
+	/* border:1px solid #c01; */
+	box-shadow: none;
+	transition: all 0.3s;
+	/* cursor: default; */
+}
+.el-input.is-active .el-input__inner,
+.el-input__inner:focus {
+	border-color: #c01;
+	outline: 0;
+}
+
