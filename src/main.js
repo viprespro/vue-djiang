@@ -66,7 +66,8 @@ axios.interceptors.request.use(config => {
 //axios 响应拦截器
 axios.interceptors.response.use(res => {
     //code 401 身份验证失败 或者token过期
-    if (res.data.code !== 0) {
+    console.log(res);
+    if (res.data.code ===  401 ) {
         //重新登录请求token
         tokenInfo.getToken();
     }

@@ -249,33 +249,16 @@ export default {
   },
   //生命周期
   created: function() {
-    //修改title
-    // this.modifyTitle();
-    //加载首屏数据
-    // let loadingInstance = Loading.service({
-    //   target: "#index",
-    //   fullscreen: true
-    // });
-    // this.$nextTick(() => {
-    //   // 以服务的方式调用的 Loading 需要异步关闭
-    //   loadingInstance.close();
-
-    // });
     this.getData();
-    //调用轮播方法
-    //this._initSwiper();
-    //窗口调整函数 并实现轮播图片居中
-    // window.addEventListener('resize', this.handleResize);
   },
-  beforeDestroy: function() {
-    // window.removeEventListener('resize', this.handleResize)
-  },
+
   mounted: function() {
     this.modifyTitle();
+    
     //获取swiper数据
     this.getSwiper();
-    this.test();
   },
+
   //计算属性
   computed: {
     ...mapState({
@@ -287,22 +270,18 @@ export default {
   methods: {
     // 导入vuex中的方法
     ...mapMutations(["saveToken", "saveCommonData"]),
+
     //自定义方法
     async getData() {
-      // this.$loading({
-      //   // target:'.index-content',
-      //   // fullscreen:true
-      // })
       let { data: res } = await this.$http.get("/api/home", {
         params: {
           access_token: localStorage.getItem("Authorization")
         }
       });
+
       console.log(res);
-      // console.log(res);
       // 判断数据是否获取成功
       if (res.code != 0) {
-        console.log(res.code);
         console.log("数据获取失败");
         return;
       } else {
@@ -322,34 +301,15 @@ export default {
       console.log(this.$store.state.commonData);
       document.title = this.$store.state.commonData.title;
     },
-    test() {
-      //提交操作要写在methods方法里面 例如test() 方法里面
-      // this.$store.commit({
-      //   //type 是函数名
-      //   type: "saveCommonData",
-      //   //左边是commonData的数据
-      //   commonData: commonData
-      // });
-      console.log(this.$store.state.commonData);
-      // console.log(this.$store.state.commonData.copyright);
-      // console.log(this.$store.state.Authorization);
-      // $(".test").html(1222);
-    },
 
     getSwiper() {
       new Swiper(".swiper-container", {
         direction: "horizontal",
-
         //播放速度
-
         loop: true,
-
         // 自动播放时间
-
         autoplay: true,
-
         // 播放的速度
-
         speed: 2000,
         observer: true, //修改swiper自己或子元素时，自动初始化swiper
         observeParents: true, //修改swiper的父元素时，自动初始化swiper
@@ -357,7 +317,6 @@ export default {
         pagination: {
           el: ".swiper-pagination"
         }
-
         // 如果需要前进后退按钮
         // navigation: {
         // 	nextEl: '.swiper-button-next',
