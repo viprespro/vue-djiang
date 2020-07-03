@@ -62,7 +62,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['ipAddress'])
+    ...mapState(['ipAddress', 'authCode'])
   },
 
   mounted: function() {
@@ -99,7 +99,7 @@ export default {
       this.loading = true;
       let res = await this.$http.get("/api/search", {
         params: {
-          access_token: localStorage.getItem("Authorization"),
+          code: localStorage.getItem("authCode") || this.authCode,
           keyword: this.inputVal || "",
           type: this.curId, // 全部 1  文章 2  音频 3  视频 4
           page: this.page,
@@ -116,7 +116,7 @@ export default {
         this.showDefault = false
       }
       this.list = res.list;
-      console.log(this.list);
+      // console.log(this.list);
     }
   }
 };

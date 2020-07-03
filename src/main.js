@@ -33,6 +33,7 @@ import './assets/css/swiper.min.css';
 
 //使用elementui
 Vue.use(ElementUI)
+
 //定义全局过滤器 处理时间
 Vue.filter('timeCut', function (originVal) {
     return originVal.substring(5, 10).replace('/', '-');
@@ -44,37 +45,16 @@ import {
 
 //引入axios
 import axios from 'axios'
-//导入token.js
-import tokenInfo from './api/token.js'
+
 //默认全局路由地址配置
 axios.defaults.baseURL = 'http://122.51.102.105:8081';
 
 //挂载到原型上去
 Vue.prototype.$http = axios;
 
-//axios请求拦截器
-axios.interceptors.request.use(config => {
-    if (localStorage.getItem('Authorization')) {
-        config.headers.Authorization = localStorage.getItem('Authorization');
-    }
-    // showLoading();
-    return config;
-}, error => {
-    return Promise.reject(error);
-})
+// 设置固定的authCode值
+localStorage.setItem('authCode', '44e3f02f3f6c4611bbee5ef0f030212a')
 
-//axios 响应拦截器
-axios.interceptors.response.use(res => {
-    //code 401 身份验证失败 或者token过期
-    console.log(res);
-    if (res.data.code ===  401 ) {
-        //重新登录请求token
-        tokenInfo.getToken();
-    }
-    return res;
-}, error => {
-    return Promise.reject(error);
-})
 
 Vue.config.productionTip = false;
 

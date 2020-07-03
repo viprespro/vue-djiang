@@ -1370,6 +1370,8 @@
     z-index: 100;
     text-align: center;
     overflow: hidden;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 

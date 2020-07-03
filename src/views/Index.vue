@@ -257,15 +257,14 @@ export default {
     
     //获取swiper数据
     this.getSwiper();
+
+    console.log(this.authCode);
+    console.log(this.ipAddress);
   },
 
   //计算属性
   computed: {
-    ...mapState({
-      // 导入需要ip地址
-      ipAddress: state => state.ipAddress,
-      commonData: state => state.commonData
-    })
+    ...mapState(['authCode','ipAddress','commonData'])
   },
   methods: {
     // 导入vuex中的方法
@@ -275,10 +274,9 @@ export default {
     async getData() {
       let { data: res } = await this.$http.get("/api/home", {
         params: {
-          access_token: localStorage.getItem("Authorization")
+          code: localStorage.getItem('authCode') || this.authCode
         }
       });
-
       console.log(res);
       // 判断数据是否获取成功
       if (res.code != 0) {
@@ -298,7 +296,7 @@ export default {
     },
     //修改title
     modifyTitle() {
-      console.log(this.$store.state.commonData);
+      // console.log(this.$store.state.commonData);
       document.title = this.$store.state.commonData.title;
     },
 
