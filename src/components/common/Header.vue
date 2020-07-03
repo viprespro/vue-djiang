@@ -32,8 +32,12 @@
                     <div class="mx-first-menu db">
                       <!-- 一个li -->
 
-                      <div :class="activeMenu==0 ? 'now' : ''" class="mx-first-menu-li" >
-                        <a href="javascript:;" class="mx-first-menu-link" @click.prevent="goIndex('0')">
+                      <div :class="activeMenu==0 ? 'now' : ''" class="mx-first-menu-li">
+                        <a
+                          href="javascript:;"
+                          class="mx-first-menu-link"
+                          @click.prevent="goIndex('0')"
+                        >
                           <label for="menu-opener-id"></label>
                           首页
                         </a>
@@ -47,7 +51,6 @@
                         class="mx-first-menu-li"
                         v-for="item in commonData.headMenu"
                         :key="item.id"
-                        
                       >
                         <a
                           href="javascript:;"
@@ -58,7 +61,6 @@
                           {{item.name}}
                         </a>
                       </div>
-                      
                     </div>
                   </div>
                   <!-- 搜索 -->
@@ -85,7 +87,7 @@
 <script>
 // 导入vuex
 import { mapState, mapMutations } from "vuex";
-import '../../api/skip';
+import "../../api/skip";
 export default {
   props: {
     activeMenu: {
@@ -94,15 +96,13 @@ export default {
     }
   },
   data() {
-    return {
-      
-    };
+    return {};
   },
+
   created() {
-    //请求头部所需要的数据 header只要那个 category 菜单数据
     this.getCommonData();
-    // console.log(this.activeMenu);
   },
+
   computed: {
     // 计算属性
     ...mapState({
@@ -111,31 +111,19 @@ export default {
       commonData: state => state.commonData
     })
   },
-  //计算属性
-  mounted() {
-    // console.log(typeof(this.commonData))
-    // console.log(this.$store.state.commonData.values)
-    //console.log(this.$store.state.Authorization);
-    // /\/details-(news|video|radio|essay)\/(\\d+)$/;
-    //写个demo正则
-    // let reg = /\/details-(news|video|radio|essay)\/[1-9]+/;
-    // console.log(reg.test("http://localhost:8080/details-video/1592791228581"));
-    console.log(localStorage.getItem("Authorization"));
-  },
+
   methods: {
     ...mapMutations(["saveToken", "saveCommonData"]),
     //在头部获取
     async getCommonData() {
-      //存在则不执行
-      // if (this.$store.state.commonData) return;
       //存在则执行下面代码
+
       let { data: res } = await this.$http.get("api/header", {
         params: {
           access_token: localStorage.getItem("Authorization")
         }
       });
-      // console.log(res);
-      // console.log(res.code);
+
       if (res.code != 0) return;
 
       let data = res.data;
@@ -152,21 +140,21 @@ export default {
       };
       //存放到vuex store
       this.saveCommonData(commonData);
-      // console.log(commonData);
     },
+    
     //跳转首页
-    goIndex(id){
+    goIndex(id) {
       this.$router.push({
-        path:'/'
-      })
+        path: "/"
+      });
     },
+
     //跳转到指定的菜单页
-     goCategory(id) {
+    goCategory(id) {
       //跳转对应id的菜单页面
       this.$router.push({
-        path: `/category/${id}`,
+        path: `/category/${id}`
         // component:'',
-        
       });
       //请求分类页接口
       // let { data: res } = this.$http.get("api/category", {
@@ -177,7 +165,6 @@ export default {
       // });
       // console.log(res);
     }
-
   }
 };
 </script>

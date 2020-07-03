@@ -1,24 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-//导入Index
-// import Index from '../views/Index/Index.vue'
-// import Memorabilia from '../views/Memorabilia/Memorabilia.vue'
+
 Vue.use(VueRouter)
 
 const routes = [{
         path: '/',
         name: 'Index',
         component: () =>
-            import ( /* webpackChunkName: "Index" */ '../views/Index.vue'),
+            import( /* webpackChunkName: "Index" */ '../views/Index.vue'),
         meta: {
-            // title: "首页"
+            title: "首页",
+            keepAlive: true
         }
     },
     {
         path: '/category/1',
         name: 'News',
         component: () =>
-            import ( /* webpackChunkName: "News" */ '../views/News.vue'),
+            import( /* webpackChunkName: "News" */ '../views/News.vue'),
         meta: {
             title: "时政要闻"
         }
@@ -27,7 +26,7 @@ const routes = [{
         path: '/category/2',
         name: 'Red',
         component: () =>
-            import ( /* webpackChunkName: "Red" */ '../views/Red.vue'),
+            import( /* webpackChunkName: "Red" */ '../views/Red.vue'),
         meta: {
             title: "红色中国"
         }
@@ -36,7 +35,7 @@ const routes = [{
         path: '/category/3',
         name: 'Learn',
         component: () =>
-            import ( /* webpackChunkName: "Learn" */ '../views/Learn.vue'),
+            import( /* webpackChunkName: "Learn" */ '../views/Learn.vue'),
         meta: {
             title: "学习党章"
         }
@@ -45,7 +44,7 @@ const routes = [{
         path: '/category/4',
         name: 'Review',
         component: () =>
-            import ( /* webpackChunkName: "Review" */ '../views/Review.vue'),
+            import( /* webpackChunkName: "Review" */ '../views/Review.vue'),
         meta: {
             title: "回顾党史"
         }
@@ -54,7 +53,7 @@ const routes = [{
         path: '/category/5',
         name: 'Courses',
         component: () =>
-            import ( /* webpackChunkName: "Courses" */ '../views/Courses.vue'),
+            import( /* webpackChunkName: "Courses" */ '../views/Courses.vue'),
         meta: {
             title: "党建课堂"
         },
@@ -64,7 +63,7 @@ const routes = [{
         path: '/category/6',
         name: 'Library',
         component: () =>
-            import ( /* webpackChunkName: "Library" */ '../views/Library.vue'),
+            import( /* webpackChunkName: "Library" */ '../views/Library.vue'),
         meta: {
             title: "党建文库"
         }
@@ -73,7 +72,7 @@ const routes = [{
         path: '/category/7',
         name: 'SmartCountry',
         component: () =>
-            import ( /* webpackChunkName: "SmartyCountry" */ '../views/SmartCountry.vue'),
+            import( /* webpackChunkName: "SmartyCountry" */ '../views/SmartCountry.vue'),
         meta: {
             title: "智慧新乡村"
         }
@@ -82,7 +81,7 @@ const routes = [{
         path: '/category/8',
         name: 'PartyLecture',
         component: () =>
-            import ( /* webpackChunkName: "PartyLecture" */ '../views/PartyLecture.vue'),
+            import( /* webpackChunkName: "PartyLecture" */ '../views/PartyLecture.vue'),
         meta: {
             title: "书记讲党课"
         }
@@ -91,7 +90,7 @@ const routes = [{
         path: '/Search',
         name: 'Search',
         component: () =>
-            import ( /* webpackChunkName: "Search" */ '../views/Search/Search.vue'),
+            import( /* webpackChunkName: "Search" */ '../views/Search/Search.vue'),
         meta: {
             title: "搜索页"
         },
@@ -100,7 +99,7 @@ const routes = [{
             path: '/searchList',
             name: 'searchList',
             component: () =>
-                import ( /* webpackChunkName: "searchList" */ '../components/common/searchList.vue'),
+                import( /* webpackChunkName: "searchList" */ '../components/common/searchList.vue'),
             meta: {
                 title: "搜索页"
             },
@@ -110,7 +109,7 @@ const routes = [{
         path: '/details-essay',
         name: 'details-essay',
         component: () =>
-            import ( /* webpackChunkName: "details-essay" */ '../components/common/details-essay.vue'),
+            import( /* webpackChunkName: "details-essay" */ '../components/common/details-essay.vue'),
         props: false
 
     },
@@ -119,15 +118,14 @@ const routes = [{
         path: '/details-news',
         name: 'details-news',
         component: () =>
-            import ( /* webpackChunkName: "details-news" */ '../components/common/details-news.vue')
-
+            import( /* webpackChunkName: "details-news" */ '../components/common/details-news.vue')
 
     },
     {
         path: '/details-video',
         name: 'details-video',
         component: () =>
-            import ( /* webpackChunkName: "details-video" */ '../components/common/details-video.vue')
+            import( /* webpackChunkName: "details-video" */ '../components/common/details-video.vue')
 
 
     },
@@ -135,7 +133,7 @@ const routes = [{
         path: '/details-radio',
         name: 'details-radio',
         component: () =>
-            import ( /* webpackChunkName: "details-radio" */ '../components/common/details-radio.vue')
+            import( /* webpackChunkName: "details-radio" */ '../components/common/details-radio.vue')
 
 
     },
@@ -143,7 +141,7 @@ const routes = [{
         path: '/moreContent',
         name: 'moreContent',
         component: () =>
-            import ( /* webpackChunkName: "moreContent" */ '../components/common/moreContent.vue'),
+            import( /* webpackChunkName: "moreContent" */ '../components/common/moreContent.vue'),
         meta: {
             // title: "查看更多"
         }
@@ -152,13 +150,13 @@ const routes = [{
         path: '/Footer',
         name: 'Footer',
         component: () =>
-            import ( /* webpackChunkName: "Footer" */ '../components/common/Footer.vue')
+            import( /* webpackChunkName: "Footer" */ '../components/common/Footer.vue')
     },
     {
         path: '/Header',
         name: 'Header',
         component: () =>
-            import ( /* webpackChunkName: "Header" */ '../components/common/Header.vue')
+            import( /* webpackChunkName: "Header" */ '../components/common/Header.vue')
     }
 ]
 

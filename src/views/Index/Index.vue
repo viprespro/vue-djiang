@@ -279,17 +279,13 @@ export default {
           access_token: localStorage.getItem('Authorization')
         }
       });
-      console.log(res);
-      console.log(res);
       // 判断数据是否获取成功
       if (res.code != 0) {
-        console.log(res.code)
         console.log("数据获取失败");
         return;
       } else {
         //数据获取成功
         let data = res.data;
-        console.log(data);
         // console.log(data.category)
         //拿到对应模块的数据
         this.categoryDataList = data.category;
@@ -302,19 +298,6 @@ export default {
     modifyTitle(){
       console.log(this.$store.state.commonData);
       document.title=this.$store.state.commonData.title;
-    },
-    test() {
-      //提交操作要写在methods方法里面 例如test() 方法里面
-      // this.$store.commit({
-      //   //type 是函数名
-      //   type: "saveCommonData",
-      //   //左边是commonData的数据
-      //   commonData: commonData
-      // });
-      console.log(this.$store.state.commonData);
-      // console.log(this.$store.state.commonData.copyright);
-      // console.log(this.$store.state.Authorization);
-      // $(".test").html(1222);
     },
 
     getSwiper() {
@@ -352,7 +335,7 @@ export default {
       });
     }
   },
-  components: {
+  composnents: {
     Header,
     swiperBox,
     topicInfo,

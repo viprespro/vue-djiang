@@ -1,20 +1,5 @@
-/*
- * @Date         : 2020-06-28 09:51:40
- * @LastEditors  : 曾迪
- * @LastEditTime : 2020-07-03 09:45:05
- * @FilePath     : \dangjianxiangmupcyidongduan\src\api\token.js
- * @Description  : 
- */
-// import Vue from 'vue'
 import axios from 'axios'
-// 导入vuex
-// import store from '../store/index.js'
 export default {
-    /**
-     * @desc:  用于获取token
-     * @param {type} 
-     * @return:  
-     */
     async getToken(username = 'admin', password = 'admin') {
         const {
             data: resInfo
@@ -26,12 +11,5 @@ export default {
             console.log('登录失败');
             return false;
         }
-        // console.log(localStorage.getItem('Authorization'));
-
-
-        // return resInfo.access_token;
-
     }
-
-
 }

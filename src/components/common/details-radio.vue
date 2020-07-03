@@ -276,7 +276,7 @@ export default {
     async getDetailsData() {
       let { data: res } = await this.$http.get("/api/detail", {
         params: {
-          access_token: localStorage.getItem("access_token"),
+          access_token: localStorage.getItem("Authorization"),
           category_id: this.paramsData.category_id,
           id: this.paramsData.id,
           type: this.paramsData.type
