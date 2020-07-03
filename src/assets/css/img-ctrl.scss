@@ -1,47 +1,59 @@
 @media only screen and (max-width:959px) {
     .sliding-img-box img {
-        width: 375px;
+        // width: 375px;
         // 先写死 后期根据右边内容宽度修改图片高度
-        height: 211px;
+        // height: 211px;
+        // height:100%;
     }
     .mx-listing dl dt img {
-        width: 120px;
+        // width: 120px;
         height: 69px;
     }
     .mx-thumbnails-cos1 ul li img {
-        width: 157.25px;
+        // width: 157.25px;
         height: 89.25px;
     }
 }
 
 @media only screen and (min-width:960px) and (max-width:1239px) {
     .sliding-img-box img {
-        width: 380px;
+        // width: 380px;
         // 先写死 后期根据右边内容宽度修改图片高度
         height: 214px;
     }
+    .mx-listing dl dt img {
+        // width: 200px;
+        height: 115px;
+    }
     .mx-thumbnails-cos1 ul li img {
-        width: 180px;
+        // width: 180px;
         height: 102px;
     }
 }
 
 @media only screen and (min-width:1240px) {
     .sliding-img-box img {
-        width: 480px;
+        // width: 480px;
         // 先写死 后期根据右边内容宽度修改图片高度
         height: 270px;
     }
     .mx-topic ul li a img {
-        width: 60px;
+        // width: 60px;
         height: 60px;
     }
     .mx-listing dl dt img {
-        width: 200px;
+        // width: 200px;
         height: 115px;
     }
+    .mx-thumbnails ul li img {
+        height: 158px;
+    }
     .mx-thumbnails-cos1 ul li img {
-        width: 240px;
+        // width: 240px;
         height: 136px;
     }
+    
+    // .mx-thumbnails ul li img{
+    //     width:135px;
+    // }
 }

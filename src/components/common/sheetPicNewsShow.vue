@@ -56,16 +56,16 @@
 		/* 2倍  start */
 		.mx-sheet ul {
 			
-			padding: 10px*$times 15px*$times;
+			padding: 10px*$times 15px * $times;
 			
 		}
 		
 		.mx-sheet ul li {
 			
-			padding: 5px*$times 0;
+			padding: 5px * $times 0;
 			position: relative;
 			
-			font-size: 16px*$times;
+			font-size: 16px * $times;
 		
 		
 		
@@ -73,9 +73,9 @@
 		
 		.mx-sheet ul li a {
 			/* float: left; */
-			width: calc(100% - 65px*$times);
-			width: -moz-calc(100% - 65px*$times);
-			width: -webkit-calc(100% - 65px*$times);
+			width: calc(100% - 130px);
+			width: -moz-calc(100% - 130px);
+			width: -webkit-calc(100% - 130px);
 			height: 22px*$times;
 			line-height: 22px*$times;
 			font-size: 14px*$times;

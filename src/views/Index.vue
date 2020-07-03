@@ -71,7 +71,11 @@
           <!-- 左边 -->
           <div class="c1-wrapper">
             <div class="c1">
-              <listingNewsLatest :lastestList="latestDataList" :ipAddress="ipAddress" :headMenu="commonData.headMenu"></listingNewsLatest>
+              <listingNewsLatest
+                :lastestList="latestDataList"
+                :ipAddress="ipAddress"
+                :headMenu="commonData.headMenu"
+              ></listingNewsLatest>
             </div>
           </div>
           <!-- 右边 -->
@@ -221,11 +225,12 @@ import Swiper from "swiper";
 // import tokenFun from '../../api/token.js';
 //导入vuex
 import { mapState, mapMutations } from "vuex";
+import { Loading } from "element-ui";
 // import Vue from 'vue';
 export default {
   data() {
     return {
-      activeMenuId:0,
+      activeMenuId: 0,
       //用于存放当前全局token
 
       //定义ip地址
@@ -247,6 +252,15 @@ export default {
     //修改title
     // this.modifyTitle();
     //加载首屏数据
+    // let loadingInstance = Loading.service({
+    //   target: "#index",
+    //   fullscreen: true
+    // });
+    // this.$nextTick(() => {
+    //   // 以服务的方式调用的 Loading 需要异步关闭
+    //   loadingInstance.close();
+
+    // });
     this.getData();
     //调用轮播方法
     //this._initSwiper();
@@ -275,16 +289,20 @@ export default {
     ...mapMutations(["saveToken", "saveCommonData"]),
     //自定义方法
     async getData() {
+      // this.$loading({
+      //   // target:'.index-content',
+      //   // fullscreen:true
+      // })
       let { data: res } = await this.$http.get("/api/home", {
         params: {
-          access_token: localStorage.getItem('Authorization')
+          access_token: localStorage.getItem("Authorization")
         }
       });
       console.log(res);
       // console.log(res);
       // 判断数据是否获取成功
       if (res.code != 0) {
-        console.log(res.code)
+        console.log(res.code);
         console.log("数据获取失败");
         return;
       } else {
@@ -300,9 +318,9 @@ export default {
       }
     },
     //修改title
-    modifyTitle(){
+    modifyTitle() {
       console.log(this.$store.state.commonData);
-      document.title=this.$store.state.commonData.title;
+      document.title = this.$store.state.commonData.title;
     },
     test() {
       //提交操作要写在methods方法里面 例如test() 方法里面

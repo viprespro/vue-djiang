@@ -18,36 +18,36 @@ const routes = [{
         path: '/category/1',
         name: 'News',
         component: () =>
-            import( /* webpackChunkName: "News" */ '../views/News.vue'),
+            import ( /* webpackChunkName: "News" */ '../views/News.vue'),
         meta: {
-            // title: "学习党章"
+            title: "时政要闻"
         }
     },
     {
         path: '/category/2',
         name: 'Red',
         component: () =>
-            import( /* webpackChunkName: "Red" */ '../views/Red.vue'),
+            import ( /* webpackChunkName: "Red" */ '../views/Red.vue'),
         meta: {
-            // title: "红色中国"
+            title: "红色中国"
         }
     },
     {
         path: '/category/3',
         name: 'Learn',
         component: () =>
-            import( /* webpackChunkName: "Learn" */ '../views/Learn.vue'),
+            import ( /* webpackChunkName: "Learn" */ '../views/Learn.vue'),
         meta: {
-            // title: "学习党章"
+            title: "学习党章"
         }
     },
     {
         path: '/category/4',
         name: 'Review',
         component: () =>
-            import( /* webpackChunkName: "Review" */ '../views/Review.vue'),
+            import ( /* webpackChunkName: "Review" */ '../views/Review.vue'),
         meta: {
-            // title: "回顾党史"
+            title: "回顾党史"
         }
     },
     {
@@ -56,35 +56,35 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "Courses" */ '../views/Courses.vue'),
         meta: {
-            // title: "党建课堂"
+            title: "党建课堂"
         },
-        props:true
+        props: true
     },
     {
         path: '/category/6',
         name: 'Library',
         component: () =>
-            import( /* webpackChunkName: "Library" */ '../views/Library.vue'),
+            import ( /* webpackChunkName: "Library" */ '../views/Library.vue'),
         meta: {
-            // title: "党建文库"
+            title: "党建文库"
         }
     },
     {
         path: '/category/7',
         name: 'SmartCountry',
         component: () =>
-            import( /* webpackChunkName: "SmartyCountry" */ '../views/SmartCountry.vue'),
+            import ( /* webpackChunkName: "SmartyCountry" */ '../views/SmartCountry.vue'),
         meta: {
-            // title: "党建文库"
+            title: "智慧新乡村"
         }
     },
     {
         path: '/category/8',
         name: 'PartyLecture',
         component: () =>
-            import( /* webpackChunkName: "PartyLecture" */ '../views/PartyLecture.vue'),
+            import ( /* webpackChunkName: "PartyLecture" */ '../views/PartyLecture.vue'),
         meta: {
-            // title: "党建文库"
+            title: "书记讲党课"
         }
     },
     {
@@ -163,7 +163,7 @@ const routes = [{
 ]
 
 const router = new VueRouter({
-    mode: 'history',
+    // mode: 'history',
     base: process.env.BASE_URL,
     routes
 })

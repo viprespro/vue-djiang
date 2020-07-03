@@ -32,8 +32,8 @@
                     <div class="mx-first-menu db">
                       <!-- 一个li -->
 
-                      <div :class="activeMenu==0 ? 'now' : ''" class="mx-first-menu-li" @click="goIndex(0)">
-                        <a href="javascript:;" class="mx-first-menu-link">
+                      <div :class="activeMenu==0 ? 'now' : ''" class="mx-first-menu-li" >
+                        <a href="javascript:;" class="mx-first-menu-link" @click.prevent="goIndex('0')">
                           <label for="menu-opener-id"></label>
                           首页
                         </a>
@@ -47,12 +47,12 @@
                         class="mx-first-menu-li"
                         v-for="item in commonData.headMenu"
                         :key="item.id"
-                        @click="goCategory(item.id)"
+                        
                       >
                         <a
                           href="javascript:;"
                           class="mx-first-menu-link"
-                          
+                          @click.prevent="goCategory(item.id)"
                         >
                           <label for="menu-opener-id"></label>
                           {{item.name}}
@@ -64,9 +64,9 @@
                   <!-- 搜索 -->
                   <div class="mx-user-box">
                     <div class="mx-search-button">
-                      <a href="/search">
+                      <router-link to="/search">
                         <i class="iconfont icon-sousuo"></i>
-                      </a>
+                      </router-link>
                     </div>
                   </div>
                   <!-- 注册登录盒子开始 先不写 -->
@@ -89,20 +89,19 @@ import '../../api/skip';
 export default {
   props: {
     activeMenu: {
-      type: Number,
+      // type: String,
       // default: ""
     }
   },
   data() {
     return {
-      // 返回一个json
-      //  menuInfo:this.$store.state.commonData.category
+      
     };
   },
   created() {
     //请求头部所需要的数据 header只要那个 category 菜单数据
     this.getCommonData();
-    console.log(this.activeMenu);
+    // console.log(this.activeMenu);
   },
   computed: {
     // 计算属性
@@ -121,7 +120,7 @@ export default {
     //写个demo正则
     // let reg = /\/details-(news|video|radio|essay)\/[1-9]+/;
     // console.log(reg.test("http://localhost:8080/details-video/1592791228581"));
-    // console.log(localStorage.getItem("Authorization"));
+    console.log(localStorage.getItem("Authorization"));
   },
   methods: {
     ...mapMutations(["saveToken", "saveCommonData"]),

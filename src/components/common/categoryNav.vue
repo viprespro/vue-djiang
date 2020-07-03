@@ -6,85 +6,16 @@
 				<ul class="clearfix" >
 					<!-- 一个li -->
 					<li v-for="item in categoryList" :key="item.id">
-						<a href="">
+						<router-link :to="{path: `/category/${category_id}`}">
 							<i class="iconfont icon-shu"></i>
 							<!-- <img :src="Ip+item.path" alt=""> -->
 							<span>
 								<strong>{{item.name}}</strong>
 								<em>{{item.description}}</em>
 							</span>
-						</a>
+					</router-link>
 					</li>
-					<!-- <!-- 一个li -->
-					<!-- <li>
-						<a href="">
-							<i class="iconfont icon-shu1"></i>
-							<span>
-								<strong>时政要闻</strong>
-								<em>时下重要新闻</em>
-							</span>
-						</a>
-					</li> -->
-					<!-- 一个li -->
-					<!-- <li>
-						<a href="">
-							<i class="iconfont icon-bz-education--o"></i>
-							<span>
-								<strong>党建课堂</strong>
-								<em>党建知识课堂</em>
-							</span>
-						</a>
-					</li> -->
-					<!-- 一个li -->
-					<!-- <li>
-						<a href="">
-							<i class="iconfont icon-gongwenbao"></i>
-							<span>
-								<strong>党建文库</strong>
-								<em>党建文库建设查询</em>
-							</span>
-						</a>
-					</li> -->
-					<!-- 一个li -->
-					<!-- <li>
-						<a href="">
-							<i class="iconfont icon-outdoors-tree-valley"></i>
-							<span>
-								<strong>智慧新乡村</strong>
-								<em>智慧新乡村助力农商</em>
-							</span>
-						</a>
-					</li> -->
-					<!-- 一个li -->
-					<!-- <li>
-						<a href="">
-							<i class="iconfont icon-ziyuan"></i>
-							<span>
-								<strong>书记讲党课</strong>
-								<em>书记讲党课</em>
-							</span>
-						</a>
-					</li> -->
-					<!-- 一个li -->
-					<!-- <li>
-						<a href="">
-							<i class="iconfont icon-icon_discovery"></i>
-							<span>
-								<strong>北臧新担当</strong>
-								<em>北臧新担当</em>
-							</span>
-						</a>
-					</li> -->
-					<!-- 一个li -->
-					<!-- <li>
-						<a href="">
-							<i class="iconfont icon-icon_medal"></i>
-							<span>
-								<strong>北臧新作为</strong>
-								<em>北臧新作为</em>
-							</span>
-						</a>
-					</li> -->
+					
 				</ul>
 			</div>
 		</div>

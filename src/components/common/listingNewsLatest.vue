@@ -32,15 +32,16 @@
             </a>
             <span class="mx-listing-sum">{{item.description}}</span>
             <span>
-              <a href>北臧热点</a>
-							<em> | </em>
-							<em>{{item.categoryId}}</em>
-							<!-- <em>{{headMenu}}</em> -->
-              
+              <router-link :to="{path: `/category/${category_id}`}">{{categoryName}}</router-link>
+              <router-link to></router-link>
+              <em>|</em>
+              <em>{{item.categoryId}}</em>
+              <!-- <em>{{headMenu}}</em> -->
+
               <!-- <a href="">阅读1</a> -->
               <!-- <em> | </em> -->
               <em class="user-time"></em>
-              <em class="user-time time-phone">2020-06-10 07:24:57</em>
+              <em class="user-time time-phone">{{item.createTime}}</em>
             </span>
           </dd>
         </dl>
@@ -114,12 +115,36 @@ export default {
     lastestList: {
       type: Array
     },
-    ipAddress: {
-      type: String
-		},
-		headMenu:{
-			type: Array
-		}
+
+    headMenu: {
+      type: Array
+    },
+    categoryList: {
+      // type: Object
+    }
+  },
+  data() {
+    return {
+      ipAddress: "",
+      categoryName: ""
+    };
+  },
+  created() {
+    this.ipAddress = this.$store.state.ipAddress;
+    // let cid = this.category_id;
+    // let clist = this.categoryList;
+    // this.categoryName = this.getCategoryName(cid, clist);
+  },
+  methods: {
+    //遍历获取当前category 的名称
+    getCategoryName(cid, clist) {
+      //console.log(clist);
+      for (let i in clist) {
+        if (clist[i].id == cid) {
+          return clist[i].name;
+        }
+      }
+    }
   }
 };
 </script>

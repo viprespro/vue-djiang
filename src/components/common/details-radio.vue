@@ -254,7 +254,7 @@ export default {
       //当前音频的总时长
       radioTotal: "",
       audioUrl: "",
-      paramsData:{}
+      paramsData: {}
     };
   },
   computed: {
@@ -268,35 +268,25 @@ export default {
     //渲染数据区域
   },
   mounted() {
-    //获取dom元素区域
-    // console.log(this.radioTotal)
-    this.getDetailsData();
     //打印传递过来的参数
-    // console.
-    console.log(this.paramsData);
-
-    // 将传递过来的参数用localStorage存储起来
-     //window.localStorage.setItem('detailsParams', JSON.stringify(this.$route.params));//对象转字符串
-     //读取
-     //console.log(JSON.parse(localStorage.getItem('routerParams')))
-     
+    this.paramsData = this.$route.query;
+    this.getDetailsData();
   },
   methods: {
     async getDetailsData() {
-      this.paramsData=JSON.parse(localStorage.getItem('detailData'));
-      let {data:res}= await this.$http.get('/api/detail',{
-        params:{
-          access_token:this.paramsData.access_token,
-          category_id:this.paramsData.category_id,
-          id:this.paramsData.id,
-          type:this.paramsData.type
+      let { data: res } = await this.$http.get("/api/detail", {
+        params: {
+          access_token: localStorage.getItem("access_token"),
+          category_id: this.paramsData.category_id,
+          id: this.paramsData.id,
+          type: this.paramsData.type
         }
-      })
+      });
       console.log(res);
-      let data = res.data;
-      this.detailsInfo = data.detail;
-      console.log(this.detailsInfo.audioUrl);
-      this.audioUrl = this.ipAddress + "/" + this.detailsInfo.audioUrl;
+      return;
+      // let data = res.data;
+      // this.audioUrl = this.ipAddress + "/" + this.detailsInfo.audioUrl;
+
       // 拿到音频后去获取音频的长度
       this.getInitTotal();
     },
@@ -379,7 +369,6 @@ export default {
           //音频加载完毕后才能播放
           that.audioPlay(e);
         };
-        
       });
 
       //   console.log(data)

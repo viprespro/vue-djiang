@@ -1,19 +1,25 @@
+<!--
+ * @Date         : 2020-07-02 12:03:02
+ * @LastEditors  : 曾迪
+ * @LastEditTime : 2020-07-02 15:22:34
+ * @FilePath     : \dangjianxiangmupcyidongduan\src\components\common\columnTitleInfo.vue
+ * @Description  : 
+--> 
 <template>
 	<div>
 		<!-- 该组件需要传值  
-			- icon  图标路径
-			-智慧新乡村  
-			- 智慧新乡村助力农商
+			
 		-->
 		<!-- 列标题信息区域 -->
 		<div class="mx-column-title-wrapper">
-			<div class="mx-column-title mx-m">
+			<div class="mx-column-title mx-m" >
 				<div class="mx-column-icon">
 					<i class="iconfont icon-outdoors-tree-valley"></i>
 				</div>
 				<div class="mx-column-text">
-					<h2>智慧新乡村</h2>
-					<em>智慧新乡村助力农商</em>
+					<!-- {{categoryDetailList}} -->
+					<h2>{{categoryDetailList.name}}</h2>
+					<em>{{categoryDetailList.description}}</em>
 				</div>
 			</div>
 		</div>
@@ -22,6 +28,11 @@
 
 <script>
 	export default{
+		props:{
+			categoryDetailList:{
+				
+			}
+		},
 		data(){
 			return{
 				

@@ -9,7 +9,7 @@
         <div class="layout phone-none">
           <div class="c1-wrapper">
             <div class="c1">
-              <breadCrumbNav :breadCrumbList="breadCrumbList"></breadCrumbNav>
+              <breadCrumbNav :categoryList="categoryDataList" :category_id="category_id" :breadCrumbList="breadCrumbList"></breadCrumbNav>
             </div>
           </div>
         </div>
@@ -89,6 +89,9 @@ export default {
   // },
   data() {
     return {
+      ipAddress:'',
+      categoryDataList:[],
+      category_id:'',
       // 需要传到breadCrumbnav组件的值
       breadCrumbList:{},
       // 参数信息
@@ -102,7 +105,8 @@ export default {
       //相关数据
       ralatedList:[],
       //专题数据
-      topicList:[]
+      topicList:[],
+      categoryName:''
 
     };
   },
@@ -113,17 +117,22 @@ export default {
     })
   },
   created() {
-    // window.addEventListener("beforeunload",()=>{
-    //   this.paramsData=localStorage.getItem('detailData');
-    // })
+    //ip地址
+    this.ipAddress=this.$store.state.ipAddress;
+    // 共用菜单数据赋值
+    this.categoryDataList=this.$store.state.commonData.headMenu;
+    //
+    this.paramsData = this.$route.query;
+    // 拿到category_id
+    this.category_id=this.paramsData.category_id;
   },
   mounted() {
     //操作dom
     this.getDetailsData();
     // this.dplayerInit();
-    this.paramsData = this.$route.query;
-    console.log(this.$route.query);
-    console.log(this.paramsData.type);
+    
+    // console.log(this.$route.query);
+    // console.log(this.paramsData.type);
   },
   updated() {
     //dom更新后
@@ -179,6 +188,8 @@ export default {
       this.ralatedList=data.related;
       //专题数据
       this.topicList=data.topics;
+      //标题
+      this.categoryName=data.categoryName;
       console.log(this.recommendList)
     }
   },

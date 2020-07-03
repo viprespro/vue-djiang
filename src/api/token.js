@@ -1,7 +1,7 @@
 /*
  * @Date         : 2020-06-28 09:51:40
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-07-01 13:37:53
+ * @LastEditors  : 曾迪
+ * @LastEditTime : 2020-07-03 09:45:05
  * @FilePath     : \dangjianxiangmupcyidongduan\src\api\token.js
  * @Description  : 
  */
@@ -19,7 +19,7 @@ export default {
         const {
             data: resInfo
         } = await axios.get(`/api/login?username=${username}&password=${password}`);
-        if (resInfo.code === 0) {
+        if (resInfo.code == 0) {
             //把token存储到localStorage中去
             localStorage.setItem('Authorization', resInfo.access_token);
         } else {

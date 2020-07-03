@@ -15,7 +15,7 @@
           <li v-for="item in (lastestList || '').slice(1,8)" :key="item.id">
             <a href="javascript:;" @click="goDetails(item)">{{item.title}}</a>
             <!-- <router-link :to="'/details-news/a-'+item.id" target="_blank">{{item.title}}</router-link> -->
-            <em>{{item.createTime}}</em>
+            <em>{{item.createTime | timeCut }}</em>
           </li>
         </ul>
       </div>
@@ -26,6 +26,7 @@
 <script>
 // 导入vuex
 // import {mapState} from 'vuex'
+// import {timecut} from '../../lib/timecut'
 export default {
   props: {
     // 新闻数据

@@ -699,7 +699,7 @@ export default {
   methods: {
     //利用传递过来的参数获取对应id的详情
     async getDetailsData(){
-      this.paramsData=localStorage.getItem('detailData');
+      this.paramsData=this.$route.query;
       let {data:res}= await this.$http.get('/api/detail',{
         params:{
           access_token:this.paramsData.access_token,

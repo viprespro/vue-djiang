@@ -7,7 +7,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-//import ElementUI from 'element-ui'
+import ElementUI from 'element-ui'
 //导入公共样式
 //基础css
 import './assets/scss/base.scss'
@@ -37,7 +37,15 @@ import './plugins/element.js'
 import './assets/css/swiper.min.css';
 
 //使用elementui
-//Vue.use(ElementUI)
+Vue.use(ElementUI)
+    //定义全局过滤器 处理时间
+Vue.filter('timeCut', function(originVal) {
+    return originVal.substring(5, 10).replace('/', '-');
+});
+import {
+    showLoading
+
+} from './lib/loading.js';
 //引入axios
 import axios from 'axios'
 //导入token.js
@@ -46,10 +54,12 @@ import tokenInfo from './api/token.js'
 axios.defaults.baseURL = 'http://122.51.102.105:8081';
 //axios请求拦截器
 axios.interceptors.request.use(config => {
+
         console.log(config);
         if (localStorage.getItem('Authorization')) {
             config.headers.Authorization = localStorage.getItem('Authorization');
         }
+        // showLoading();
         return config;
     }, error => {
         return Promise.reject(error);
@@ -57,18 +67,25 @@ axios.interceptors.request.use(config => {
     //axios 响应拦截器
 axios.interceptors.response.use(res => {
         console.log(res);
+        console.log(res.data.code);
         //code 401 身份验证失败 或者token过期
         if (res.data.code !== 0) {
             //移除旧的token信息
-            localStorage.removeItem('Authorization');
+            //localStorage.removeItem('Authorization');
             //重新登录请求token
             tokenInfo.getToken();
-        } else if (res.headers.Authorization) {
-            //判断头部信息里面token是否存在，如果存在说明需要更新token 此时localStorage.getItem('Authorization')是新的值
-            localStorage.setItem('Authorization', localStorage.getItem('Authorization'));
+            // console.log()
+            // //重新设置token
+            // localStorage.setItem('Authorization', localStorage.getItem('Authorization'));
         }
+        // else if (res.headers.Authorization) {
+        //     //判断头部信息里面token是否存在，如果存在说明需要更新token 此时localStorage.getItem('Authorization')是新的值
+        //     // localStorage.setItem('Authorization', localStorage.getItem('Authorization'));
+        // }
+
         return res;
     }, error => {
+
         return Promise.reject(error);
     })
     //挂载到原型上去

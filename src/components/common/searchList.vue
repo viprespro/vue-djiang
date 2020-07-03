@@ -1,71 +1,36 @@
 
 <template>
   <div>
-    <ul class="mx-search-list bg">
-      <!-- 一个li -->
-      <li>
-        <strong>
-          <a href target="_blank">【文明创城】垃圾分类按下“加速键” 绘就美丽乡村新画卷</a>
-        </strong>
-        <span>
-          <a href>
-            <img src="../../assets/img/search1.jpg" alt />
-          </a>
-          <p>
-            为改善镇域人居环境
-            加快美丽乡村建设
-            助力创建全国文明城区
-            <!-- 北为关键字 -->
-            <font color="#f00">北</font>
-            臧村镇多方着手扎实推进垃圾分类工作
-          </p>
-        </span>
-        <em>新闻 2020年05月23日 08:53</em>
-      </li>
-      <!-- 一个li -->
-      <li>
-        <strong>
-          <a href target="_blank">【文明创城】垃圾分类按下“加速键” 绘就美丽乡村新画卷</a>
-        </strong>
-        <span>
-          <a href>
-            <img src="../../assets/img/search1.jpg" alt />
-          </a>
-          <p>
-            为改善镇域人居环境
-            加快美丽乡村建设
-            助力创建全国文明城区
-            <!-- 北为关键字 -->
-            <font color="#f00">北</font>
-            臧村镇多方着手扎实推进垃圾分类工作
-          </p>
-        </span>
-        <em>新闻 2020年05月23日 08:53</em>
-      </li>
-      <!-- 一个li -->
-      <li>
-        <strong>
-          <a href target="_blank">【文明创城】垃圾分类按下“加速键” 绘就美丽乡村新画卷</a>
-        </strong>
-        <span>
-          <a href>
-            <img src="../../assets/img/search1.jpg" alt />
-          </a>
-          <p>
-            为改善镇域人居环境
-            加快美丽乡村建设
-            助力创建全国文明城区
-            <!-- 北为关键字 -->
-            <font color="#f00">北</font>
-            臧村镇多方着手扎实推进垃圾分类工作
-          </p>
-        </span>
-        <em>新闻 2020年05月23日 08:53</em>
-      </li>
+    <ul class="mx-search-list bg" v-loading="loading" style="min-height: 160px">
+
+      <div v-if="list.length">
+        <li class="li" v-for="item in list" :key="item.id">
+          <strong>
+            <a href target="_blank">{{ item.title }}</a>
+          </strong>
+          <span>
+            <a href>
+              <img :src="ipAddress + item.imageUrl" alt />
+            </a>
+            <p>
+              {{ item.description }}
+              <font color="#f00">{{ item.keyword }}</font>
+            </p>
+          </span>
+          <em>{{ item.createTime }}</em>
+        </li>
+      </div>
+
+      <div class="no-res bg" v-if="showDefault">
+        <div class="mx-no-list text-weaken">
+          <i class="iconfont icon-zanwushuju"></i>
+          暂无数据
+        </div>
+      </div>
     </ul>
     <!-- 分页按钮组区域 start  -->
+
     <div class="page-btns bg">
-      <!-- elementui 分页 -->
       <div class="block pageStyle" style="text-align: right; padding:10px 0px;">
         <el-pagination
           @size-change="handleSizeChange"
@@ -80,51 +45,79 @@
         <!-- total 总条数 -->
       </div>
     </div>
-    <!-- 分页按钮区域 end -->
-    <!-- 暂无数据区域start -->
-    <div class="no-res bg">
-      <div class="mx-no-list text-weaken">
-        <i class="iconfont icon-zanwushuju"></i>
-        暂无数据
-      </div>
-    </div>
-
-    <!-- 暂无数据区域end -->
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
-  methods: {
-    //监听pagesize改变的事件
-    handleSizeChange(newSize) {
-      console.log(newSize);
-      // this.queryInfo.pagesize=newSize;
-      // this.getData();
-    },
-    //监听页码值 改变的事件
-    handleCurrentChange(newPage) {
-      console.log(newPage);
-      // this.queryInfo.newPage=newPage;
-      // this.getData();
-    },
-
-    created() {
-      console.log(this.$route.query);
-    },
-
-    mounted(ops) {
-      console.log(ops);
-      
-    },
-
-  },
   data() {
     return {
-      currentPage1: 5,
-      currentPage2: 5,
-      currentPage3: 5,
-      currentPage4: 4
+      loading: true,
+      curId: 1,
+      page: 1,
+      limit: 10,
+      list: [],
+      showDefault: true // 是否展示缺省数据
     };
+  },
+
+  computed: {
+    ...mapState(['ipAddress'])
+  },
+
+  mounted: function() {
+    const id = this.$route.query.id;
+    // console.log(id);
+    if (id) {
+      this.curId = id;
+      this.inputVal = this.$route.query.inputVal;
+      this.doSearch();
+    }
+  },
+
+  watch: {
+    $route: function() {
+      // 得到参数id值
+      console.log(this.$route.query);
+      this.curId = this.$route.query.id;
+      this.inputVal = this.$route.query.inputVal;
+      this.list = []
+      this.doSearch();
+    }
+  },
+
+  methods: {
+    handleSizeChange() {
+      return;
+    },
+    handleCurrentChange(_current) {
+      this.page = _current
+      this.list = []
+      this.doSearch()
+    },
+    async doSearch() {
+      this.loading = true;
+      let res = await this.$http.get("/api/search", {
+        params: {
+          access_token: localStorage.getItem("Authorization"),
+          keyword: this.inputVal || "",
+          type: this.curId, // 全部 1  文章 2  音频 3  视频 4
+          page: this.page,
+          limit: this.limit
+        }
+      });
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
+      res = res.data.data;
+      if(res.list.length === 0) {
+        this.showDefault = true
+      }else {
+        this.showDefault = false
+      }
+      this.list = res.list;
+      console.log(this.list);
+    }
   }
 };
 </script>
@@ -208,7 +201,7 @@ export default {
   .mx-search-list {
     display: block;
     background: #fff;
-  box-shadow: 0 4px 12px rgba(76, 86, 114, 0.12);
+    box-shadow: 0 4px 12px rgba(76, 86, 114, 0.12);
   }
 
   .mx-search-list li {

@@ -37,7 +37,7 @@
               <div class="mx-tab-list">
                 <router-link
                   v-for="item in tabsList"
-                  :to="{name:'searchList',query:{id:item.id}}"
+                  :to="{name:'searchList',query:{id:item.id, inputVal: inputVal,}}"
                   :key="item.id"
                   @click.native="handleClick(item.id)"
                   :class="{now: item.id == curId}"
@@ -66,6 +66,8 @@
       <!-- 选项卡 content区域 end -->
     </div>
 
+    
+
     <Footer></Footer>
   </div>
 </template>
@@ -74,71 +76,8 @@
 import Header from "../../components/common/Header.vue";
 //导入Footer脚文件
 import Footer from "../../components/common/Footer.vue";
-import { mapState } from "vuex";
-// import axios from "axios";
 export default {
-  methods: {
-    //监听pagesize改变的事件
-    // handleSizeChange(newSize) {
-    //   console.log(newSize);
-    //   // this.queryInfo.pagesize=newSize;
-    //   // this.getData();
-    // },
-    // //监听页码值 改变的事件
-    // handleCurrentChange(newPage) {
-    //   console.log(newPage);
-    //   // this.queryInfo.newPage=newPage;
-    //   // this.getData();
-    // }
-
-    mounted() {},
-
-    // 处理搜索
-    async doSearch() {
-      this.afterSearch = true;
-      let arr = Array.from(arguments);
-      if (!arr.length) {
-        this.curId = 1; // 回到全部选项
-      }
-      // localStorage.getItem("Authorization"),
-
-      let data =  {
-          access_token: localStorage.getItem("Authorization"),
-          keyword: this.inputVal || '',
-          type: this.curId  // 全部 1  文章 1 视频 2 音频 3
-        }
-
-      // const str = JSON.stringify(data)
-      
-      let res = await this.$http.get("/api/search",{
-        params:{
-          access_token: localStorage.getItem("Authorization"),
-          keyword: this.inputVal || '',
-          type: this.curId  // 全部 1  文章 1 视频 2 音频 3
-        }
-      }
-      );
-      console.log(res);
-    },
-
-    handleClick(i) {
-      this.curId = i;
-      // 搜索的一个选项
-      this.doSearch("tabSearch");
-    }
-  },
-
-  computed: {
-    ...mapState(["Authorization"])
-  },
-
   data() {
-    // return {
-    //   currentPage1: 5,
-    //   currentPage2: 5,
-    //   currentPage3: 5,
-    //   currentPage4: 4
-    // };
     return {
       tabsList: [
         {
@@ -152,21 +91,16 @@ export default {
         },
         {
           id: 3,
-          title: "视频",
-          icon: "icon-shipin"
-        },
-        {
-          id: 4,
           title: "音乐",
           icon: "icon-yinpin"
         },
         {
-          id: 5,
-          title: "链接",
-          icon: "icon-lianjie"
+          id: 4,
+          title: "视频",
+          icon: "icon-shipin"
         }
       ],
-      afterSearch: false, // 是否执行搜索
+      afterSearch: false, // 是否执行过搜索
       curId: 1,
       inputVal: "" // input的值
     };
@@ -174,6 +108,22 @@ export default {
   components: {
     Header,
     Footer
+  },
+  methods: {
+    // 处理搜索
+    async doSearch() {
+      this.afterSearch = true;
+      this.curId = 1;
+      if(this.$children[6]) {
+        this.$children[6].doSearch();
+      }
+    },
+
+    handleClick(i) {
+      this.curId = i;
+      // 搜索的一个选项
+      // this.doSearch("tabSearch");
+    }
   }
 };
 </script>

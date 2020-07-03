@@ -1,7 +1,7 @@
 <!--
  * @Date         : 2020-06-15 09:54:27
  * @LastEditors  : 曾迪
- * @LastEditTime : 2020-07-01 18:43:46
+ * @LastEditTime : 2020-07-03 10:17:07
  * @FilePath     : \dangjianxiangmupcyidongduan\src\App.vue
  * @Description  : 
 --> 
@@ -14,12 +14,13 @@
   </div>
 </template>
 <script>
-
+import tokenInfo from './api/token.js'
 export default {
   data() {
     return {};
   },
   created() {
+    tokenInfo.getToken();
     //在页面加载时读取sessionStorage/localStorage里的状态信息 vuex的刷新页面丢失问题处理
     if (localStorage.getItem("storedata")) {
       this.$store.replaceState(

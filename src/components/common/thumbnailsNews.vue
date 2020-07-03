@@ -5,85 +5,46 @@
       <div class="mx-thumbnails">
         <ul class="clearfix">
           <!-- 一个li start -->
-          <li>
+          <li v-for="item in (lastestList || '').slice(0,4)" :key="item.id">
             <div class="mx-thumbnails-box">
               <a href target="_blank">
-                <img src="../../assets/img/thumb-img2.jpg" alt />
-                <span>北臧村镇党委书记尚建刚带队慰问下沉干部</span>
+                <img :src="`${ipAddress}${item.imageUrl}`" alt />
+                <span>{{item.title}}</span>
               </a>
               <!-- 新闻简介-->
               <div
                 class="mx-thumbnails-sum"
-              >6月23日，北臧村镇党委书记尚建刚，党委副书记、镇长靳璐，党委副书记孙辉到新立村、马村慰问市委农工委、市农业农村局及区水务局下派到基层协助开展防疫工作的驻村干部。</div>
+              >{{item.description}}</div>
               <!--  -->
               <div class="mx-thumbnails-info">
-                <a href>阅读2</a>
-                <em class="divider">|</em>
-                06-24
+        
+                {{item.createTime | timeCut}}
               </div>
             </div>
           </li>
           <!-- 一个li end -->
           <!-- 一个li start -->
-          <li>
+          <!-- <li>
             <div class="mx-thumbnails-box">
               <a href target="_blank">
                 <img src="../../assets/img/thumb-img2.jpg" alt />
                 <span>北臧村镇党委书记尚建刚带队慰问下沉干部</span>
               </a>
-              <!-- 新闻简介-->
+             
               <div
                 class="mx-thumbnails-sum"
               >6月23日，北臧村镇党委书记尚建刚，党委副书记、镇长靳璐，党委副书记孙辉到新立村、马村慰问市委农工委、市农业农村局及区水务局下派到基层协助开展防疫工作的驻村干部。</div>
-              <!--  -->
+             
               <div class="mx-thumbnails-info">
                 <a href>阅读2</a>
                 <em class="divider">|</em>
                 06-24
               </div>
             </div>
-          </li>
+          </li> -->
           <!-- 一个li end -->
           <!-- 一个li start -->
-          <li>
-            <div class="mx-thumbnails-box">
-              <a href target="_blank">
-                <img src="../../assets/img/thumb-img2.jpg" alt />
-                <span>北臧村镇党委书记尚建刚带队慰问下沉干部</span>
-              </a>
-              <!-- 新闻简介-->
-              <div
-                class="mx-thumbnails-sum"
-              >6月23日，北臧村镇党委书记尚建刚，党委副书记、镇长靳璐，党委副书记孙辉到新立村、马村慰问市委农工委、市农业农村局及区水务局下派到基层协助开展防疫工作的驻村干部。</div>
-              <!--  -->
-              <div class="mx-thumbnails-info">
-                <a href>阅读2</a>
-                <em class="divider">|</em>
-                06-24
-              </div>
-            </div>
-          </li>
-          <!-- 一个li end -->
-          <!-- 一个li start -->
-          <li>
-            <div class="mx-thumbnails-box">
-              <a href target="_blank">
-                <img src="../../assets/img/thumb-img2.jpg" alt />
-                <span>北臧村镇党委书记尚建刚带队慰问下沉干部</span>
-              </a>
-              <!-- 新闻简介-->
-              <div
-                class="mx-thumbnails-sum"
-              >6月23日，北臧村镇党委书记尚建刚，党委副书记、镇长靳璐，党委副书记孙辉到新立村、马村慰问市委农工委、市农业农村局及区水务局下派到基层协助开展防疫工作的驻村干部。</div>
-              <!--  -->
-              <div class="mx-thumbnails-info">
-                <a href>阅读2</a>
-                <em class="divider">|</em>
-                06-24
-              </div>
-            </div>
-          </li>
-          <!-- 一个li end -->
+         
         </ul>
       </div>
     </div>
@@ -91,6 +52,24 @@
 </template>
 
 <script>
+export default {
+  props: {
+    lastestList: {}
+  },
+  data(){
+    return {
+      ipAddress:'',
+      categoryDataList:'',
+    }
+  },
+  created() {
+    //获取数据
+    //ip地址
+    this.ipAddress=this.$store.state.ipAddress;
+    // 共用菜单数据赋值
+    this.categoryDataList=this.$store.state.commonData.headMenu;
+  }
+};
 </script>
 
 <style scoped="scoped" lang="scss">

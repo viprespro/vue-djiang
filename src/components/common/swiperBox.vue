@@ -13,7 +13,7 @@
 						<div class="swiper-slide" v-for="item in (lastestList || '').slice(0,4)" :key="item.id">
 							<a href="" class="sliding-img-box">
 								
-								<img :src="item.imageUrl?ipAddress+item.imageUrl:''" alt="">
+								<img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt="">
 								
 								<div class="mx-sliding-text ellipsis-s">
 									<a href="" target="_blank">{{item.title}}</a>
@@ -24,40 +24,7 @@
 						</div>
 						
 						
-						<!-- 一个 固定数据 -->
-						<!-- <div class="swiper-slide">
-							<a href="" class="sliding-img-box">
-								<img src="../../assets/img/swiper1.jpg" alt="">
-								
-								<div class="mx-sliding-text ellipsis-s">
-									<a href="">区政协副主席荣俊艳带队到北臧村镇调研</a>
-								</div>
-
-							</a>
-
-						</div> -->
-						<!-- <div class="swiper-slide">
-							<a href="" class="sliding-img-box">
-								<img src="../../assets/img/swiper2.jpg" alt="">
-								
-								<div class="mx-sliding-text ellipsis-s">
-									<a href="">区政协副主席荣俊艳带队到北臧村镇调研</a>
-								</div>
-
-							</a>
-
-						</div> -->
-						<!-- <div class="swiper-slide">
-							<a href="" class="sliding-img-box">
-								<img src="../../assets/img/swiper3.jpg" alt="">
-								
-								<div class="mx-sliding-text ellipsis-s">
-									<a href="">区政协秘书长张新跃带队到北臧村镇调研</a>
-								</div>
-
-							</a>
-
-						</div> -->
+					
 					</div>
 					<!-- 如果需要分页器 -->
 					<div class="swiper-pagination"></div>
@@ -77,15 +44,18 @@
 <script>
 	export default{
 		props:{
-			ipAddress:{
-				type:String
-			},
+			
 			lastestList:{
 				type:Array
 			}
 		},
 		data(){
-			return {}
+			return {
+				ipAddress:''
+			}
+		},
+		created(){
+			this.ipAddress=this.$store.state.ipAddress;
 		},
 		mounted: function() {
 			//获取swiper
@@ -110,9 +80,9 @@
 			// 		speed: 2000,
 			
 			// 		// 如果需要分页器
-			// 		pagination: {
-			// 			el: '.swiper-pagination',
-			// 		},
+					// pagination: {
+					// 	el: '.swiper-pagination',
+					// },
 			
 			// 		// 如果需要前进后退按钮
 			// 		// navigation: {
@@ -160,13 +130,24 @@
 		.swiper-pagination-custom,
 		.swiper-pagination-fraction {
 
-			bottom: 52px*$times;
+			bottom: 45px*$times;
 		}
 
-		.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+		.swiper-container-horizontal>>> .swiper-pagination-bullets .swiper-pagination-bullet {
 			/* margin: 0 0.053333rem; */
-			width: 10px;
-			height: 10px;
+			// width: 40px;
+			// height: 40px;
+		}
+		.swiper-pagination {
+			// height:50px;
+			// background: red;
+		}
+		/deep/ .swiper-pagination-bullet{
+			width:20px;
+			height:20px;
+		}
+		/deep/ .swiper-pagination-bullet-active{
+			// color:#fff;
 		}
 
 		
