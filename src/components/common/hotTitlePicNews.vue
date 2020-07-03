@@ -1,8 +1,8 @@
 <!--
  * @Date         : 2020-06-23 15:13:41
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-07-03 07:57:06
- * @FilePath     : \dangjianxiangmupcyidongduan\src\components\common\hotTitlePicNews.vue
+ * @LastEditors: Ares
+ * @LastEditTime: 2020-07-03 17:34:22
+ * @FilePath: \dangjian\src\components\common\hotTitlePicNews.vue
  * @Description  : 
 --> 
 <template>
@@ -80,7 +80,7 @@ export default {
         this.$router.push({
           name: "details-news",
           params: {
-            access_token: this.$store.state.Authorization,
+            code: localStorage.getItem('authCode'),
             category_id: item.categoryId,
             id: item.id,
             type: item.type
@@ -92,7 +92,7 @@ export default {
         this.$router.push({
           name: "details-radio",
           params: {
-            access_token: this.$store.state.Authorization,
+            code: localStorage.getItem('authCode'),
             category_id: item.categoryId,
             id: item.id,
             type: item.type
@@ -104,7 +104,7 @@ export default {
         this.$router.push({
           name: "details-video",
           params: {
-            access_token: this.$store.state.Authorization,
+            code: localStorage.getItem('authCode'),
             category_id: item.categoryId,
             id: item.id,
             type: item.type

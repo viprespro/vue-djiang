@@ -167,7 +167,7 @@ export default {
       this.paramsData = this.$route.query;
       let { data: res } = await this.$http.get("/api/detail", {
         params: {
-          access_token: localStorage.getItem("Authorization"),
+          code: localStorage.getItem("authCode"),
           category_id: this.paramsData.category_id,
           id: this.paramsData.id,
           type: this.paramsData.type

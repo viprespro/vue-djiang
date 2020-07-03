@@ -40,91 +40,23 @@
                 <!-- 音频文章标题 end -->
                 <!-- 文章列表-book样式 start-->
                 <ul class="mx-audio-play-ul clearfix">
-                  <li>
-                    <a href="javascript:;">
-                      <i :class="['iconfont', flag?'':'icon-caret-right']">
-                        <img v-if="flag" src="../../assets/img/sound.gif" alt />
-                      </i>
-                      <img src="../../assets/img/yinpin-book-img1.jpg" alt />
-                      <span>
-                        <strong>习近平在庆祝中华人民共和国成立70周年 大会上的讲话</strong>
-                        <em>三月</em>
-                        <em class="mx-audio-play-day">28</em>
-                        <em>2020年</em>
-                      </span>
-                      <!-- 音频文件 id  .audio-control 该样式用于美化进度条 -->
-                      <audio
-                        id="5e58890a8523e268070218"
-                        src="https://boot-video.xuexi.cn/audio/1005/p/e9351e4cd7ea3c4467ff9316321316a3-e644cfb7887443e7bfcdedec18b09e34-1.mp3"
-                        loop="loop"
-                        class="audio-control-bea"
-                      ></audio>
-                    </a>
-                  </li>
-
-                  <li class="now">
-                    <!-- <router-link to="" @click.prevent="audioPlay()"> -->
+                  <li class="" v-for="item in showAudioList" :key="item.id">
                     <a href="javascript:;" @click.prevent="audioPlay($event)">
                       <i :class="['iconfont', flag?'':'icon-caret-right']">
                         <img v-if="flag" src="../../assets/img/sound.gif" alt />
                       </i>
-                      <img src="../../assets/img/yinpin-book-img2.jpg" alt />
+                      <img :src="ipAddress + item.imageUrl" alt />
                       <span>
-                        <strong>习近平在庆祝中华人民共和国成立70周年xxxxxxxxxxxxxxxxxxx</strong>
-                        <em>三月</em>
-                        <em class="mx-audio-play-day">28</em>
-                        <em>2020年</em>
+                        <strong>{{ item.title }}</strong>
+                        <em>{{ item.month }}月</em>
+                        <em class="mx-audio-play-day">{{ item.day }}</em>
+                        <em>{{ item.year }}年</em>
                       </span>
-                      <!-- 音频文件 id  .audio-control 该样式用于美化进度条 -->
                       <audio
                         id="5e588997207d2131782712"
-                        :src="audioUrl"
+                        :src="ipAddress + item.audioUrl"
                         loop="loop"
                         class="audio-control"
-                      ></audio>
-                    </a>
-                    <!-- </router-link> -->
-                  </li>
-
-                  <li>
-                    <a href="javascript:;">
-                      <i :class="['iconfont', flag?'':'icon-caret-right']">
-                        <img v-if="flag" src="../../assets/img/sound.gif" alt />
-                      </i>
-                      <img src="../../assets/img/yinpin-book-img1.jpg" alt />
-                      <span>
-                        <strong>习近平在庆祝中华人民共和国成立70周年 大会上的讲话</strong>
-                        <em>三月</em>
-                        <em class="mx-audio-play-day">28</em>
-                        <em>2020年</em>
-                      </span>
-                      <!-- 音频文件 id  .audio-control 该样式用于美化进度条 -->
-                      <audio
-                        id="5e58890a8523e268070218"
-                        src="https://boot-video.xuexi.cn/audio/1005/p/e9351e4cd7ea3c4467ff9316321316a3-e644cfb7887443e7bfcdedec18b09e34-1.mp3"
-                        loop
-                        class="audio-control-bea"
-                      ></audio>
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="javascript:;">
-                      <i :class="['iconfont', flag?'':'icon-caret-right']">
-                        <img v-if="flag" src="../../assets/img/sound.gif" alt />
-                      </i>
-                      <img src="../../assets/img/yinpin-book-img1.jpg" alt />
-                      <span>
-                        <strong>习近平在庆祝中华人民共和国成立70周年 大会上的讲话</strong>
-                        <em>三月</em>
-                        <em class="mx-audio-play-day">28</em>
-                        <em>2020年</em>
-                      </span>
-                      <audio
-                        id="5e58890a8523e268070218"
-                        src="https://boot-video.xuexi.cn/audio/1005/p/e9351e4cd7ea3c4467ff9316321316a3-e644cfb7887443e7bfcdedec18b09e34-1.mp3"
-                        loop
-                        class="audio-control-bea"
                       ></audio>
                     </a>
                   </li>
@@ -162,54 +94,30 @@
                 <!-- 自定义播放控制条 end -->
               </div>
               <!-- 音频播放容器 end -->
+
               <!-- 观看次数+分享区域 start-->
-              <div class="mx-media-watch clearfix">
+              <!-- <div class="mx-media-watch clearfix">
                 <div class="left-icon">
                   <span>
                     <i class="iconfont icon-yanjing"></i>
                     60
                   </span>
                 </div>
-              </div>
+              </div>-->
               <!-- 观看次数+分享区域 end-->
+
               <!-- 音频内容全部内容 start -->
               <div class="mx-media-main mx-m b-shadow">
                 <div id="media-main" class="mx-media-text-body mx-media-noneheight">
-                  <!-- 第一块文章内容 start-->
-                  <div>
-                    <div>
-                      <p>全国同胞们</p>
-                      <p>同志们,朋友们</p>
-                    </div>
-                  </div>
-                  <!-- 第一块文章内容 end -->
-                  <!-- 第二块文章内容 start -->
-                  <div>
-                    <p>
-                      今天，我们隆重集会，庆祝中华人民共和国成立70周年。
-                      此时此刻，全国各族人民、海内外中华儿女，都怀着无比喜悦的心情，都为我们伟大的祖国感到自豪，都为我们伟大的祖国衷心祝福。
-                    </p>
-                    <p>
-                      <img
-                        src="../../assets/img/yinpin-content-img.jpg"
-                        alt
-                        style="max-width:100%;"
-                      />
-                    </p>
-                    <p>
-                      在这里，我代表党中央、全国人大、国务院、全国政协和中央军委，向一切为民族独立和人民解放、国家富强和人民幸福建立了不朽功勋的革命先辈和烈士们，表示深切的怀念！
-                      向全国各族人民和海内外爱国同胞，致以热烈的祝贺！向关心和支持中国发展的各国朋友，表示衷心的感谢！
-                    </p>
-                    <p>70年前的今天，毛泽东同志在这里向世界庄严宣告了中华人民共和国的成立，中国人民从此站起来了。这一伟大事件，彻底改变了近代以后100多年中国积贫积弱、受人欺凌的悲惨命运，中华民族走上了实现伟大复兴的壮阔道路。</p>
-                  </div>
-                  <!-- 第二块文章内容 end -->
+                  <div v-html="detail.content"></div>
                 </div>
+
                 <!-- 收起 全文  加载全文 小按钮 -->
-                <div class="mx-media-main-more" style="margin-top:20px;">
+                <!-- <div class="mx-media-main-more" style="margin-top:20px;">
                   <span>
                     <i class="iconfont icon-ico_back">收起</i>
                   </span>
-                </div>
+                </div>-->
               </div>
               <!-- 音频内容全部内容 end -->
             </div>
@@ -217,10 +125,10 @@
           <!-- 右边推荐新闻区域 -->
           <div class="c2-wrapper">
             <div class="c2">
-              <hotKeywords :keywordList="hotList"></hotKeywords>
-              <topicSimple></topicSimple>
-              <sheetNewsSide></sheetNewsSide>
-              <topicTitleInfo></topicTitleInfo>
+              <hotKeywords :keywordList="keywordList" v-if="keywordList.length"></hotKeywords>
+              <topicSimple :recommendList="recommendList" v-if="recommendList.length"></topicSimple>
+              <sheetNewsSide :relatedList="relatedList" v-if="relatedList.length"></sheetNewsSide>
+              <topicTitleInfo :topicList="topicList" v-if="topicList.length"></topicTitleInfo>
             </div>
             <!-- 简单新闻图文区域 -->
             <!-- https://dangjian.zhizhongdj.com/stories/v-5e5887febb3eb453871848 -->
@@ -260,11 +168,12 @@ export default {
       radioTotal: "",
       audioUrl: "",
       paramsData: {},
-      relatedList: [],
-      topicList: [],
-      recomendList: [],
-      hotList: [],
-      detail: {}
+      keywordList: [],
+      relatedList: [], // 相关
+      topicList: [], // 专题
+      recommendList: [], // 推荐
+      detail: {}, // 本页详情
+      showAudioList: []
     };
   },
   computed: {
@@ -287,7 +196,7 @@ export default {
     async getDetailsData() {
       let { data: res } = await this.$http.get("/api/detail", {
         params: {
-          access_token: localStorage.getItem("Authorization"),
+          code: localStorage.getItem("authCode"),
           category_id: this.paramsData.category_id,
           id: this.paramsData.id,
           type: this.paramsData.type
@@ -297,15 +206,49 @@ export default {
       let data = res.data;
       // this.audioUrl = this.ipAddress + "/" + this.detailsInfo.audioUrl;
       console.log(data);
+      this.keywordList = data.keyword;
       this.relatedList = data.related;
       this.topicList = data.topics;
-      this.recomendList = data.recommend;
+      this.recommendList = data.recommend;
       this.hotList = data.hot;
       this.detail = data.detail;
+      document.title = this.detail.title; // 设置标题
+
+      // 处理音频数组数据
+      let arr = this.relatedList.slice(0, 3);
+      for (let i = 0, len = arr.length; i < len; i++) {
+        let temp = arr[i].createTime.split(" ");
+        let after = temp[0].split("/");
+        arr[i].year = after[0];
+        arr[i].month = this.foo(after[1]);
+        arr[i].day = after[2];
+      }
+      console.log(arr);
+      this.showAudioList = arr;
 
       // 拿到音频后去获取音频的长度
       this.getInitTotal();
     },
+
+    foo(str) {
+      let arr = [
+        "一",
+        "二",
+        "三",
+        "四",
+        "五",
+        "六",
+        "七",
+        "八",
+        "九",
+        "十",
+        "十一",
+        "十二"
+      ];
+      str = Number(str);
+      return arr[str - 1];
+    },
+
     //一个a音频播放暂停功能
     audioPlay(e) {
       var that = this;

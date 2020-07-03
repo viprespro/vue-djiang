@@ -198,7 +198,7 @@ export default {
       //去请求分类页接口  需要参数  token   category_id
       let {data:res}=await this.$http.get('api/category',{
         params:{
-          access_token:localStorage.getItem("Authorization"),
+          code: localStorage.getItem('authCode'),
           categoryId:this.category_id
         }
       })

@@ -120,7 +120,7 @@ export default {
 
       let { data: res } = await this.$http.get("api/header", {
         params: {
-          access_token: localStorage.getItem("Authorization")
+          code: localStorage.getItem("authCode")
         }
       });
 

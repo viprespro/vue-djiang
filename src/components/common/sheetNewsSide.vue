@@ -1,10 +1,10 @@
 <!--
  * @Author: your name
  * @Date: 2020-07-01 14:23:02
- * @LastEditTime: 2020-07-01 19:06:17
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-07-03 16:27:58
+ * @LastEditors: Ares
  * @Description: In User Settings Edit
- * @FilePath: \dangjianxiangmupcyidongduan\src\components\common\sheetNewsSide.vue
+ * @FilePath: \dangjian\src\components\common\sheetNewsSide.vue
 --> 
 <template>
   <div>
@@ -25,7 +25,7 @@
         <!-- 标题可隐藏 v-for="" end-->
         <!-- 新闻列表ul  start-->
         <ul class="clearfix">
-          <li v-for="item in ralatedList" :key="item.id">
+          <li v-for="item in relatedList" :key="item.id">
             <router-link to="/">{{item.title}}</router-link>
             <em>{{item.createTime}}</em>
           </li>
@@ -54,7 +54,7 @@
 <script>
 export default {
   props:{
-    ralatedList:{
+    relatedList:{
       type:Array
     }
   }
