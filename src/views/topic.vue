@@ -1,55 +1,50 @@
+<!--
+ * @Date         : 2020-07-03 15:20:40
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-07-04 13:15:59
+ * @FilePath     : \dangjian\src\views\topic.vue
+ * @Description  : 
+--> 
 <template>
+<!-- 新闻模版页 -->
   <div id="Memorabilia">
     <!-- 头开始 -->
-    <Header activeMenu="红色中国"></Header>
-    <!-- 头结束 -->
-    <!-- 大事记内容开始 -->
-    <div class="Memorabilia-content">
-      <!-- 面包屑导航start -->
-      <div class="phone-none">
+    <Header></Header>
+    <!--  -->
+    <!-- 内容开始 -->
+    <div class="content">
+      <!-- 专题页横幅 start -->
+      <div class="">
         <div class="layout-wrapper">
           <div class="layout">
             <div class="c1-wrapper">
               <div class="c1">
-                <!-- 该组件需要传值  需要props  topNav 是一级导航  secNav 二级导航  thirdNav 三级导航-->
-                <breadCrumbNav :topNav="topNav"></breadCrumbNav>
+                
+              
+                <div class="mx-column-topic-wrapper">
+                  <div class="mx-column-topic mx-column-title mx-m">
+                    <div class="mx-column-icon">
+                      <img src="../assets/img/topicIcon.jpg" alt="">
+                    </div>
+                    <div class="mx-column-text">
+                      <h2>学习四史</h2>
+                      <em>学好党史、新中国史、改革开放史、社会主义发展史，是党员领导干部的必修课。</em>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- 面包屑导航end -->
-      <!--列表标题区域 start-->
-      <div class="layout-wrapper">
-        <div class="layout">
-          <div class="c1-wrapper">
-            <div class="c1">
-              <!-- 组件使用 -->
-              <columnTitleInfo></columnTitleInfo>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--列表标题区域 end-->
-      <!-- 列表类区域  start -->
-      <div class="layout-wrapper">
-        <div class="layout">
-          <div class="c1-wrapper">
-            <div class="c1">
-              <!-- 组件使用 -->
-              <columnClassNav></columnClassNav>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 列表类区域  end -->
+      <!-- 专题页横幅 end -->
       <!-- 轮播图+ sheet 新闻区域 start-->
       <div class="layout-wrapper">
         <div class="layout r-40-60 clearfix">
           <div class="c1-wrapper">
             <div class="c1">
               <!--这里存放轮播图组件-->
-              <swiperBox></swiperBox>
+              <swiperBox :lastestList="latestDataList"></swiperBox>
             </div>
           </div>
           <div class="c2-wrapper">
@@ -57,8 +52,8 @@
               <!-- 这里是sheet 新闻组件 -->
               <sheetNewsShow
                 :lastestList="latestDataList"
-                :ipAddress="ipAddress"
                 :hasBackgroundImg="hasBackgroundImg"
+                :isTopicPage="isTopicPage"
               ></sheetNewsShow>
             </div>
           </div>
@@ -106,65 +101,7 @@
     <!-- 尾部结束 -->
   </div>
 </template>
-<style scoped="scoped">
-.layout-wrapper {
-  width: 100%;
-  display: block;
-  clear: both;
-}
-/* 低于960*/
-@media only screen and (max-width: 959px){
 
-}
-/* 960 -1240尺寸 */
-@media only screen and (min-width: 960px) and (max-width: 1239px) {
-  .layout {
-    width: 960px;
-    margin: 0 auto;
-  }
-  .r-40-60 .c1 {
-    float: left;
-    width: 400px;
-  }
-  .r-40-60 .c2 {
-    float: right;
-    width: 560px;
-  }
-  .r-75-25 .c1 {
-    float: left;
-    width: 720px;
-  }
-  .r-75-25 .c2 {
-    float: left;
-    width: 240px;
-  }
-}
-
-/*1240尺寸以上 */
-@media only screen and (min-width: 1240px) {
-  .layout {
-    width: 1200px;
-    margin: 0 auto;
-    /* background: blue; */
-  }
-  .r-40-60 .c1 {
-    float: left;
-    width: 500px;
-  }
-  .r-40-60 .c2 {
-    float: right;
-    width: 700px;
-  }
-  .r-75-25 .c1 {
-    float: left;
-    width: 900px;
-  }
-  .r-75-25 .c2 {
-    float: left;
-    width: 300px;
-  }
-}
-</style>
 <!-- <style scoped src="@/assets/css/media-query/index.css"></style> -->
 <script>
 //导入Header头文件
@@ -206,20 +143,21 @@ import Swiper from "swiper";
 export default {
   data() {
     return {
-      //用于存放当前全局token
-      tokenStr: "",
-      //定义ip地址
-      ipAddress: "http://122.51.102.105:8081",
+      //判断是否是topic
+      isTopicPage:true,
+      //判断是否有背景图
+      hasBackgroundImg:false,
       //用于存放接口取来的数据
       categoryDataList: [],
       hotDataList: [],
       latestDataList: [],
       topicDataList: [],
-      
     };
   },
   //生命周期
   created: function() {
+    //打印过来的参数
+    console.log(this.$route.query)
     //加载首屏数据
     this.getData();
     //调用轮播方法
@@ -236,20 +174,20 @@ export default {
   },
   methods: {
     async getData() {
-      //   let tokenStr = tokenFun("admin", "admin");
-      //   this.tokenStr=tokenStr;
-      let { data: resInfo } = await this.$http.get(
-        "/api/login?username=admin&password=admin"
-      );
+      // //   let tokenStr = tokenFun("admin", "admin");
+      // //   this.tokenStr=tokenStr;
+      // let { data: resInfo } = await this.$http.get(
+      //   "/api/login?username=admin&password=admin"
+      // );
 
-      this.tokenStr = resInfo.access_token;
-      console.log(this.tokenStr);
-      let { data: res } = await this.$http.get("/api/home", {
-        params: {
-          access_token: this.tokenStr
-        }
-      });
-      console.log(res);
+      // this.tokenStr = resInfo.access_token;
+      // console.log(this.tokenStr);
+      // let { data: res } = await this.$http.get("/api/home", {
+      //   params: {
+      //     access_token: this.tokenStr
+      //   }
+      // });
+      // console.log(res);
       // 判断数据是否获取成功
       if (res.code != 0) {
         console.log("数据获取失败");
@@ -331,4 +269,63 @@ export default {
   }
 };
 </script>
+<style scoped="scoped">
+.layout-wrapper {
+  width: 100%;
+  display: block;
+  clear: both;
+}
+/* 低于960*/
+@media only screen and (max-width: 959px){
+
+}
+/* 960 -1240尺寸 */
+@media only screen and (min-width: 960px) and (max-width: 1239px) {
+  .layout {
+    width: 960px;
+    margin: 0 auto;
+  }
+  .r-40-60 .c1 {
+    float: left;
+    width: 400px;
+  }
+  .r-40-60 .c2 {
+    float: right;
+    width: 560px;
+  }
+  .r-75-25 .c1 {
+    float: left;
+    width: 720px;
+  }
+  .r-75-25 .c2 {
+    float: left;
+    width: 240px;
+  }
+}
+
+/*1240尺寸以上 */
+@media only screen and (min-width: 1240px) {
+  .layout {
+    width: 1200px;
+    margin: 0 auto;
+    /* background: blue; */
+  }
+  .r-40-60 .c1 {
+    float: left;
+    width: 500px;
+  }
+  .r-40-60 .c2 {
+    float: right;
+    width: 700px;
+  }
+  .r-75-25 .c1 {
+    float: left;
+    width: 900px;
+  }
+  .r-75-25 .c2 {
+    float: left;
+    width: 300px;
+  }
+}
+</style>
 

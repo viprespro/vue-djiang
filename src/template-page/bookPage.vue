@@ -148,11 +148,11 @@ export default {
         "/api/login?username=admin&password=admin"
       );
 
-      this.tokenStr = resInfo.code;
+      this.tokenStr = resInfo.access_token;
       console.log(this.tokenStr);
       let { data: res } = await this.$http.get("/api/home", {
         params: {
-          code: localStorage.getItem('authCode')
+          access_token: this.tokenStr
         }
       });
       console.log(res);

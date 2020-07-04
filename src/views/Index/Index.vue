@@ -276,7 +276,7 @@ export default {
     async getData() {
       let { data: res } = await this.$http.get("/api/home", {
         params: {
-          code: localStorage.getItem('authCode')
+          access_token: localStorage.getItem('Authorization')
         }
       });
       // 判断数据是否获取成功

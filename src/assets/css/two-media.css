@@ -17,6 +17,14 @@
   .mx-m {
     margin: 20px 0 0;
   }
+  .listingblock {
+    height: 0;
+  }
+  .hotblock {
+    float: left;
+    width: 100%;
+    height: 240px;
+  }
   .touch {
     white-space: nowrap;
     overflow-x: scroll;
@@ -281,6 +289,30 @@
     line-height: 40px;
   }
   /* 列表标题样式 end */
+  /* 专题页样式  start*/
+  .mx-column-topic {
+    background: #c01;
+  }
+  .mx-column-topic .mx-column-icon {
+    width: 240px;
+  }
+  .mx-column-topic .mx-column-icon {
+    height: auto;
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .mx-column-topic .mx-column-text {
+    width: -moz-calc(100% - 280px);
+    width: -webkit-calc(100% - 280px);
+  }
+  .mx-column-topic .mx-column-text h2 {
+    font-size: 36px;
+    height: 48px;
+    line-height: 48px;
+    max-height: 96px;
+  }
+  /* 专题页样式  end*/
   /* 列表类  二级导航 start */
   .mx-column-class {
     padding: 20px;
@@ -393,6 +425,144 @@
     outline: 0;
   }
   /*重置el-pagination 样式 end*/
+  /*topic 样式 移动端 start*/
+  .mx-topic ul li {
+    padding: 0;
+  }
+  .mx-topic ul li a {
+    display: block;
+    padding: 30px !important;
+  }
+  .mx-topic-simple ul li a img {
+    width: 200px;
+  }
+  .mx-topic-simple ul li a span {
+    margin-left: 220px;
+    height: 112px;
+    font-size: 32px;
+    line-height: 1.5;
+    font-weight: normal;
+  }
+  .mx-topic-simple ul li a span strong {
+    font-size: 32px;
+    line-height: 56px;
+    height: 112px !important;
+  }
+  /*topic 样式 移动端 end*/
+  /* sheet 基本样式 移动端 start*/
+  .mx-sheet ul {
+    padding: 20px 30px;
+  }
+  .mx-sheet ul li {
+    padding: 10px 0 !important;
+    font-size: 32px;
+  }
+  .mx-sheet ul li a {
+    float: left;
+    width: 78%;
+    width: -moz-calc(100% - 130px);
+    width: -webkit-calc(100% - 130px);
+    line-height: 44px;
+    height: 44px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 28px;
+  }
+  .mx-sheet ul li em {
+    float: right;
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+    font-size: 24px;
+    color: #aaa;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -16px;
+  }
+  /* sheet 基本样式 移动端 end*/
+  /* 音频 audio基本样式  移动端 start */
+  .mx-audio-play-sum {
+    margin: 40px 40px 0;
+    border-radius: 10px;
+    padding: 20px 120px 20px 20px;
+    font-size: 28px;
+  }
+  .mx-audio-play-sum a {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  .mx-audio-play-title {
+    margin: 40px 0 0;
+    padding: 0 40px;
+    font-size: 36px;
+  }
+  .mx-audio-play-ul li {
+    padding: 60px 0;
+  }
+  .mx-audio-play-ul li a {
+    left: 50%;
+    margin-left: -280px;
+    width: 360px;
+    height: 480px;
+    box-shadow: 0 0 30px rgba(112, 67, 18, 0.9);
+  }
+  .mx-audio-play-ul li a::before {
+    width: 20px;
+  }
+  .mx-audio-play-ul li a i {
+    border: 4px solid rgba(255, 255, 255, 0.6);
+    width: 64px;
+    height: 64px;
+    line-height: 56px;
+    font-size: 36px;
+    margin-left: -30px;
+    top: -30px;
+  }
+  .mx-audio-play-ul li a span {
+    padding: 26px 20px 20px 40px;
+  }
+  .mx-audio-play-ul li a span strong {
+    font-size: 34px;
+    line-height: 44px;
+    height: 88px;
+  }
+  .mx-audio-play-ul li a span em {
+    font-size: 28px;
+    line-height: 48px;
+  }
+  .mx-audio-play-day {
+    font-size: 60px !important;
+    color: #fff !important;
+  }
+  .mx-audio-play-ctrl {
+    padding: 60px 0;
+  }
+  .mx-audio-button {
+    font-size: 60px;
+  }
+  .mx-audio-button span {
+    padding: 0 30px;
+  }
+  .mx-audio-button span i {
+    font-size: 36px !important;
+  }
+  /* 音频 audio基本样式  移动端 end */
+  /* 文章大小 start*/
+  .mx-media-text-body {
+    max-height: 888px;
+  }
+  /*点击张开 添加该样式*/
+  .mx-media-noheight {
+    max-height: none;
+  }
+  .mx-media-main p {
+    margin: 40px 0 0;
+    font-size: 28px;
+  }
+  /* 文章大小 end*/
 }
 
 /* 960 -1240尺寸 */

@@ -1,4 +1,12 @@
+<!--
+ * @Date         : 2020-07-03 15:21:34
+ * @LastEditors  : 曾迪
+ * @LastEditTime : 2020-07-03 15:30:59
+ * @FilePath     : \dangjian\src\views\articleList.vue
+ * @Description  : 
+--> 
 <template>
+<!-- 这里是备用文章页面 -->
   <div id="details-news">
     <Header></Header>
     <!-- 这是新闻详情页 -->
@@ -19,43 +27,14 @@
         <div class="layout r-80-20 clearfix">
           <div class="c1-wrapper">
             <div class="c1">
-              <div class="mx-details mx-m clearfix">
-                <h1>{{detailsList.title}}</h1>
-                <div class="mx-details-time" style="display: inline-block;">
-                  <span>{{detailsList.createTime}}</span>
-                  <!-- <span style="margin-left: 10px;">User9</span> -->
-                </div>
-                <!-- 时间状态栏 -->
-                <div class="time-status" style>
-                  <div class="mx-details-comment clearfix">
-                    <span>
-                      <!-- <i class="iconfont icon-yanjing"></i>
-                      8-->
-                    </span>
-                  </div>
-                </div>
-                <!-- 缩略简介栏 -->
-                <div class="mx-details-summary mx-m">{{detailsList.description}}</div>
-                <!-- 详情栏目 主体 -->
-                <div class="mx-details-main">
-                  <!-- 当前新闻详情 -->
-                  <div v-html="detailsList.content"></div>
-                  <!-- 新闻内容 -->
-                  <!-- 文字用p -->
-                  
-                </div>
-              </div>
-              <!-- 相关推荐 -->
-              <!-- <listingNewsLatest></listingNewsLatest> -->
+              
             </div>
           </div>
           <!-- c2内容块- 右边 -->
           <div class="c2-wrapper">
             <div class="c2">
               <hotKeywords :keywordList="keywordList"></hotKeywords>
-              <topicSimple :recommendList="recommendList"></topicSimple>
-              <sheetNewsSide :ralatedList="ralatedList"></sheetNewsSide>
-              <topicTitleInfo :topicList="topicList"></topicTitleInfo>
+             
             </div>
           </div>
         </div>
@@ -72,6 +51,8 @@ import Header from "@/components/common/Header.vue";
 import breadCrumbNav from "../../components/common/breadCrumbNav.vue";
 //
 import listingNewsLatest from "../../components/common/listingNewsLatest.vue";
+//文章页
+
 //导入 右边推荐模块
 
 import hotKeywords from "../../components/common/hotKeywords.vue";
@@ -165,10 +146,9 @@ export default {
       //获取localStore的参数列表
       // 暂时性赋值
       this.paramsData = this.$route.query;
-      console.log(this.$route.query)
       let { data: res } = await this.$http.get("/api/detail", {
         params: {
-          code: localStorage.getItem("authCode"),
+          access_token: localStorage.getItem("Authorization"),
           category_id: this.paramsData.category_id,
           id: this.paramsData.id,
           type: this.paramsData.type
@@ -429,3 +409,4 @@ export default {
   }
 }
 </style>
+
