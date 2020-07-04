@@ -39,9 +39,13 @@
                 <div class="mx-audio-play-title">{{ detail.title }}</div>
                 <!-- 音频文章标题 end -->
                 <!-- 文章列表-book样式 start-->
-                <ul class="mx-audio-play-ul clearfix">
-                  <li class="" v-for="item in showAudioList" :key="item.id">
-                    <a href="javascript:;" @click.prevent="audioPlay($event)">
+                <ul class="mx-audio-play-ul clearfix" v-loading="!isReady">
+                  <li
+                    :class="{now: item.actived }"
+                    v-for="(item) in showAudioList"
+                    :key="item.id"
+                  >
+                    <a href="javascript:;" @click.prevent="audioPlay(item.id)">
                       <i :class="['iconfont', flag?'':'icon-caret-right']">
                         <img v-if="flag" src="../../assets/img/sound.gif" alt />
                       </i>
@@ -53,10 +57,12 @@
                         <em>{{ item.year }}年</em>
                       </span>
                       <audio
-                        id="5e588997207d2131782712"
                         :src="ipAddress + item.audioUrl"
                         loop="loop"
                         class="audio-control"
+                        @ended="audioEnd"
+                        @canplay="getDuration"
+                        @timeupdate="updateTime"
                       ></audio>
                     </a>
                   </li>
@@ -68,25 +74,29 @@
                   <div class="mx-audio-button">
                     <!-- 上一个 -->
                     <span id>
-                      <i class="iconfont icon-svgprevious"></i>
+                      <i class="iconfont icon-svgprevious" @click="handlePlayLift()"></i>
                     </span>
                     <!-- 播放  暂停 -->
-                    <span id @click="getInitTotal($event)">
+                    <span id @click="audioPlay(curAudioId)">
                       <i :class="['iconfont', flag?'icon-pause':'icon-play']"></i>
                       <!-- 下一个 -->
                     </span>
                     <span id>
-                      <i class="iconfont icon-iconfontsvgnext"></i>
+                      <i class="iconfont icon-iconfontsvgnext" @click="handlePlayRight()"></i>
                     </span>
                   </div>
                   <!-- 播放进度条区域-->
                   <div class="mx-audio-line clearfix" style="cursor: pointer;">
-                    <em class="mx-audio-time">00:00</em>
-                    <em class="mx-audio-all">{{radioTotal}}</em>
+                    <em class="mx-audio-time" v-if="isReady">{{ currentTime }}</em>
+                    <em class="mx-audio-all" v-if="isReady">{{ radioTotal }}</em>
                     <!-- 进度条小圆点 -->
                     <span class="mx-audio-radius" style></span>
                     <!-- 已经加载的进度条线 -->
-                    <span class="mx-audio-way" style="width:100%"></span>
+                    <span
+                      class="mx-audio-way"
+                      @click="handleSetProgress($event)"
+                      style="width:100%"
+                    ></span>
                     <!-- 初始进度条loading -->
                     <span class="mx-audio-loading"></span>
                   </div>
@@ -157,23 +167,35 @@ import Footer from "@/components/common/Footer.vue";
 //导入vuex
 import { mapState } from "vuex";
 export default {
-  //  props: {
-  //   id: {}
-  // },
+  components: {
+    Header,
+    breadCrumbNav,
+    hotKeywords,
+    topicSimple,
+    sheetNewsSide,
+    topicTitleInfo,
+    Footer
+  },
   data() {
     return {
       //标志变量
       flag: false,
+      isReady: false,
+      currentTime: "0:00",
       //当前音频的总时长
       radioTotal: "",
       audioUrl: "",
+      audioTotalSeconds: "",
       paramsData: {},
       keywordList: [],
       relatedList: [], // 相关
       topicList: [], // 专题
       recommendList: [], // 推荐
       detail: {}, // 本页详情
-      showAudioList: []
+      showAudioList: [],
+      curAudioId: '', // 此时的音频id
+      leftAudioId: '', // 上一首音频id
+      rightAudioId: '', //  下一首音频id
     };
   },
   computed: {
@@ -202,10 +224,7 @@ export default {
           type: this.paramsData.type
         }
       });
-      console.log(res);
       let data = res.data;
-      // this.audioUrl = this.ipAddress + "/" + this.detailsInfo.audioUrl;
-      console.log(data);
       this.keywordList = data.keyword;
       this.relatedList = data.related;
       this.topicList = data.topics;
@@ -215,7 +234,19 @@ export default {
       document.title = this.detail.title; // 设置标题
 
       // 处理音频数组数据
-      let arr = this.relatedList.slice(0, 3);
+      let arr;
+      if (this.relatedList.length >= 3) {
+        arr = this.relatedList.slice(0, 3);
+        arr[1].actived = true;
+        this.curAudioId = arr[1].id
+        this.leftAudioId = arr[0].id
+        this.rightAudioId = arr[2].id
+      } else {
+        arr = this.relatedList;
+        arr[arr.length - 1].actived = true;
+        this.curAudioId =  arr[arr.length - 1].id
+        this.leftAudioId = arr[0].id
+      }
       for (let i = 0, len = arr.length; i < len; i++) {
         let temp = arr[i].createTime.split(" ");
         let after = temp[0].split("/");
@@ -223,11 +254,7 @@ export default {
         arr[i].month = this.foo(after[1]);
         arr[i].day = after[2];
       }
-      console.log(arr);
       this.showAudioList = arr;
-
-      // 拿到音频后去获取音频的长度
-      this.getInitTotal();
     },
 
     foo(str) {
@@ -249,89 +276,136 @@ export default {
       return arr[str - 1];
     },
 
-    //一个a音频播放暂停功能
-    audioPlay(e) {
-      var that = this;
-      //标志变量取反
-      this.flag = !this.flag;
-      //点击a标签去获取 获取media对象
-      // console.log(this)
-      //获取当前绑定点击事件 的a元素
-      //   console.log(e.currentTarget);
-      //   var oA = e.currentTarget;
-      let media = document.querySelector(".now audio");
-      //   console.log(media);
-      //音频播放/暂停
-      this.flag ? media.play() : media.pause();
+    // 上一个音频播放
+    handlePlayLift() {
+      this.audioPlay(this.leftAudioId)
+    },
 
-      //进度条播放进度
-      //获取相应的元素
-      setInterval(function() {
-        document.querySelector(".mx-audio-time").innerHTML = that.secondsFormat(
-          media.currentTime
-        );
-        document.querySelector(".mx-audio-all").innerHTML = that.secondsFormat(
-          media.duration
-        );
-        // console.log(media.currentTime/media.duration)
-        let way = document.querySelector(".mx-audio-way");
-        way.onclick = function(e) {
-          // media.play();
-          //   console.log(this.clientWidth);
-          //   console.log(e.offsetX);
-          document.querySelector(".mx-audio-radius").style.left =
-            (e.offsetX / this.clientWidth) * 100 + "%";
-          media.pause();
-          media.currentTime = (e.offsetX / this.clientWidth) * media.duration;
-          media.play();
-        };
-        document.querySelector(".mx-audio-radius").style.left =
-          (media.currentTime / media.duration) * 100 + "%";
-      }, 1000);
+    // 下一个音频播放
+    handlePlayRight() {
+      this.audioPlay(this.rightAudioId)
     },
-    secondsFormat(time) {
-      // let timeStr=Number.toString(time);
-      // console.log(timeStr)
-      time = Math.round(time);
-      //   console.log(time);
-      let mm = parseInt(time / 60) + "";
-      //   console.log(mm);
-      if (mm < 10) mm = "0" + mm;
-      let ss = parseInt(time % 60) + "";
-      if (ss < 10) ss = "0" + ss;
-      let timeStr = mm + ":" + ss;
-      return timeStr;
+
+    // 手动设置进度条的
+    handleSetProgress(_that) {
+      const percent = (_that.offsetX / _that.target.clientWidth) * 100 + "%";
+      this.setProgress(percent);
+      // document.querySelector(".now audio").pause()
+      // 设置当前音频的时间
+      // document.querySelector(".now audio").currentTime = 120
+      // this.audioPlay()
     },
-    //获取当前音频初始时长
-    async getInitTotal(e) {
-      //获取当前音频的总时长
-      var that = this;
-      let media1 = document.querySelector(".now audio");
-      let temp = await new Promise((resolve, reject) => {
-        //音频加载完毕后执行
-        media1.oncanplay = function() {
-          //   console.log(media1.duration);
-          // media1.play();
-          this.radioTotal = that.secondsFormat(media1.duration);
-          resolve(this.radioTotal);
-          //音频加载完毕后才能播放
-          that.audioPlay(e);
-        };
+
+    setProgress(_percent) {
+      document.querySelector(".mx-audio-radius").style.left = _percent;
+    },
+
+    // 获取当前audio的时间
+    updateTime(e) {
+      // console.log(e);
+      let seconds = e.target.currentTime >> 0;
+      this.currentTime = this.formatSeconds(seconds);
+      let media = document.querySelector(".now audio");
+      // 设置进度条的移动
+      this.setProgress((seconds / this.audioTotalSeconds) * 100 + "%");
+    },
+
+    // 将秒转为 00：12 此种格式
+    formatSeconds(value) {
+      var theTime = parseInt(value); // 秒
+      var middle = 0; // 分
+      var hour = 0; // 小时
+      if (theTime > 60) {
+        middle = parseInt(theTime / 60);
+        theTime = parseInt(theTime % 60);
+        if (middle > 60) {
+          hour = parseInt(middle / 60);
+          middle = parseInt(middle % 60);
+        }
+      }
+      var result = "";
+      if (parseInt(theTime) >= 10) {
+        result = "0" + ":" + parseInt(theTime);
+      } else {
+        result = "0" + ":" + "0" + parseInt(theTime);
+      }
+
+      if (middle >= 0 && parseInt(theTime) >= 10) {
+        result = parseInt(middle) + ":" + parseInt(theTime);
+      } else {
+        result = parseInt(middle) + ":" + "0" + parseInt(theTime);
+      }
+      return result;
+    },
+
+    // 获取音频时长 音频加载完成
+    getDuration() {
+      this.radioTotal = this.formatSeconds(
+        document.querySelector(".now audio").duration >> 0
+      );
+      this.audioTotalSeconds =
+        document.querySelector(".now audio").duration >> 0;
+      this.isReady = true; // 说明可以播放了
+      console.log(radioTotal);
+    },
+
+    // 音频播放结束
+    audioEnd() {
+      this.flag = false;
+    },
+
+    // 音频播放暂停
+    audioPlay(_id) {
+      this.curAudioId = _id // 记录此时的音频id
+      let arr = [...this.relatedList];
+
+      // 展示音频的列表
+      let show_arr = [...this.showAudioList]
+
+      for(let item of show_arr) {
+        if(item.actived) {  // 说明此时换了新的音频
+          if(item.id !== _id) {
+            this.isReady = false
+            document.querySelector(".now audio").pause()
+            document.querySelector(".now audio").currentTime = 0
+            this.setProgress('0%')
+            this.flag = false
+          }
+        }
+      }
+
+      var curIndex;
+      arr.forEach((item, index) => {
+        item.actived = false // 取消所有的选中状态
+        if (item.id == _id) {
+          curIndex = index;
+        }
       });
 
-      //   console.log(data)
-      this.radioTotal = temp;
-    }
-  },
+      let leftIndex = curIndex - 1;
+      let rihgtIndex = curIndex + 1;
 
-  components: {
-    Header,
-    breadCrumbNav,
-    hotKeywords,
-    topicSimple,
-    sheetNewsSide,
-    topicTitleInfo,
-    Footer
+      let newArr = [];
+      if (leftIndex >= 0) {
+        newArr.push(arr[leftIndex]);
+      }
+      // 设置
+      arr[curIndex].actived = true;
+      newArr.push(arr[curIndex]);
+      if (rihgtIndex >= 0) {
+        newArr.push(arr[rihgtIndex]);
+      }
+      this.rightAudioId = arr[rihgtIndex].id
+      this.leftAudioId = arr[leftIndex].id
+      this.showAudioList = newArr;
+
+      if (!this.isReady) return;
+      var that = this;
+      this.flag = !this.flag;
+      let media = document.querySelector(".now audio");
+      //音频播放/暂停
+      this.flag ? media.play() : media.pause();
+    }
   }
 };
 </script>
