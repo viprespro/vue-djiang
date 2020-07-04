@@ -1,8 +1,9 @@
+
 <!--
  * @Author: your name
  * @Date: 2020-07-01 14:23:02
- * @LastEditTime: 2020-07-03 16:27:58
- * @LastEditors: Ares
+ * @LastEditTime: 2020-07-04 05:13:15
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dangjian\src\components\common\sheetNewsSide.vue
 --> 
@@ -68,3 +69,4 @@ export default {
   }
 }
 </style>
+

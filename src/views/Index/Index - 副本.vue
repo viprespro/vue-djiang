@@ -956,9 +956,9 @@
 			async getData(){
 				const {data:res}= await this.$http.get('http://122.51.102.105:8081/api/login?username=admin&password=admin');
 				// console.log(res);
-				let tokenStr= localStorage.getItem('authCode');
+				let tokenStr=res.access_token;
 				console.log(tokenStr);
-				let {data:res1}= await this.$http.get('http://122.51.102.105:8081/api/home',{params:{code:tokenStr}});
+				let {data:res1}= await this.$http.get('http://122.51.102.105:8081/api/home',{params:{access_token:tokenStr}});
 				console.log(res1);
 			},
 			test() {

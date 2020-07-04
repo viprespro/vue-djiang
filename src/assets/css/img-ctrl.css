@@ -14,6 +14,9 @@
   .mx-listing dl dt img {
     height: 115px;
   }
+  .mx-thumbnails ul li img {
+    height: 124px;
+  }
   .mx-thumbnails-cos1 ul li img {
     height: 102px;
   }

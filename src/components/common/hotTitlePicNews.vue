@@ -1,3 +1,35 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@hub021xxb 
+Aspire01
+/
+dangjian
+1
+00
+Code
+Issues
+Pull requests
+1
+Actions
+Projects
+Wiki
+Security
+Insights
+dangjian/src/components/common/hotTitlePicNews.vue
+@Aspire01
+Aspire01 1
+Latest commit 3ed71b3 11 hours ago
+ History
+ 2 contributors
+@Aspire01@hub021xxb
+126 lines (124 sloc)  3.19 KB
+  
 <!--
  * @Date         : 2020-06-23 15:13:41
  * @LastEditors: Ares
@@ -30,7 +62,11 @@
                 <span>{{item.title}}</span>
               </a>
             </div>
+            
           </li>
+          <div class="hotblock mt">
+          
+          </div>
           <!-- 一个li -->
           <!-- <li>
 						<div class="mx-thumbnails-box">
@@ -78,38 +114,26 @@ export default {
       if (item.type == 0) {
         //普通文章页
         this.$router.push({
-          name: "details-news",
-          params: {
-            code: localStorage.getItem('authCode'),
-            category_id: item.categoryId,
-            id: item.id,
-            type: item.type
-          }
+          path: "/details-news",
+          query: { category_id: item.categoryId, id: item.id, type: item.type }
         });
+        // this.saveDetailParams();
       }
       if (item.type == 1) {
         // 音频详情页
         this.$router.push({
-          name: "details-radio",
-          params: {
-            code: localStorage.getItem('authCode'),
-            category_id: item.categoryId,
-            id: item.id,
-            type: item.type
-          }
+          path: "/details-radio",
+          query: { category_id: item.categoryId, id: item.id, type: item.type }
         });
+        // this.saveDetailParams();
       }
       if (item.type == 2) {
         //视频详情页
         this.$router.push({
-          name: "details-video",
-          params: {
-            code: localStorage.getItem('authCode'),
-            category_id: item.categoryId,
-            id: item.id,
-            type: item.type
-          }
+          path: "details-video",
+          query: { category_id: item.categoryId, id: item.id, type: item.type }
         });
+        // this.saveDetailParams();
       }
     }
   }
@@ -124,3 +148,15 @@ export default {
   }
 }
 </style>
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About

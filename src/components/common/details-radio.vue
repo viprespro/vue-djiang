@@ -53,7 +53,7 @@
                         <em>{{ item.year }}年</em>
                       </span>
                       <audio
-                        id="5e588997207d2131782712"
+                        :id="item.id"
                         :src="ipAddress + item.audioUrl"
                         loop="loop"
                         class="audio-control"
@@ -147,7 +147,6 @@ import Header from "@/components/common/Header.vue";
 //导入面包屑
 import breadCrumbNav from "../../components/common/breadCrumbNav";
 //导入 右边推荐模块
-
 import hotKeywords from "../../components/common/hotKeywords.vue";
 import topicSimple from "../../components/common/topicSimple.vue";
 import sheetNewsSide from "../../components/common/sheetNewsSide.vue";
@@ -173,7 +172,8 @@ export default {
       topicList: [], // 专题
       recommendList: [], // 推荐
       detail: {}, // 本页详情
-      showAudioList: []
+      showAudioList: [],
+      nowAudioId:'',//地址栏传进来的id
     };
   },
   computed: {
@@ -189,9 +189,10 @@ export default {
   mounted() {
     //打印传递过来的参数
     this.paramsData = this.$route.query;
+    console.log(this.$route.query)
+    this.nowAudioId=this.$route.query.id;
     this.getDetailsData();
   },
-
   methods: {
     async getDetailsData() {
       let { data: res } = await this.$http.get("/api/detail", {
@@ -213,7 +214,6 @@ export default {
       this.hotList = data.hot;
       this.detail = data.detail;
       document.title = this.detail.title; // 设置标题
-
       // 处理音频数组数据
       let arr = this.relatedList.slice(0, 3);
       for (let i = 0, len = arr.length; i < len; i++) {
@@ -225,11 +225,9 @@ export default {
       }
       console.log(arr);
       this.showAudioList = arr;
-
       // 拿到音频后去获取音频的长度
       this.getInitTotal();
     },
-
     foo(str) {
       let arr = [
         "一",
@@ -248,7 +246,6 @@ export default {
       str = Number(str);
       return arr[str - 1];
     },
-
     //一个a音频播放暂停功能
     audioPlay(e) {
       var that = this;
@@ -263,7 +260,6 @@ export default {
       //   console.log(media);
       //音频播放/暂停
       this.flag ? media.play() : media.pause();
-
       //进度条播放进度
       //获取相应的元素
       setInterval(function() {
@@ -307,6 +303,7 @@ export default {
       //获取当前音频的总时长
       var that = this;
       let media1 = document.querySelector(".now audio");
+      console.log(media1)
       let temp = await new Promise((resolve, reject) => {
         //音频加载完毕后执行
         media1.oncanplay = function() {
@@ -318,12 +315,10 @@ export default {
           that.audioPlay(e);
         };
       });
-
       //   console.log(data)
       this.radioTotal = temp;
     }
   },
-
   components: {
     Header,
     breadCrumbNav,
@@ -342,11 +337,9 @@ audio {
   width: 200px;
   height: 200px;
 }
-
 .c1,
 .c2 {
 }
-
 .layout-wrapper {
   width: 100%;
   display: block;
@@ -363,7 +356,6 @@ audio {
     width: 960px;
     margin: 0 auto;
   }
-
   .r-75-25 .c1 {
     width: 720px;
     float: left;
@@ -373,14 +365,12 @@ audio {
     float: right;
   }
 }
-
 /* 第三档 pc端 */
 @media only screen and (min-width: 1240px) {
   .layout {
     width: 1200px;
     margin: 0 auto;
   }
-
   .r-75-25 .c1 {
     width: 900px;
     float: left;

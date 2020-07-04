@@ -7,19 +7,19 @@
             <div class="footer-box">
               <div class="footer-copyright">
                 <span class="footer-copyright-info">
-                  <img src="../../assets/img/logo.png" alt />
+                  <img :src="commonData.logoUrl" alt />
                   <span>
                     2020 ©
-                    <a
-                      href="https://bzcz.zhizhongdj.com"
+                    <router-link
+                      to="/"
                       class="footer-copyright-link"
-                    >bzcz.zhizhongdj.com</a>
+                    >{{commonData.copyright}}  </router-link>
                   </span>
                 </span>
                 <!-- 下载图标 -->
-                <a href class="footer-copyright-link">
+                <!-- <a href class="footer-copyright-link">
                   <i class="iconfont icon-android">下载安卓版</i>
-                </a>
+                </a> -->
               </div>
             </div>
           </div>
@@ -30,6 +30,19 @@
 </template>
 
 <script>
+export default {
+  data(){
+    return {
+      commonData:''
+    }
+    
+  },
+  created(){
+    this.commonData=this.$store.state.commonData;
+    console.log(this.commonData);
+  }
+
+}
 </script>
 
 <style scoped="scoped">
@@ -39,8 +52,8 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index:999;
-  /* right: 0; */
+  z-index:111;
+   right: 0;
   background: #7c1618;
 }
 /* 内容块基本设置 */
@@ -108,7 +121,15 @@
     width: 100% !important;
     padding: 0 !important;
   }
-
+  .mx-footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index:999;
+  /* right: 0; */
+  background: #7c1618;
+}
   .layout-footer {
     width: 100%;
   }

@@ -7,6 +7,8 @@
 
 .mx-listing {
     display: block;
+    /* position: relative; */
+    /* z-index:112; */
 }
 
 
@@ -27,8 +29,10 @@
 .mt {
     margin: 20px 0 0;
 }
-
-
+/* 做底墙 */
+.listingblock {
+    height:59px;
+}
 /* 加载更多按钮 样式 */
 
 .mx-more-link {
@@ -447,7 +451,39 @@
     line-height: 20px;
     display: block;
 }
+/* 专题页公用样式 start */
+.mx-column-topic {
+    background: #c01;
+}
 
+.mx-column-topic .mx-column-icon {
+    width: 100px;
+    height: auto;
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+}
+.mx-column-topic .mx-column-icon img{
+    width:100%;
+    display: block;
+    vertical-align: middle;
+}
+.mx-column-topic  .mx-column-text{
+    display: inline-block;
+    vertical-align: middle;
+    width:-webkit-calc(100% - 220px);
+}
+.mx-column-topic .mx-column-text h2{
+    font-size:24px;
+    line-height:24px;
+    height:24px;
+    color:#fff;
+}
+.mx-column-topic .mx-column-text em{
+    padding:5px 0 0;
+    color:rgba(255,255,255,0.8);
+}
+/* 专题页公用样式 end */
 
 /* 列表类  二级导航 start */
 
@@ -612,7 +648,18 @@
     width: 100% !important;
     font-size: 20px;
 }
-
+.mx-sheet-first span{
+    display: block;
+    padding: 18px 0px 0;
+    line-height: 22px;
+    font-size: 14px;
+    color: #aaa;
+    height: 62px;
+    overflow: hidden;
+    clear: both;
+    font-weight: normal;
+    margin: 0 0 5px 0;
+}
 .mx-sheet-first em {
     display: none !important;
 }

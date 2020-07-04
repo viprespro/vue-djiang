@@ -1,7 +1,7 @@
 <!--
  * @Date         : 2020-06-15 09:54:27
- * @LastEditors: Ares
- * @LastEditTime: 2020-07-03 15:29:26
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-07-04 10:59:52
  * @FilePath: \dangjian\src\App.vue
  * @Description  : 
 --> 
@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import tokenInfo from "./api/token.js";
+// import tokenInfo from "./api/token.js";
 export default {
   created() {
     //在页面加载时读取sessionStorage/localStorage里的状态信息 vuex的刷新页面丢失问题处理

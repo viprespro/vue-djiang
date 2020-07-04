@@ -1,7 +1,7 @@
 <!--
  * @Date         : 2020-06-23 14:31:03
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-07-01 18:43:15
+ * @LastEditTime: 2020-07-04 12:27:59
  * @FilePath     : \dangjianxiangmupcyidongduan\src\components\common\topicTitleInfo.vue
  * @Description  : 
 --> 
@@ -24,14 +24,19 @@
         <ul>
           <!-- 一个li start -->
           <li v-for="item in (topicList || '').slice(0,2)" :key="item.id">
-            <a href target="_blank" class="clearfix">
-              <img :src="item.path?ipAddress+item.path:''" alt />
+            <!-- <a href target="_blank" class="clearfix"> -->
+              <router-link :to="{path:'/topic',query:{
+                topicsId:item.id
+              }}"  class="clearfix">
+              <img :src="ipAddress+item.path?ipAddress+item.path:''" alt />
               <span>
                 <strong>{{item.name}}</strong>
                 <em>{{item.description}}</em>
               </span>
-            </a>
+              </router-link>
+            <!-- </a> -->
           </li>
+           
           <!-- 一个li end -->
           <!-- 一个li start -->
           <!-- <li>
@@ -45,8 +50,11 @@
           </li>-->
           <!-- 一个li end -->
         </ul>
+        
       </div>
     </div>
+    <!-- 底部墙-->
+       
   </div>
 </template>
 

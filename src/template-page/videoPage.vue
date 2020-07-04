@@ -189,7 +189,7 @@ export default {
       console.log(this.tokenStr);
       let { data: res } = await this.$http.get("/api/home", {
         params: {
-          code: localStorage.getItem('authCode')
+          access_token: this.tokenStr
         }
       });
       console.log(res);

@@ -120,7 +120,7 @@ export default {
 
       let { data: res } = await this.$http.get("api/header", {
         params: {
-          code: localStorage.getItem("authCode")
+          code:localStorage.getItem('authCode')
         }
       });
 
@@ -154,16 +154,9 @@ export default {
       //跳转对应id的菜单页面
       this.$router.push({
         path: `/category/${id}`
-        // component:'',
+        
       });
-      //请求分类页接口
-      // let { data: res } = this.$http.get("api/category", {
-      //   params: {
-      //     access_token: localStorage.getItem("Authorization"),
-      //     categoryId: id
-      //   }
-      // });
-      // console.log(res);
+      
     }
   }
 };
@@ -192,7 +185,7 @@ html {
   display: block;
   position: relative;
   z-index: 105;
-  float: left;
+  /* float: left; */
   width: 100%;
   zoom: 1;
 }

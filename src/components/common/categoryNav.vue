@@ -6,7 +6,7 @@
 				<ul class="clearfix" >
 					<!-- 一个li -->
 					<li v-for="item in categoryList" :key="item.id">
-						<router-link :to="{path: `/category/${category_id}`}">
+						<router-link :to="{path: `/category/${item.id}`}">
 							<i class="iconfont icon-shu"></i>
 							<!-- <img :src="Ip+item.path" alt=""> -->
 							<span>
