@@ -4,14 +4,12 @@
     <ul class="mx-search-list bg" v-loading="loading" style="min-height: 160px">
 
       <div v-if="list.length">
-        <li class="li" v-for="item in list" :key="item.id">
+        <li class="li" v-for="item in list" :key="item.id" style="overflow: hidden;">
           <strong>
             <a href target="_blank">{{ item.title }}</a>
           </strong>
           <span>
-            <a href>
-              <img :src="ipAddress + item.imageUrl" alt />
-            </a>
+            <img :src="ipAddress + item.imageUrl" style="width: 140px; height: 94px; border-radius: 5px;" />
             <p>
               {{ item.description }}
               <font color="#f00">{{ item.keyword }}</font>

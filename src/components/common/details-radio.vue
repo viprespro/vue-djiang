@@ -27,7 +27,7 @@
                   {{ detail.description }}
                   <a href="javascript:void(0);" @click="toggleFoldUp()">
                      {{ foldFlag ? '展开' : '收起' }}
-                    <i class="iconfont" :class="foldFlag ? 'icon-xiajiantou' : 'icon-ico_back'" ></i>
+                    <i class="iconfont" :class="foldFlag ? 'icon-jiantou9' : 'icon-ico_back'" ></i>
                   </a>
                 </div>
                 <!-- 音频文章缩略图 end -->
@@ -42,8 +42,8 @@
                     :key="item.id"
                   >
                     <a href="javascript:;" @click.prevent="audioPlay(item.id)">
-                      <i :class="['iconfont', flag?'':'icon-caret-right']">
-                        <img v-if="flag" src="../../assets/img/sound.gif" alt />
+                      <i :class="['iconfont', item.actived && flag ? '' : 'icon-caret-right']">
+                        <img v-if="item.actived && flag" src="../../assets/img/sound.gif" alt />
                       </i>
                       <img :src="ipAddress + item.imageUrl" alt />
                       <span>
@@ -292,9 +292,13 @@ export default {
     handleSetProgress(_that) {
       const percent = (_that.offsetX / _that.target.clientWidth) * 100 + "%";
       this.setProgress(percent);
-      // document.querySelector(".now audio").pause()
+      document.querySelector(".now audio").pause()
+      let temp = this.audioTotalSeconds *  (_that.offsetX / _that.target.clientWidth)
       // 设置当前音频的时间
-      // document.querySelector(".now audio").currentTime = 120
+      document.querySelector(".now audio").currentTime = temp
+
+      this.currentTime = this.formatSeconds(temp >> 0)
+      
       // this.audioPlay()
     },
 

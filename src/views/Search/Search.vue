@@ -117,6 +117,9 @@ export default {
       if(this.$children[6]) {
         this.$children[6].doSearch();
       }
+      if(this.afterSearch) {
+        this.$router.push({name:'searchList', query:{ id: this.curId, inputVal: this.inputVal}})
+      }
     },
 
     handleClick(i) {
