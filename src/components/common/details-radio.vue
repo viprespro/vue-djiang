@@ -57,10 +57,6 @@
                         <em>{{ item.year }}年</em>
                       </span>
                       <audio
-<<<<<<< HEAD
-=======
-                        :id="item.id"
->>>>>>> c9121adabdbda971eadc9eb416e93b6aa4cdc901
                         :src="ipAddress + item.audioUrl"
                         loop="loop"
                         class="audio-control"
@@ -196,13 +192,9 @@ export default {
       recommendList: [], // 推荐
       detail: {}, // 本页详情
       showAudioList: [],
-<<<<<<< HEAD
       curAudioId: '', // 此时的音频id
       leftAudioId: '', // 上一首音频id
       rightAudioId: '', //  下一首音频id
-=======
-      nowAudioId:'',//地址栏传进来的id
->>>>>>> c9121adabdbda971eadc9eb416e93b6aa4cdc901
     };
   },
   computed: {
@@ -262,11 +254,6 @@ export default {
         arr[i].day = after[2];
       }
       this.showAudioList = arr;
-<<<<<<< HEAD
-=======
-      // 拿到音频后去获取音频的长度
-      this.getInitTotal();
->>>>>>> c9121adabdbda971eadc9eb416e93b6aa4cdc901
     },
     foo(str) {
       let arr = [
@@ -286,7 +273,6 @@ export default {
       str = Number(str);
       return arr[str - 1];
     },
-<<<<<<< HEAD
 
     // 上一个音频播放
     handlePlayLift() {
@@ -348,46 +334,6 @@ export default {
         result = parseInt(middle) + ":" + "0" + parseInt(theTime);
       }
       return result;
-=======
-    //一个a音频播放暂停功能
-    audioPlay(e) {
-      var that = this;
-      //标志变量取反
-      this.flag = !this.flag;
-      //点击a标签去获取 获取media对象
-      // console.log(this)
-      //获取当前绑定点击事件 的a元素
-      //   console.log(e.currentTarget);
-      //   var oA = e.currentTarget;
-      let media = document.querySelector(".now audio");
-      //   console.log(media);
-      //音频播放/暂停
-      this.flag ? media.play() : media.pause();
-      //进度条播放进度
-      //获取相应的元素
-      setInterval(function() {
-        document.querySelector(".mx-audio-time").innerHTML = that.secondsFormat(
-          media.currentTime
-        );
-        document.querySelector(".mx-audio-all").innerHTML = that.secondsFormat(
-          media.duration
-        );
-        // console.log(media.currentTime/media.duration)
-        let way = document.querySelector(".mx-audio-way");
-        way.onclick = function(e) {
-          // media.play();
-          //   console.log(this.clientWidth);
-          //   console.log(e.offsetX);
-          document.querySelector(".mx-audio-radius").style.left =
-            (e.offsetX / this.clientWidth) * 100 + "%";
-          media.pause();
-          media.currentTime = (e.offsetX / this.clientWidth) * media.duration;
-          media.play();
-        };
-        document.querySelector(".mx-audio-radius").style.left =
-          (media.currentTime / media.duration) * 100 + "%";
-      }, 1000);
->>>>>>> c9121adabdbda971eadc9eb416e93b6aa4cdc901
     },
 
     // 获取音频时长 音频加载完成
@@ -398,9 +344,8 @@ export default {
       this.audioTotalSeconds =
         document.querySelector(".now audio").duration >> 0;
       this.isReady = true; // 说明可以播放了
-      console.log(radioTotal);
+      // console.log(this.radioTotal);
     },
-<<<<<<< HEAD
 
     // 音频播放结束
     audioEnd() {
@@ -459,37 +404,6 @@ export default {
       //音频播放/暂停
       this.flag ? media.play() : media.pause();
     }
-=======
-    //获取当前音频初始时长
-    async getInitTotal(e) {
-      //获取当前音频的总时长
-      var that = this;
-      let media1 = document.querySelector(".now audio");
-      console.log(media1)
-      let temp = await new Promise((resolve, reject) => {
-        //音频加载完毕后执行
-        media1.oncanplay = function() {
-          //   console.log(media1.duration);
-          // media1.play();
-          this.radioTotal = that.secondsFormat(media1.duration);
-          resolve(this.radioTotal);
-          //音频加载完毕后才能播放
-          that.audioPlay(e);
-        };
-      });
-      //   console.log(data)
-      this.radioTotal = temp;
-    }
-  },
-  components: {
-    Header,
-    breadCrumbNav,
-    hotKeywords,
-    topicSimple,
-    sheetNewsSide,
-    topicTitleInfo,
-    Footer
->>>>>>> c9121adabdbda971eadc9eb416e93b6aa4cdc901
   }
 };
 </script>
