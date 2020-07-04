@@ -23,15 +23,11 @@
               <!-- 音频播放容器 start -->
               <div class="mx-audio-play mx-m">
                 <!-- 音频文章缩略图 start -->
-                <div id="mx-audio-play-info" class="mx-audio-play-info ellipsis-s">
+                <div id="mx-audio-play-info" class="mx-audio-play-info" :class="{'ellipsis-s': foldFlag }">
                   {{ detail.description }}
-                  <a href="javascript:;">
-                    展开
-                    <i class="iconfont icon-xiajiantou"></i>
-                  </a>
-                  <a href="javascript:;" style="display: none;">
-                    收起
-                    <i class="iconfont icon-ico_back"></i>
+                  <a href="javascript:void(0);" @click="toggleFoldUp()">
+                     {{ foldFlag ? '展开' : '收起' }}
+                    <i class="iconfont" :class="foldFlag ? 'icon-xiajiantou' : 'icon-ico_back'" ></i>
                   </a>
                 </div>
                 <!-- 音频文章缩略图 end -->
@@ -59,6 +55,7 @@
                       <audio
                         :src="ipAddress + item.audioUrl"
                         loop="loop"
+                        preload="auto"
                         class="audio-control"
                         @ended="audioEnd"
                         @canplay="getDuration"
@@ -195,6 +192,7 @@ export default {
       curAudioId: '', // 此时的音频id
       leftAudioId: '', // 上一首音频id
       rightAudioId: '', //  下一首音频id
+      foldFlag: 1, // 默认折叠
     };
   },
   computed: {
@@ -215,6 +213,12 @@ export default {
     this.getDetailsData();
   },
   methods: {
+
+    // 展开和折叠
+    toggleFoldUp() {
+      this.foldFlag ^= 1
+    },
+
     async getDetailsData() {
       let { data: res } = await this.$http.get("/api/detail", {
         params: {
