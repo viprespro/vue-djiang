@@ -1,34 +1,34 @@
 <!--
  * @Date         : 2020-07-03 15:20:40
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-07-04 13:15:59
+ * @LastEditTime: 2020-07-04 16:23:05
  * @FilePath     : \dangjian\src\views\topic.vue
  * @Description  : 
 --> 
 <template>
-<!-- 新闻模版页 -->
+  <!-- 新闻模版页 -->
   <div id="Memorabilia">
-    <!-- 头开始 -->
     <Header></Header>
-    <!--  -->
+
     <!-- 内容开始 -->
     <div class="content">
       <!-- 专题页横幅 start -->
-      <div class="">
+      <div class>
         <div class="layout-wrapper">
           <div class="layout">
             <div class="c1-wrapper">
               <div class="c1">
-                
-              
                 <div class="mx-column-topic-wrapper">
                   <div class="mx-column-topic mx-column-title mx-m">
                     <div class="mx-column-icon">
-                      <img src="../assets/img/topicIcon.jpg" alt="">
+                      <img
+                        :src="ipAddress+detailDataList.path?ipAddress+detailDataList.path:''"
+                        alt
+                      />
                     </div>
                     <div class="mx-column-text">
-                      <h2>学习四史</h2>
-                      <em>学好党史、新中国史、改革开放史、社会主义发展史，是党员领导干部的必修课。</em>
+                      <h2>{{detailDataList.name}}</h2>
+                      <em>{{detailDataList.description}}</em>
                     </div>
                   </div>
                 </div>
@@ -60,34 +60,22 @@
         </div>
       </div>
       <!-- 轮播图+ sheet 新闻区域 end-->
-      <!-- 缩略图新闻区域 start -->
-      <div class="layout-wrapper">
-        <div class="layout">
-          <div class="c1-wrapper">
-            <div class="c1">
-              <!-- 这里是缩略图新闻区域 -->
-              <thumbnailsNews></thumbnailsNews>
-            </div>
-          </div>
-        </div>
-      </div> 
-      <!-- 缩略图新闻区域 end -->
       <!--最新发布 latest  +  专题topics + 热点hot  start -->
       <div class="layout-wrapper">
         <div class="layout r-75-25 clearfix">
           <!-- 左边 -->
           <div class="c1-wrapper">
             <div class="c1">
-              <listingNewsLatest></listingNewsLatest>
+              <listingNewsLatest :lastestList="latestDataList"></listingNewsLatest>
             </div>
           </div>
           <!-- 右边 -->
           <div class="c2-wrapper">
             <div class="c2">
-              <!-- topic -->
-              <topicTitleInfo></topicTitleInfo>
+               <!-- topic -->
+              <topicTitleInfo :topicList="topicDataList"></topicTitleInfo>
               <!-- hot -->
-              <hotTitlePicNews></hotTitlePicNews>
+              <hotTitlePicNews :hotList="hotDataList"></hotTitlePicNews>
             </div>
           </div>
         </div>
@@ -143,51 +131,44 @@ import Swiper from "swiper";
 export default {
   data() {
     return {
-      //判断是否是topic
-      isTopicPage:true,
+      //判断是否是topic页面
+      isTopicPage: true,
       //判断是否有背景图
-      hasBackgroundImg:false,
+      hasBackgroundImg: false,
+      //存放当前topic专题页的id
+      topicsId: "",
+      // ip地址
+      ipAddress: "",
       //用于存放接口取来的数据
-      categoryDataList: [],
+      detailDataList: [],
       hotDataList: [],
       latestDataList: [],
-      topicDataList: [],
+      topicDataList: []
     };
   },
   //生命周期
-  created: function() {
+  created() {
     //打印过来的参数
-    console.log(this.$route.query)
+    console.log(this.$route.query);
+    //赋值数据
+    this.ipAddress = this.$store.state.ipAddress;
+    this.topicsId = this.$route.query.topicsId;
     //加载首屏数据
     this.getData();
-    //调用轮播方法
-    //this._initSwiper();
-    //窗口调整函数 并实现轮播图片居中
-    // window.addEventListener('resize', this.handleResize);
   },
-  beforeDestroy: function() {
-    // window.removeEventListener('resize', this.handleResize)
-  },
-  mounted: function() {
+  beforeDestroy() {},
+  mounted() {
     //获取swiper
     this.getSwiper();
   },
   methods: {
     async getData() {
-      // //   let tokenStr = tokenFun("admin", "admin");
-      // //   this.tokenStr=tokenStr;
-      // let { data: resInfo } = await this.$http.get(
-      //   "/api/login?username=admin&password=admin"
-      // );
-
-      // this.tokenStr = resInfo.access_token;
-      // console.log(this.tokenStr);
-      // let { data: res } = await this.$http.get("/api/home", {
-      //   params: {
-      //     access_token: this.tokenStr
-      //   }
-      // });
-      // console.log(res);
+      let { data: res } = await this.$http.get("api/topics", {
+        params: {
+          code: localStorage.getItem("authCode"),
+          topicsId: this.topicsId
+        }
+      });
       // 判断数据是否获取成功
       if (res.code != 0) {
         console.log("数据获取失败");
@@ -196,17 +177,16 @@ export default {
         //数据获取成功
         let data = res.data;
         console.log(data);
-        // console.log(data.category)
+
         //拿到对应模块的数据
-        this.categoryDataList = data.category;
+        this.detailDataList = data.detail;
+
         this.hotDataList = data.hot;
         this.topicDataList = data.topics;
         this.latestDataList = data.latest;
       }
     },
-    test() {
-      $(".test").html(1222);
-    },
+    test() {},
     // 获取当前页面的尺寸。
     handleResize(event) {
       this.fullWidth = document.documentElement.clientWidth;
@@ -276,8 +256,7 @@ export default {
   clear: both;
 }
 /* 低于960*/
-@media only screen and (max-width: 959px){
-
+@media only screen and (max-width: 959px) {
 }
 /* 960 -1240尺寸 */
 @media only screen and (min-width: 960px) and (max-width: 1239px) {

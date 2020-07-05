@@ -1,9 +1,22 @@
+@charset "UTF-8";
 @media only screen and (max-width: 959px) {
+  .sliding-img-box img {
+    height: 422px;
+  }
   .mx-listing dl dt img {
-    height: 69px;
+    height: 100px;
+  }
+  .mx-thumbnails ul li img {
+    height: 178px;
   }
   .mx-thumbnails-cos1 ul li img {
-    height: 89.25px;
+    height: 178px;
+  }
+  .mx-thumbnails ul.course li img {
+    height: 178px;
+  }
+  .mx-covers-ul li a img {
+    height: 169px;
   }
 }
 
@@ -20,6 +33,16 @@
   .mx-thumbnails-cos1 ul li img {
     height: 102px;
   }
+  .mx-thumbnails-cos2 ul li img {
+    height: 102px;
+  }
+  /*微调字体*/
+  .mx-thumbnails-cos2 .mx-thumbnails-box i {
+    top: -38px;
+  }
+  .mx-covers-ul li a img {
+    height: 101px;
+  }
 }
 
 @media only screen and (min-width: 1240px) {
@@ -35,7 +58,13 @@
   .mx-thumbnails ul li img {
     height: 158px;
   }
+  .mx-thumbnails ul.course li img {
+    height: 124px;
+  }
   .mx-thumbnails-cos1 ul li img {
     height: 136px;
+  }
+  .mx-covers-ul li a img {
+    height: 101px;
   }
 }

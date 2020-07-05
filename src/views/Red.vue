@@ -13,7 +13,7 @@
             <div class="c1-wrapper">
               <div class="c1">
                 <!--  -->
-                <breadCrumbNav :categoryList="categoryDataList" :category_id="category_id"></breadCrumbNav>
+                <breadCrumbNav :categoryList="categoryDataList" :categoryId="categoryId"></breadCrumbNav>
               </div>
             </div>
           </div>
@@ -25,7 +25,7 @@
         <div class="layout">
           <div class="c1-wrapper">
             <div class="c1">
-              <!-- 组件使用 -->
+             
               <columnTitleInfo  :categoryDetailList="categoryDetailDataList"></columnTitleInfo>
             </div>
           </div>
@@ -37,7 +37,7 @@
         <div class="layout">
           <div class="c1-wrapper">
             <div class="c1">
-              <!-- 组件使用 -->
+             
               <columnClassNav :activeMenu="activeMenuId" :categoryList="categoryDataList" ></columnClassNav>
             </div>
           </div>
@@ -84,6 +84,7 @@
           <!-- 左边 -->
           <div class="c1-wrapper">
             <div class="c1">
+              
               <listingNewsLatest :lastestList="latestDataList" :categoryList="categoryDataList"></listingNewsLatest>
             </div>
           </div>
@@ -150,7 +151,7 @@ export default {
     return {
       ipAddress:'',
       activeMenuId: 0,
-      category_id:'',
+      categoryId:'',
       // 是否有背景图
       hasBackgroundImg:false,
       //用于存放接口取来的数据
@@ -175,8 +176,8 @@ export default {
     // console.log(this.$route.path.slice(-1));
     //获取地址栏的activemenuId
     this.activeMenuId = this.$route.path.slice(-1);
-    // 拿到category_id
-    this.category_id=this.$route.path.slice(-1);
+    // 拿到categoryId
+    this.categoryId=this.$route.path.slice(-1);
 
     //加载首屏数据
     this.getData();
@@ -195,11 +196,11 @@ export default {
   },
   methods: {
     async getData() {
-      //去请求分类页接口  需要参数  token   category_id
+      //去请求分类页接口  需要参数  token   categoryId
       let {data:res}=await this.$http.get('api/category',{
         params:{
           code: localStorage.getItem('authCode'),
-          categoryId:this.category_id
+          categoryId:this.categoryId
         }
       })
       console.log(res);

@@ -12,8 +12,8 @@
           <div class="layout">
             <div class="c1-wrapper">
               <div class="c1">
-                <!-- 该组件需要传值  需要props  topNav 是一级导航  secNav 二级导航  thirdNav 三级导航-->
-                <breadCrumbNav :topNav="topNav"></breadCrumbNav>
+                <!--  -->
+                <breadCrumbNav :categoryList="categoryDataList" :categoryId="categoryId"></breadCrumbNav>
               </div>
             </div>
           </div>
@@ -26,7 +26,7 @@
           <div class="c1-wrapper">
             <div class="c1">
               <!-- 组件使用 -->
-              <columnTitleInfo></columnTitleInfo>
+              <columnTitleInfo  :categoryDetailList="categoryDetailDataList"></columnTitleInfo>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
           <div class="c1-wrapper">
             <div class="c1">
               <!-- 组件使用 -->
-              <columnClassNav></columnClassNav>
+              <columnClassNav :activeMenu="activeMenuId" :categoryList="categoryDataList" ></columnClassNav>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
           <div class="c1-wrapper">
             <div class="c1">
               <!--这里存放轮播图组件-->
-              <swiperBox></swiperBox>
+              <swiperBox :lastestList="latestDataList"></swiperBox>
             </div>
           </div>
           <div class="c2-wrapper">
@@ -72,7 +72,7 @@
           <div class="c1-wrapper">
             <div class="c1">
               <!-- 这里是缩略图新闻区域 -->
-              <thumbnailsNews></thumbnailsNews>
+              <thumbnailsNews :lastestList="latestDataList" ></thumbnailsNews>
             </div>
           </div>
         </div>
@@ -84,16 +84,16 @@
           <!-- 左边 -->
           <div class="c1-wrapper">
             <div class="c1">
-              <listingNewsLatest></listingNewsLatest>
+              <listingNewsLatest :lastestList="latestDataList" :categoryList="categoryDataList"></listingNewsLatest>
             </div>
           </div>
           <!-- 右边 -->
           <div class="c2-wrapper">
             <div class="c2">
               <!-- topic -->
-              <topicTitleInfo></topicTitleInfo>
+              <topicTitleInfo :topicList="topicDataList"></topicTitleInfo>
               <!-- hot -->
-              <hotTitlePicNews></hotTitlePicNews>
+              <hotTitlePicNews :hotList="hotDataList"></hotTitlePicNews>
             </div>
           </div>
         </div>
@@ -107,65 +107,7 @@
     <!-- 尾部结束 -->
   </div>
 </template>
-<style scoped="scoped">
-.layout-wrapper {
-  width: 100%;
-  display: block;
-  clear: both;
-}
-/* 低于960*/
-@media only screen and (max-width: 959px) {
-}
-/* 960 -1240尺寸 */
-@media only screen and (min-width: 960px) and (max-width: 1239px) {
-  .layout {
-    width: 960px;
-    margin: 0 auto;
-  }
-  .r-40-60 .c1 {
-    float: left;
-    width: 400px;
-  }
-  .r-40-60 .c2 {
-    float: right;
-    width: 560px;
-  }
-  .r-75-25 .c1 {
-    float: left;
-    width: 720px;
-  }
-  .r-75-25 .c2 {
-    float: left;
-    width: 240px;
-  }
-}
 
-/*1240尺寸以上 */
-@media only screen and (min-width: 1240px) {
-  .layout {
-    width: 1200px;
-    margin: 0 auto;
-    /* background: blue; */
-  }
-  .r-40-60 .c1 {
-    float: left;
-    width: 500px;
-  }
-  .r-40-60 .c2 {
-    float: right;
-    width: 700px;
-  }
-  .r-75-25 .c1 {
-    float: left;
-    width: 900px;
-  }
-  .r-75-25 .c2 {
-    float: left;
-    width: 300px;
-  }
-}
-</style>
-<!-- <style scoped src="@/assets/css/media-query/index.css"></style> -->
 <script>
 //导入Header头文件
 import Header from "@/components/common/Header.vue";
@@ -206,13 +148,16 @@ import Swiper from "swiper";
 export default {
   data() {
     return {
+      ipAddress:'',
       activeMenuId: 0,
-      //用于存放当前全局token
-      tokenStr: "",
-      //定义ip地址
-      ipAddress: "http://122.51.102.105:8081",
+      categoryId:'',
+      // 是否有背景图
+      hasBackgroundImg:false,
       //用于存放接口取来的数据
-      categoryDataList: [],
+      // 所有菜单信息
+      categoryDataList:[],
+      //菜单详情页
+      categoryDetailDataList: [],
       hotDataList: [],
       latestDataList: [],
       topicDataList: []
@@ -222,47 +167,49 @@ export default {
   },
   //生命周期
   created() {
-    console.log(this.$route.path.slice(-1));
+    console.log(this.$store.state.commonData.headMenu);
+    //ip地址
+    this.ipAddress=this.$store.state.ipAddress;
+    // 共用菜单数据赋值
+    this.categoryDataList=this.$store.state.commonData.headMenu;
+    // console.log(this.$route.path.slice(-1));
+    //获取地址栏的activemenuId
     this.activeMenuId = this.$route.path.slice(-1);
+    // 拿到categoryId
+    this.categoryId=this.$route.path.slice(-1);
+
     //加载首屏数据
     this.getData();
-    //调用轮播方法
-    //this._initSwiper();
-    //窗口调整函数 并实现轮播图片居中
-    // window.addEventListener('resize', this.handleResize);
+    // console.log(this.categoryDetailDataList)
+    console.log(this.categoryDataList);
+    
+    
   },
   beforeDestroy() {
     // window.removeEventListener('resize', this.handleResize)
   },
   mounted() {
+    
     //获取swiper
     this.getSwiper();
   },
   methods: {
     async getData() {
-      //   let tokenStr = tokenFun("admin", "admin");
-      //   this.tokenStr=tokenStr;
-      //   let { data: res } = await this.$http.get("/api/home", {
-      //     params: {
-      //       access_token: this.tokenStr
-      //     }
-      //   });
-      //   console.log(res);
-      //   // 判断数据是否获取成功
-      //   if (res.code != 0) {
-      //     console.log("数据获取失败");
-      //     return;
-      //   } else {
-      //     //数据获取成功
-      //     let data = res.data;
-      //     console.log(data);
-      //     // console.log(data.category)
-      //     //拿到对应模块的数据
-      //     this.categoryDataList = data.category;
-      //     this.hotDataList = data.hot;
-      //     this.topicDataList = data.topics;
-      //     this.latestDataList = data.latest;
-      //   }
+      //去请求分类页接口  需要参数  token   categoryId
+      let {data:res}=await this.$http.get('api/category',{
+        params:{
+          code: localStorage.getItem('authCode'),
+          categoryId:this.categoryId
+        }
+      })
+      console.log(res);
+      if(res.code!=0) return "数据获取失败";
+      let data=res.data;
+      //取出所有的数据块
+      this.categoryDetailDataList=data.categoryDetail;
+      this.hotDataList=data.hot;
+      this.latestDataList=data.latest;
+      this.topicDataList=data.topics;
     },
     // test() {
     //   $(".test").html(1222);
@@ -322,4 +269,63 @@ export default {
   }
 };
 </script>
+<style scoped="scoped">
+.layout-wrapper {
+  width: 100%;
+  display: block;
+  clear: both;
+}
+/* 低于960*/
+@media only screen and (max-width: 959px) {
+}
+/* 960 -1240尺寸 */
+@media only screen and (min-width: 960px) and (max-width: 1239px) {
+  .layout {
+    width: 960px;
+    margin: 0 auto;
+  }
+  .r-40-60 .c1 {
+    float: left;
+    width: 400px;
+  }
+  .r-40-60 .c2 {
+    float: right;
+    width: 560px;
+  }
+  .r-75-25 .c1 {
+    float: left;
+    width: 720px;
+  }
+  .r-75-25 .c2 {
+    float: left;
+    width: 240px;
+  }
+}
+
+/*1240尺寸以上 */
+@media only screen and (min-width: 1240px) {
+  .layout {
+    width: 1200px;
+    margin: 0 auto;
+    /* background: blue; */
+  }
+  .r-40-60 .c1 {
+    float: left;
+    width: 500px;
+  }
+  .r-40-60 .c2 {
+    float: right;
+    width: 700px;
+  }
+  .r-75-25 .c1 {
+    float: left;
+    width: 900px;
+  }
+  .r-75-25 .c2 {
+    float: left;
+    width: 300px;
+  }
+}
+</style>
+<!-- <style scoped src="@/assets/css/media-query/index.css"></style> -->
 

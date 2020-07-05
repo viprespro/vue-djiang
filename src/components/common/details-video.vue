@@ -23,11 +23,8 @@
             <div class="c1">
               <!-- 主要视频区域 start -->
               <div class="mx-media-n mx-m">
-
                 <!-- 视频容器部分 start -->
-                <div ref="my-player" class="dplayer">
-
-                </div>
+                <div ref="my-player" class="dplayer"></div>
                 <!-- 视频容器部分 end -->
 
                 <!-- 下层标题遮罩 start -->
@@ -37,9 +34,7 @@
                     <span v-if="detailsInfo.createTime">{{ detailsInfo.createTime }}</span>
                     <!-- <span style="margin-left:10px;">user1111</span> -->
                   </div>
-                  <div id="media-info" class="mx-media-info">
-                    {{ detailsInfo.description }}
-                  </div>
+                  <div id="media-info" class="mx-media-info">{{ detailsInfo.description }}</div>
                 </div>
                 <!-- 下层标题遮罩 end -->
               </div>
@@ -56,8 +51,7 @@
               <!-- 观看次数+分享区域 end-->
               <!-- 视频内容简介 start -->
               <div class="mx-media-main mx-m b-shadow">
-                <div class="mx-media-text-body mx-media-noheight" v-html="detailsInfo.content">
-                </div>
+                <div class="mx-media-text-body mx-media-noheight" v-html="detailsInfo.content"></div>
               </div>
               <!-- 视频内容简介 end -->
             </div>
@@ -243,15 +237,21 @@ export default {
       relatedList: [], // 相关
       keywordList: [],
       topicList: [], // 专题
-      recommendList: [], // 推荐
+      recommendList: [] // 推荐
     };
   },
-  mounted() {
-    //操作dom
+  created(){
+    
     this.getDetailsData();
+  },
+  mounted() {
+    
     // this.dplayerInit();
 
     console.log(this.paramsData);
+  },
+  watch: {
+    $route: "getDetailsData"
   },
   methods: {
     //利用传递过来的参数获取对应id的详情
@@ -260,12 +260,12 @@ export default {
       let { data: res } = await this.$http.get("/api/detail", {
         params: {
           code: localStorage.getItem("authCode"),
-          category_id: this.paramsData.category_id,
+          category_id: this.paramsData.categoryId,
           id: this.paramsData.id,
           type: this.paramsData.type
         }
       });
-      console.log(res);
+      //   console.log(res);
       let data = res.data;
       this.detailsInfo = data.detail;
 
@@ -285,7 +285,7 @@ export default {
       const dp = new DPlayer({
         container: document.querySelector(".dplayer"),
         autoplay: false,
-        preload: 'auto',
+        preload: "auto",
         hotkey: false,
         mutex: true,
         video: {

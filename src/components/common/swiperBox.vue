@@ -6,13 +6,11 @@
         <!-- 轮播图架子 -->
         <div class="swiper-container">
           <div class="swiper-wrapper">
-            <!-- 一个  接入数据样板-->
-            <!-- http://122.51.102.105:8081/file/20200623/1592769836370_1.jpg -->
-            <!-- 跟随文本 -->
+           
 
             <div class="swiper-slide" v-for="item in (lastestList || '').slice(0,4)" :key="item.id">
               <a href="javascript:;" @click="goDetails(item)" class="sliding-img-box">
-                <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
+                <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" :class="isCoursePage?'coursesImg':''"/>
 
                 <div class="mx-sliding-text ellipsis-s">
                   <a href="javascript:;" @click="goDetails(item)">{{item.title}}</a>
@@ -40,6 +38,10 @@ export default {
   props: {
     lastestList: {
       type: Array
+    },
+    isCoursePage:{
+      type:Boolean,
+      default:false
     }
   },
   data() {
@@ -63,7 +65,7 @@ export default {
         //普通文章页
         this.$router.push({
           path: "/details-news",
-          query: { category_id: item.categoryId, id: item.id, type: item.type }
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }
@@ -71,7 +73,7 @@ export default {
         // 音频详情页
         this.$router.push({
           path: "/details-radio",
-          query: { category_id: item.categoryId, id: item.id, type: item.type }
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }
@@ -79,7 +81,7 @@ export default {
         //视频详情页
         this.$router.push({
           path: "details-video",
-          query: { category_id: item.categoryId, id: item.id, type: item.type }
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }
@@ -142,6 +144,13 @@ export default {
 
 /* 960 -1240尺寸 */
 @media only screen and (min-width: 960px) and (max-width: 1239px) {
+    
+    .coursesImg{
+       height:304px!important;
+    }
+
+
+
   /* 样式穿透 swiper小圆点 */
   .swiper-container-horizontal > .swiper-pagination-bullets,
   .swiper-pagination-custom,
@@ -152,6 +161,10 @@ export default {
 
 /*1240尺寸以上 */
 @media only screen and (min-width: 1240px) {
+  .coursesImg{
+       height:383px!important;
+    }
+  
   /* 样式穿透 swiper小圆点 */
   .swiper-container-horizontal > .swiper-pagination-bullets,
   .swiper-pagination-custom,

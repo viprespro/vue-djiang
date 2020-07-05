@@ -1,7 +1,7 @@
 <!--
  * @Date         : 2020-07-02 12:03:02
- * @LastEditors  : 曾迪
- * @LastEditTime : 2020-07-02 15:22:34
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-07-04 17:47:32
  * @FilePath     : \dangjianxiangmupcyidongduan\src\components\common\columnTitleInfo.vue
  * @Description  : 
 --> 
@@ -14,7 +14,7 @@
 		<div class="mx-column-title-wrapper">
 			<div class="mx-column-title mx-m" >
 				<div class="mx-column-icon">
-					<i class="iconfont icon-outdoors-tree-valley"></i>
+					<i class="iconfont icon-icon_medal"></i>
 				</div>
 				<div class="mx-column-text">
 					<!-- {{categoryDetailList}} -->

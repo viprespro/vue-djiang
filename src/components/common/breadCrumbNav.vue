@@ -1,7 +1,7 @@
 <!--
  * @Date         : 2020-06-22 11:55:52
- * @LastEditors  : 曾迪
- * @LastEditTime : 2020-07-02 17:25:24
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-07-05 07:50:40
  * @FilePath     : \dangjianxiangmupcyidongduan\src\components\common\breadCrumbNav.vue
  * @Description  : 
 --> 
@@ -15,7 +15,7 @@
         <!-- :to="{path: `/category/${}`}" -->
         <!-- <router-link :to="{path: `/category/${activeMenu}`}">111</router-link> -->
         <template >
-            <router-link :to="{path: `/category/${category_id}`}">{{categoryName}}</router-link>
+            <router-link :to="{path: `/category/${categoryId}`}">{{categoryName}}</router-link>
 
         </template>
 
@@ -38,7 +38,7 @@
 <script>
 export default {
   props: {
-    category_id:{
+    categoryId:{
 
     },
     activeMenu: {},
@@ -57,7 +57,7 @@ export default {
     };
   },
   created(){
-    let cid=this.category_id;
+    let cid=this.categoryId;
     let clist=this.categoryList;
     this.categoryName=this.getCategoryName(cid,clist);
     

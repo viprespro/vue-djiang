@@ -87,7 +87,7 @@ export default {
         //普通文章页
         this.$router.push({
           path: "/details-news",
-          query: { category_id: item.categoryId, id: item.id, type: item.type }
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }
@@ -95,7 +95,7 @@ export default {
         // 音频详情页
         this.$router.push({
           path: "/details-radio",
-          query: { category_id: item.categoryId, id: item.id, type: item.type }
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }
@@ -103,7 +103,7 @@ export default {
         //视频详情页
         this.$router.push({
           path: "/details-video",
-          query: { category_id: item.categoryId, id: item.id, type: item.type }
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }

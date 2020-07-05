@@ -66,7 +66,8 @@
       <!-- 选项卡 content区域 end -->
     </div>
 
-    <!-- :isSearchPage="isSearchPage" -->
+    
+
     <Footer></Footer>
   </div>
 </template>
@@ -78,7 +79,6 @@ import Footer from "../../components/common/Footer.vue";
 export default {
   data() {
     return {
-      isSearchPage: true,
       tabsList: [
         {
           id: 1,
@@ -109,32 +109,13 @@ export default {
     Header,
     Footer
   },
-  mounted() {
-    //dom元素更新
-    // console.log(document.body.clientHeight);
-    // console.log(document.documentElement.clientHeight)
-    // document.querySelector('.search-content').style.height=document.documentElement.clientHeight;
-    // console.log(document.querySelector('.search-content').clientHeight)
-    //给搜索页设置最小高度
-    document.querySelector(".search-content").style.minHeight =
-      document.documentElement.clientHeight -
-      document.querySelector(".mx-header").clientHeight -
-      document.querySelector(".mx-footer").clientHeight +
-      "px";
-  },
   methods: {
     // 处理搜索
     async doSearch() {
       this.afterSearch = true;
       this.curId = 1;
-      if (this.$children[6]) {
+      if(this.$children[6]) {
         this.$children[6].doSearch();
-      }
-      if (this.afterSearch) {
-        this.$router.push({
-          name: "searchList",
-          query: { id: this.curId, inputVal: this.inputVal }
-        });
       }
     },
 
@@ -147,10 +128,6 @@ export default {
 };
 </script>
 <style scoped="scoped">
-#search {
-  /* min-height: calc(100% - 141px); */
-  /* min-height:500px; */
-}
 .mx-m {
   margin: 20px 0 0;
 }

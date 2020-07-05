@@ -17,7 +17,7 @@
         <div class="layout phone-none">
           <div class="c1-wrapper">
             <div class="c1">
-              <breadCrumbNav :categoryList="categoryDataList" :category_id="category_id" :breadCrumbList="breadCrumbList"></breadCrumbNav>
+              <breadCrumbNav :categoryList="categoryDataList" :categoryId="categoryId" :breadCrumbList="breadCrumbList"></breadCrumbNav>
             </div>
           </div>
         </div>
@@ -72,7 +72,7 @@ export default {
     return {
       ipAddress:'',
       categoryDataList:[],
-      category_id:'',
+      categoryId:'',
       // 需要传到breadCrumbnav组件的值
       breadCrumbList:{},
       // 参数信息
@@ -104,8 +104,8 @@ export default {
     this.categoryDataList=this.$store.state.commonData.headMenu;
     //
     this.paramsData = this.$route.query;
-    // 拿到category_id
-    this.category_id=this.paramsData.category_id;
+    // 拿到categoryId
+    this.categoryId=this.paramsData.categoryId;
   },
   mounted() {
     //操作dom

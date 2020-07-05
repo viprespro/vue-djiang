@@ -1,7 +1,7 @@
 <!--
  * @Date         : 2020-06-23 14:31:03
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-07-04 12:27:59
+ * @LastEditTime: 2020-07-04 20:06:20
  * @FilePath     : \dangjianxiangmupcyidongduan\src\components\common\topicTitleInfo.vue
  * @Description  : 
 --> 
@@ -99,6 +99,7 @@ $times: 2;
   }
   .mx-topic ul li img {
     width: 70px * $times;
+    height:70px*$times;
   }
   .mx-topic ul li span {
     margin-left: 80px * $times;

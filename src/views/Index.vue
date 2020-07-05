@@ -97,9 +97,12 @@
     <!-- 尾部开始 -->
     <Footer></Footer>
     <!-- 尾部结束 -->
+    <floatMenu></floatMenu> 
   </div>
 </template>
 <style scoped="scoped">
+
+
 .layout-wrapper {
   width: 100%;
   display: block;
@@ -217,6 +220,8 @@ import hotTitlePicNews from "@/components/common/hotTitlePicNews.vue";
 
 //导入Footer组件
 import Footer from "@/components/common/Footer.vue";
+// 导入floatMenu组件
+import floatMenu from "@/components/common/floatMenu.vue";
 //导入jquery
 // import $ from "jquery";
 //导入swiper
@@ -254,7 +259,7 @@ export default {
 
   mounted: function() {
     this.modifyTitle();
-    
+
     //获取swiper数据
     this.getSwiper();
 
@@ -264,7 +269,7 @@ export default {
 
   //计算属性
   computed: {
-    ...mapState(['authCode','ipAddress','commonData'])
+    ...mapState(["authCode", "ipAddress", "commonData"])
   },
   methods: {
     // 导入vuex中的方法
@@ -274,7 +279,7 @@ export default {
     async getData() {
       let { data: res } = await this.$http.get("/api/home", {
         params: {
-          code: localStorage.getItem('authCode') || this.authCode
+          code: localStorage.getItem("authCode") || this.authCode
         }
       });
       console.log(res);
@@ -339,7 +344,8 @@ export default {
     topicTitleInfo,
     hotTitlePicNews,
     sheetPicNewsShow,
-    Footer
+    Footer,
+    floatMenu
   }
 };
 </script>

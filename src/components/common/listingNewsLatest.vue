@@ -34,7 +34,7 @@
             </a>
             <span class="mx-listing-sum">{{item.description}}</span>
             <span>
-              <!-- <router-link :to="{path: `/category/${category_id}`}">{{categoryName}}</router-link>
+              <!-- <router-link :to="{path: `/category/${categoryId}`}">{{categoryName}}</router-link>
               <em>|</em>
               <em>{{item.categoryId}}</em>-->
               <!-- <em>{{headMenu}}</em> -->
@@ -56,9 +56,9 @@
           </a>
         </div>
         <!-- 底部墙-->
-        <div class="listingblock mt">
+        <!-- <div class="listingblock mt">
           
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -110,7 +110,7 @@ export default {
         //普通文章页
         this.$router.push({
           path: "/details-news",
-          query: { category_id:item.categoryId,id: item.id, type: item.type}
+          query: { categoryId:item.categoryId,id: item.id, type: item.type}
         });
         // this.saveDetailParams();
       }
@@ -118,7 +118,7 @@ export default {
         // 音频详情页
         this.$router.push({
           path: "/details-radio",
-          query: { category_id:item.categoryId,id: item.id, type: item.type}
+          query: { categoryId:item.categoryId,id: item.id, type: item.type}
         });
         // this.saveDetailParams();
       }
@@ -126,7 +126,7 @@ export default {
         //视频详情页
         this.$router.push({
           path: "/details-video",
-          query:{category_id:item.categoryId,id: item.id, type: item.type}
+          query:{categoryId:item.categoryId,id: item.id, type: item.type}
         });
         // this.saveDetailParams();
       }

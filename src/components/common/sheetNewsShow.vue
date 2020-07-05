@@ -10,16 +10,26 @@
             <a href="javascript:;" @click="goDetails(item)">{{item.title}}</a>
             <!-- topic专题页特有的span -->
             <template v-if="isTopicPage">
-              <span>“不做调查没有发言权”，毛泽东早在1931年作出的这一著名论断堪称妇孺皆知，其实它还有下半句“不做正确的调查同样没有发言权”。重视调查研究是我们党的优良传统，是中国革命、建设、改革取得胜利的重要...</span>
+              <span>{{item.description}}</span>
             </template>
-            <em>{{item.createTime}}</em>
+            <em>{{item.createTime | timeCut}}</em>
           </li>
           <!-- 第二个 -->
-          <li v-for="item in (lastestList || '').slice(1,8)" :key="item.id">
-            <a href="javascript:;" @click="goDetails(item)">{{item.title}}</a>
-            <!-- <router-link :to="'/details-news/a-'+item.id" target="_blank">{{item.title}}</router-link> -->
-            <em>{{item.createTime | timeCut }}</em>
-          </li>
+          <template v-if="isTopicPage==true">
+            <!-- 显示6条 -->
+            <li v-for="item in (lastestList || '').slice(1,6)" :key="item.id">
+              <a href="javascript:;" @click="goDetails(item)">{{item.title}}</a>
+              <!-- <router-link :to="'/details-news/a-'+item.id" target="_blank">{{item.title}}</router-link> -->
+              <em>{{item.createTime | timeCut }}</em>
+            </li>
+          </template>
+          <template v-else-if="isTopicPage==false">
+            <li v-for="item in (lastestList || '').slice(1,8)" :key="item.id">
+              <a href="javascript:;" @click="goDetails(item)">{{item.title}}</a>
+              <!-- <router-link :to="'/details-news/a-'+item.id" target="_blank">{{item.title}}</router-link> -->
+              <em>{{item.createTime | timeCut }}</em>
+            </li>
+          </template>
         </ul>
       </div>
     </div>
@@ -72,7 +82,7 @@ export default {
         //普通文章页
         this.$router.push({
           path: "/details-news",
-          query: { category_id: item.categoryId, id: item.id, type: item.type }
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }
@@ -80,7 +90,7 @@ export default {
         // 音频详情页
         this.$router.push({
           path: "/details-radio",
-          query: { category_id: item.categoryId, id: item.id, type: item.type }
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }
@@ -88,7 +98,7 @@ export default {
         //视频详情页
         this.$router.push({
           path: "/details-video",
-          query: { category_id: item.categoryId, id: item.id, type: item.type }
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }
@@ -186,6 +196,18 @@ export default {
   }
   .mx-sheet ul li {
     padding: 2px 0;
+  }
+  .mx-sheet .mx-sheet-first{
+    padding: 5px 0 10px!important;
+  }
+  .mx-sheet .mx-sheet-first a{
+    font-size:18px;
+  }
+  .mx-sheet .mx-sheet-first span{
+    height: 58px;
+    padding: 10px 0 0;
+    margin-bottom: -7px;
+    font-size: 12px;
   }
 }
 </style>

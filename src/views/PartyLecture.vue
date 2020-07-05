@@ -11,8 +11,8 @@
           <div class="layout">
             <div class="c1-wrapper">
               <div class="c1">
-                <!-- 该组件需要传值  需要props  topNav 是一级导航  secNav 二级导航  thirdNav 三级导航-->
-                <breadCrumbNav :topNav="topNav"></breadCrumbNav>
+                
+                 <breadCrumbNav :categoryList="categoryDataList" :categoryId="categoryId"></breadCrumbNav>
               </div>
             </div>
           </div>
@@ -24,31 +24,19 @@
         <div class="layout">
           <div class="c1-wrapper">
             <div class="c1">
-              <!-- 组件使用 -->
-              <columnTitleInfo></columnTitleInfo>
+              <columnTitleInfo  :categoryDetailList="categoryDetailDataList"></columnTitleInfo>
             </div>
           </div>
         </div>
       </div>
       <!--列表标题区域 end-->
-      <!-- 列表类区域  start -->
-      <div class="layout-wrapper">
-        <div class="layout">
-          <div class="c1-wrapper">
-            <div class="c1">
-              <!-- 组件使用 -->
-              <columnClassNav></columnClassNav>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 列表类区域  end -->
       <!-- book-news start -->
       <div class="layout-wrapper">
         <div class="layout r-60-40 clearfix">
           <div class="c1-wrapper">
             <div class="c1">
-                <coversNews></coversNews>
+              <!-- 暂时渲染hot数据 -->
+                <coversNews :hotList="hotDataList" :categoryId="categoryId"></coversNews>
             </div>
           </div>
         </div>
@@ -62,33 +50,8 @@
     <!-- 尾部结束 -->
   </div>
 </template>
-<style scoped="scoped">
-.layout-wrapper {
-  width: 100%;
-  display: block;
-  clear: both;
-}
-/* 低于960*/
-@media only screen and (max-width: 959px) {
-}
-/* 960 -1240尺寸 */
-@media only screen and (min-width: 960px) and (max-width: 1239px) {
-  .layout {
-    width: 960px;
-    margin: 0 auto;
-  }
-}
 
-/*1240尺寸以上 */
-@media only screen and (min-width: 1240px) {
-  .layout {
-    width: 1200px;
-    margin: 0 auto;
-    /* background: blue; */
-  }
-}
-</style>
-<!-- <style scoped src="@/assets/css/media-query/index.css"></style> -->
+
 <script>
 //导入Header头文件
 import Header from "@/components/common/Header.vue";
@@ -111,28 +74,43 @@ import Swiper from "swiper";
 export default {
   data() {
     return {
-       activeMenuId:0,
-      //用于存放当前全局token
-      tokenStr: "",
-      //定义ip地址
-      ipAddress: "http://122.51.102.105:8081",
+      ipAddress:'',
+      activeMenuId: 0,
+      categoryId:'',
+      // 是否有背景图
+      hasBackgroundImg:false,
+      //是否是courses页面,来单独控制course页图片大小
+      isCoursePage:true,
       //用于存放接口取来的数据
-      categoryDataList: [],
+      // 所有菜单信息
+      categoryDataList:[],
+      //菜单详情页
+      categoryDetailDataList: [],
       hotDataList: [],
       latestDataList: [],
-      topicDataList: [],
-      //存放路由导航信息 先写死
-      topNav: "党建文库"
+      topicDataList: []
+     
     };
   },
   //生命周期
   created(){
+    console.log(this.$store.state.commonData.headMenu);
+    //ip地址
+    this.ipAddress=this.$store.state.ipAddress;
+    // 共用菜单数据赋值
+    this.categoryDataList=this.$store.state.commonData.headMenu;
+    // console.log(this.$route.path.slice(-1));
+    //获取地址栏的activemenuId
+    this.activeMenuId = this.$route.path.slice(-1);
+    // 拿到category_id
+    this.categoryId=this.$route.path.slice(-1);
+
     //加载首屏数据
     this.getData();
-    //调用轮播方法
-    //this._initSwiper();
-    //窗口调整函数 并实现轮播图片居中
-    // window.addEventListener('resize', this.handleResize);
+    // console.log(this.categoryDetailDataList)
+    console.log(this.categoryDataList);
+    // 2020/07/03 10:35:36
+    
   },
   beforeDestroy(){
     // window.removeEventListener('resize', this.handleResize)
@@ -145,46 +123,58 @@ export default {
   },
   methods: {
     async getData() {
-      //   let tokenStr = tokenFun("admin", "admin");
-      //   this.tokenStr=tokenStr;
-      let { data: resInfo } = await this.$http.get(
-        "/api/login?username=admin&password=admin"
-      );
-
-      this.tokenStr = resInfo.access_token;
-      console.log(this.tokenStr);
-      let { data: res } = await this.$http.get("/api/home", {
-        params: {
-          access_token: this.tokenStr
+      //去请求分类页接口  需要参数  token   category_id
+      let {data:res}=await this.$http.get('api/category',{
+        params:{
+          code: localStorage.getItem('authCode'),
+          categoryId:this.categoryId
         }
-      });
+      })
       console.log(res);
-      // 判断数据是否获取成功
-      if (res.code != 0) {
-        console.log("数据获取失败");
-        return;
-      } else {
-        //数据获取成功
-        let data = res.data;
-        console.log(data);
-        // console.log(data.category)
-        //拿到对应模块的数据
-        this.categoryDataList = data.category;
-        this.hotDataList = data.hot;
-        this.topicDataList = data.topics;
-        this.latestDataList = data.latest;
+      if(res.code!=0) return "数据获取失败";
+      let data=res.data;
+      //取出所有的数据块
+      this.categoryDetailDataList=data.categoryDetail;
+      this.hotDataList=data.hot;
+      this.latestDataList=data.latest;
+      this.topicDataList=data.topics;
+      // 处理数据
+      this.hotDataList=this.handleCreateTime(this.hotDataList);
+    },
+    foo(str) {
+      let arr = [
+        "一",
+        "二",
+        "三",
+        "四",
+        "五",
+        "六",
+        "七",
+        "八",
+        "九",
+        "十",
+        "十一",
+        "十二"
+      ];
+      str = Number(str);
+      return arr[str - 1];
+    },
+    handleCreateTime(arr){
+      //处理时间 字段拆分年月日
+      // console.log(arr);
+      for(var i=0;i<arr.length;i++){
+        // console.log(arr[i]);
+        //console.log(arr[i].createTime)
+        let temp = arr[i].createTime.split(" ");
+        //console.log(temp);
+        let after = temp[0].split("/");
+        //console.log(after)
+        arr[i].year = after[0];
+        arr[i].month = this.foo(after[1]);
+        arr[i].day = after[2];
       }
-    },
-    test() {
-      $(".test").html(1222);
-    },
-    // 获取当前页面的尺寸。
-    handleResize(event) {
-      this.fullWidth = document.documentElement.clientWidth;
-      console.log(this.fullWidth);
-      // document.querySelector('.layout-12-wrapper').style.width=this.fullWidth;
-      //修改所有swiper-slide的尺寸
-      document.querySelectorAll(".swiper-slide").style.width = this.fullWidth;
+      return arr;
+
     },
     getSwiper() {
       new Swiper(".swiper-container", {
@@ -231,6 +221,32 @@ export default {
   }
 };
 </script>
+<style scoped="scoped">
+.layout-wrapper {
+  width: 100%;
+  display: block;
+  clear: both;
+}
+/* 低于960*/
+@media only screen and (max-width: 959px) {
+}
+/* 960 -1240尺寸 */
+@media only screen and (min-width: 960px) and (max-width: 1239px) {
+  .layout {
+    width: 960px;
+    margin: 0 auto;
+  }
+}
+
+/*1240尺寸以上 */
+@media only screen and (min-width: 1240px) {
+  .layout {
+    width: 1200px;
+    margin: 0 auto;
+    /* background: blue; */
+  }
+}
+</style>
 
 
 

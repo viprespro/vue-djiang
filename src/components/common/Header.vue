@@ -14,6 +14,7 @@
                     id="menu-opener-id"
                     class="mx-menu-opener"
                     style="display: none;"
+                    @click="mobileMenu()"
                   />
                   <!-- 关联按钮 -->
                   <label for="menu-opener-id" class="mx-menu-icon"></label>
@@ -88,6 +89,8 @@
 // 导入vuex
 import { mapState, mapMutations } from "vuex";
 import "../../api/skip";
+//导入jquery
+import $ from "jquery";
 export default {
   props: {
     activeMenu: {
@@ -102,7 +105,7 @@ export default {
   created() {
     this.getCommonData();
   },
-
+  mounted() {},
   computed: {
     // 计算属性
     ...mapState({
@@ -114,13 +117,28 @@ export default {
 
   methods: {
     ...mapMutations(["saveToken", "saveCommonData"]),
+    //点击展开移动端菜单
+    mobileMenu() {
+      let flag = document.querySelector("#menu-opener-id").checked;
+      if (flag) {
+        document.querySelector(".mx-barre-hamburger").style.transform =
+          "rorateX(45deg) transform-origin:50% 50%";
+        document.querySelector(".mx-first-menu").style.left = 0 + "px";
+        flag = !flag;
+      } else {
+        document.querySelector(".mx-first-menu").style.transition =
+          "transition: all 1s ease";
+        // document.querySelector('.mx-barre-hamburger').style.display="block";
+        document.querySelector(".mx-first-menu").style.left = -440 + "px";
+      }
+    },
     //在头部获取
     async getCommonData() {
       //存在则执行下面代码
 
       let { data: res } = await this.$http.get("api/header", {
         params: {
-          code:localStorage.getItem('authCode')
+          code: localStorage.getItem("authCode")
         }
       });
 
@@ -141,7 +159,7 @@ export default {
       //存放到vuex store
       this.saveCommonData(commonData);
     },
-    
+
     //跳转首页
     goIndex(id) {
       this.$router.push({
@@ -154,9 +172,7 @@ export default {
       //跳转对应id的菜单页面
       this.$router.push({
         path: `/category/${id}`
-        
       });
-      
     }
   }
 };
@@ -251,7 +267,7 @@ html {
   /* 用于移动端 */
   display: inline-block;
   margin-left: 40px;
-  font-size: 16px !important;
+  font-size: 16px;
   position: relative;
   z-index: 1000;
 }
@@ -298,7 +314,7 @@ html {
 }
 
 .mx-first-menu .mx-first-menu-link {
-  font-size: 16px !important;
+  font-size: 16px;
 }
 
 /* 菜单激活样式  now*/
@@ -478,10 +494,11 @@ input[type="checkbox"] {
     left: -440px;
     /* left:0; */
     top: 100px;
-    max-height: 1000px;
+    max-height: 800px;
     display: block !important;
     background: #fff;
     height: 100%;
+
     overflow-y: auto;
     z-index: 1000;
     /* 菜单过渡动画 */
@@ -497,16 +514,16 @@ input[type="checkbox"] {
   }
   .mx-first-menu a {
     color: #333;
+    /* font-size: 40px !important; */
   }
-  .mx-first-menu a {
-    color: #333;
-  }
+
   .mx-first-menu-link {
     display: block;
     line-height: 80px;
     width: 400px;
     padding: 0 40px;
     margin: 0;
+    font-size: 32px !important;
   }
   .mx-first-menu-li {
     display: block !important;
@@ -518,6 +535,7 @@ input[type="checkbox"] {
     left: 0;
     width: 100%;
     height: 100%;
+    /* font-size: 32px; */
   }
   /* 选中的样式 */
   .mx-first-menu .now .mx-first-menu-link {
@@ -525,6 +543,7 @@ input[type="checkbox"] {
     background: #fafafa;
     border-bottom: none;
     border-right: 6px solid #000;
+    font-size: 32px !important;
   }
   .mx-first-menu .now .mx-first-menu-link {
     /* 颜色 */

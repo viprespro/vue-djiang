@@ -1,17 +1,27 @@
 @media only screen and (max-width:959px) {
+    $times:2;
     .sliding-img-box img {
         // width: 375px;
         // 先写死 后期根据右边内容宽度修改图片高度
-        // height: 211px;
+        height: 211px*$times;
         // height:100%;
     }
     .mx-listing dl dt img {
         // width: 120px;
-        height: 69px;
+        height: 50px*$times;
+    }
+    .mx-thumbnails ul li img{
+         height: 89px*$times;
     }
     .mx-thumbnails-cos1 ul li img {
         // width: 157.25px;
-        height: 89.25px;
+        height: 89px*$times;
+    }
+    .mx-thumbnails ul.course li img {
+        height: 89px*$times;
+    }
+    .mx-covers-ul li a img {
+        height: 84.5px *$times;
     }
 }
 
@@ -32,6 +42,17 @@
         // width: 180px;
         height: 102px;
     }
+    .mx-thumbnails-cos2 ul li img {
+        // width: 180px;
+        height: 102px;
+    }
+    /*微调字体*/
+    .mx-thumbnails-cos2 .mx-thumbnails-box i {
+        top: -38px;
+    }
+    .mx-covers-ul li a img {
+        height: 101px;
+    }
 }
 
 @media only screen and (min-width:1240px) {
@@ -51,12 +72,15 @@
     .mx-thumbnails ul li img {
         height: 158px;
     }
+    .mx-thumbnails ul.course li img {
+        height: 124px;
+    }
     .mx-thumbnails-cos1 ul li img {
         // width: 240px;
         height: 136px;
     }
     
-    // .mx-thumbnails ul li img{
-    //     width:135px;
-    // }
+   .mx-covers-ul li a img{
+       height:101px;
+   }
 }

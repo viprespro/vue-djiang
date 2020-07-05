@@ -9,7 +9,11 @@
         <div class="layout phone-none">
           <div class="c1-wrapper">
             <div class="c1">
-              <breadCrumbNav :categoryList="categoryDataList" :category_id="category_id" :breadCrumbList="breadCrumbList"></breadCrumbNav>
+              <breadCrumbNav
+                :categoryList="categoryDataList"
+                :categoryId="categoryId"
+                :breadCrumbList="breadCrumbList"
+              ></breadCrumbNav>
             </div>
           </div>
         </div>
@@ -42,7 +46,6 @@
                   <div v-html="detailsList.content"></div>
                   <!-- 新闻内容 -->
                   <!-- 文字用p -->
-                  
                 </div>
               </div>
               <!-- 相关推荐 -->
@@ -54,7 +57,7 @@
             <div class="c2">
               <hotKeywords :keywordList="keywordList"></hotKeywords>
               <topicSimple :recommendList="recommendList"></topicSimple>
-              <sheetNewsSide :ralatedList="ralatedList"></sheetNewsSide>
+              <sheetNewsSide :relatedList="relatedList"></sheetNewsSide>
               <topicTitleInfo :topicList="topicList"></topicTitleInfo>
             </div>
           </div>
@@ -89,25 +92,24 @@ export default {
   // },
   data() {
     return {
-      ipAddress:'',
-      categoryDataList:[],
-      category_id:'',
+      ipAddress: "",
+      categoryDataList: [],
+      categoryId: "",
       // 需要传到breadCrumbnav组件的值
-      breadCrumbList:{},
+      breadCrumbList: {},
       // 参数信息
       paramsData: {},
       //页面数据
       detailsList: {},
       //热门关键字
-      keywordList:[],
+      keywordList: [],
       //推荐数据
-      recommendList:[],
+      recommendList: [],
       //相关数据
-      ralatedList:[],
+      relatedList: [],
       //专题数据
-      topicList:[],
-      categoryName:''
-
+      topicList: [],
+      categoryName: ""
     };
   },
   computed: {
@@ -118,46 +120,30 @@ export default {
   },
   created() {
     //ip地址
-    this.ipAddress=this.$store.state.ipAddress;
+    this.ipAddress = this.$store.state.ipAddress;
     // 共用菜单数据赋值
-    this.categoryDataList=this.$store.state.commonData.headMenu;
+    this.categoryDataList = this.$store.state.commonData.headMenu;
     //
     this.paramsData = this.$route.query;
-    // 拿到category_id
-    this.category_id=this.paramsData.category_id;
+    // 拿到categoryId
+    this.categoryId = this.paramsData.categoryId;
+    this.getDetailsData();
+  },
+  watch:{
+      "$route":"getDetailsData"
   },
   mounted() {
     //操作dom
-    this.getDetailsData();
-    // this.dplayerInit();
     
+    // this.dplayerInit();
+
     // console.log(this.$route.query);
     // console.log(this.paramsData.type);
   },
   updated() {
     //dom更新后
-    //文章处理
-    //给图片的文章加样式  .mx-details-main img
-    $('.mx-details-main img').css({
-      'margin': '20px auto',
-      'display':'block',
-      'max-width:':'100%', 
-    })
-    //获取 .box_pic img 的src
-    console.log($('.mx-details-main img').attr('src'))
-    let srcUrl=$('.mx-details-main img').attr('src');
-    console.log(srcUrl)
-    let newSrcUrl='';
-    if(srcUrl.indexOf('file')!=-1){
-      //console.log(2)
-      newSrcUrl=this.$store.state.ipAddress+srcUrl.slice(2);
-      console.log(newSrcUrl)
-    }
-    //重新设置url
-    $('.mx-details-main img').attr('src',newSrcUrl);
-    // console.log(srcUrl);
-    //console.log(this.$store.state.ipAddress);
-    
+    //处理富文本
+    this.dealHtml();
   },
   methods: {
     //利用传递过来的参数获取对应id的详情
@@ -165,33 +151,67 @@ export default {
       //获取localStore的参数列表
       // 暂时性赋值
       this.paramsData = this.$route.query;
-      console.log(this.$route.query)
+      console.log(this.$route.query);
       let { data: res } = await this.$http.get("/api/detail", {
         params: {
           code: localStorage.getItem("authCode"),
-          category_id: this.paramsData.category_id,
+          category_id: this.paramsData.categoryId,
           id: this.paramsData.id,
           type: this.paramsData.type
         }
       });
-      if(res.code!=0) return;
+      if (res.code != 0) return;
       let data = res.data;
-      console.log(data)
+      console.log(data);
       //页面详情数据
       this.detailsList = data.detail;
       //拿到面包屑菜单所需的data
-      this.breadCrumbList={menuId: this.detailsList.categoryId,articleTitle: this.detailsList.title};
+      this.breadCrumbList = {
+        menuId: this.detailsList.categoryId,
+        articleTitle: this.detailsList.title
+      };
       //关键字数据
-      this.keywordList=data.keyword;
+      this.keywordList = data.keyword;
       //推荐数据
-      this.recommendList=data.recommend;
+      this.recommendList = data.recommend;
       //相关数据
-      this.ralatedList=data.related;
+      this.relatedList = data.related;
       //专题数据
-      this.topicList=data.topics;
+      this.topicList = data.topics;
       //标题
-      this.categoryName=data.categoryName;
-      console.log(this.recommendList)
+       document.title = this.detailsList.title; // 设置标题
+      console.log(this.recommendList);
+      console.log(this.relatedList)
+    },
+    //处理富文本
+    dealHtml() {
+      var that=this;
+      //文章处理
+      //给图片的文章加样式  .mx-details-main img
+      $(".mx-details-main img").css({
+        margin: "20px auto",
+        display: "block",
+        // width: "200px",
+        "max-width": "100%"
+        
+        
+      });
+      //遍历图片 得到图片的路径
+      $(function(){
+         $(".mx-details-main img").each(function() {
+        // alert($(this).attr("src"));
+        let newSrcUrl = "";
+        let srcUrl = $(this).attr("src");
+        if (srcUrl.indexOf("file") != -1) {
+          //console.log(2)
+          newSrcUrl = that.ipAddress + srcUrl.slice(2);
+          
+          $(this).attr("src", newSrcUrl);
+        }
+      });
+      })
+     
+      
     }
   },
   components: {
