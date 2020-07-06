@@ -1,10 +1,4 @@
-<!--
- * @Date         : 2020-07-03 15:21:34
- * @LastEditors  : 曾迪
- * @LastEditTime : 2020-07-03 15:30:59
- * @FilePath     : \dangjian\src\views\articleList.vue
- * @Description  : 
---> 
+
 <template>
 <!-- 这里是备用文章页面 -->
   <div id="details-news">
@@ -17,7 +11,11 @@
         <div class="layout phone-none">
           <div class="c1-wrapper">
             <div class="c1">
-              <breadCrumbNav :categoryList="categoryDataList" :categoryId="categoryId" :breadCrumbList="breadCrumbList"></breadCrumbNav>
+              <!-- 
+                isMore  显示 查看更多 
+                isKeyword  显示 关键字
+              -->
+              <breadCrumbNav :isMore="isMore" :activeMenuId="activeMenuId"></breadCrumbNav>
             </div>
           </div>
         </div>
@@ -27,13 +25,13 @@
         <div class="layout r-80-20 clearfix">
           <div class="c1-wrapper">
             <div class="c1">
-              
+              <listingNewsMore :totalList="totalList"></listingNewsMore> 
             </div>
           </div>
           <!-- c2内容块- 右边 -->
           <div class="c2-wrapper">
             <div class="c2">
-              <hotKeywords :keywordList="keywordList"></hotKeywords>
+              <!-- <hotKeywords :keywordList="keywordList"></hotKeywords> -->
              
             </div>
           </div>
@@ -48,22 +46,21 @@
 //导入Header头文件
 import Header from "@/components/common/Header.vue";
 //导入面包屑
-import breadCrumbNav from "../../components/common/breadCrumbNav.vue";
+import breadCrumbNav from "@/components/common/breadCrumbNav.vue";
 //
-import listingNewsLatest from "../../components/common/listingNewsLatest.vue";
-//文章页
+
+//导入查看更多组件
+import listingNewsMore from "@/components/common/listingNewsMore.vue"
 
 //导入 右边推荐模块
 
-import hotKeywords from "../../components/common/hotKeywords.vue";
-import topicSimple from "../../components/common/topicSimple.vue";
-import sheetNewsSide from "../../components/common/sheetNewsSide.vue";
-import topicTitleInfo from "../../components/common/topicTitleInfo.vue";
+import hotKeywords from "@/components/common/hotKeywords.vue";
+
 //导入Footer组件
 import Footer from "@/components/common/Footer.vue";
 import { mapState } from "vuex";
 //导入jquery
-import $ from "jquery";
+// import $ from "jquery";
 export default {
   //  props: {
   //   id: {}
@@ -87,7 +84,12 @@ export default {
       ralatedList:[],
       //专题数据
       topicList:[],
-      categoryName:''
+      //模块所有数据
+      totalList:[],
+      //标志变量
+      isMore:null,
+      //标识页面变量
+      activeMenuId:null
 
     };
   },
@@ -106,10 +108,22 @@ export default {
     this.paramsData = this.$route.query;
     // 拿到categoryId
     this.categoryId=this.paramsData.categoryId;
+    // console.log(this.$route.query.totalData);
+    //进行数据字符串转码
+    this.totalList=JSON.parse(this.$route.query.totalData);
+    //拿到标志变量 看一下是否是查看更多按钮跳转过来的
+    this.isMore=this.$route.query.isMore;
+    //
+    this.activeMenuId=this.$route.query.activeMenuId;
+    console.log(this.$route.query)
+    console.log(this.isMore)
+    console.log(this.totalList)
+    //加载首批数据
+    // this.getDetailsData();
   },
   mounted() {
     //操作dom
-    this.getDetailsData();
+    
     // this.dplayerInit();
     
     // console.log(this.$route.query);
@@ -117,71 +131,50 @@ export default {
   },
   updated() {
     //dom更新后
-    //文章处理
-    //给图片的文章加样式  .mx-details-main img
-    $('.mx-details-main img').css({
-      'margin': '20px auto',
-      'display':'block',
-      'max-width:':'100%', 
-    })
-    //获取 .box_pic img 的src
-    console.log($('.mx-details-main img').attr('src'))
-    let srcUrl=$('.mx-details-main img').attr('src');
-    console.log(srcUrl)
-    let newSrcUrl='';
-    if(srcUrl.indexOf('file')!=-1){
-      //console.log(2)
-      newSrcUrl=this.$store.state.ipAddress+srcUrl.slice(2);
-      console.log(newSrcUrl)
-    }
-    //重新设置url
-    $('.mx-details-main img').attr('src',newSrcUrl);
-    // console.log(srcUrl);
-    //console.log(this.$store.state.ipAddress);
+    
     
   },
   methods: {
     //利用传递过来的参数获取对应id的详情
     async getDetailsData() {
       //获取localStore的参数列表
-      // 暂时性赋值
-      this.paramsData = this.$route.query;
-      let { data: res } = await this.$http.get("/api/detail", {
-        params: {
-          access_token: localStorage.getItem("Authorization"),
-          category_id: this.paramsData.category_id,
-          id: this.paramsData.id,
-          type: this.paramsData.type
-        }
-      });
-      if(res.code!=0) return;
-      let data = res.data;
-      console.log(data)
-      //页面详情数据
-      this.detailsList = data.detail;
-      //拿到面包屑菜单所需的data
-      this.breadCrumbList={menuId: this.detailsList.categoryId,articleTitle: this.detailsList.title};
-      //关键字数据
-      this.keywordList=data.keyword;
-      //推荐数据
-      this.recommendList=data.recommend;
-      //相关数据
-      this.ralatedList=data.related;
-      //专题数据
-      this.topicList=data.topics;
-      //标题
-      this.categoryName=data.categoryName;
-      console.log(this.recommendList)
+      
+     
+      // let { data: res } = await this.$http.get("/api/detail", {
+      //   params: {
+      //     access_token: localStorage.getItem("Authorization"),
+      //     category_id: this.paramsData.category_id,
+      //     id: this.paramsData.id,
+      //     type: this.paramsData.type
+      //   }
+      // });
+      // if(res.code!=0) return;
+      // let data = res.data;
+      // console.log(data)
+      // //页面详情数据
+      // this.detailsList = data.detail;
+      // //拿到面包屑菜单所需的data
+      // this.breadCrumbList={menuId: this.detailsList.categoryId,articleTitle: this.detailsList.title};
+      // //关键字数据
+      // this.keywordList=data.keyword;
+      // //推荐数据
+      // this.recommendList=data.recommend;
+      // //相关数据
+      // this.ralatedList=data.related;
+      // //专题数据
+      // this.topicList=data.topics;
+      // //标题
+      // this.categoryName=data.categoryName;
+      // console.log(this.recommendList)
     }
   },
   components: {
     Header,
     breadCrumbNav,
-    listingNewsLatest,
+    listingNewsMore,
+    
     hotKeywords,
-    topicSimple,
-    sheetNewsSide,
-    topicTitleInfo,
+    
     Footer
   }
 };

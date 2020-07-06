@@ -1,8 +1,8 @@
 <!--
  * @Date         : 2020-06-22 11:55:52
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-07-05 07:50:40
- * @FilePath     : \dangjianxiangmupcyidongduan\src\components\common\breadCrumbNav.vue
+ * @LastEditors  : 曾迪
+ * @LastEditTime : 2020-07-06 12:04:47
+ * @FilePath     : \dangjian\src\components\common\breadCrumbNav.vue
  * @Description  : 
 --> 
 <template>
@@ -12,12 +12,17 @@
       <div class="mx-bread-crumb mx-m touch">
         <router-link to="/">党建平台</router-link>
         <em class="divider">/</em>
-        <!-- :to="{path: `/category/${}`}" -->
-        <!-- <router-link :to="{path: `/category/${activeMenu}`}">111</router-link> -->
+        <!-- 查看更多页面显示样式 start -->
+        <template v-if="isMore">
+          <span>查看更多</span>
+        </template>
+         <!-- 查看更多页面显示样式 end -->
+         <!-- 主菜单页面显示样式 start -->
         <template >
             <router-link :to="{path: `/category/${categoryId}`}">{{categoryName}}</router-link>
 
         </template>
+        <!-- 主菜单页面显示样式 end -->
 
         <!--  this.breadCrumbList={menuId: this.detailsInfo.categoryId,articleTitle: this.detailsInfo.title}; -->
         <!-- 是否存在三级标题 有就是文章标题  还要把文章标题存放在document.title max-page-title-->
@@ -38,6 +43,9 @@
 <script>
 export default {
   props: {
+    isMore:{
+      default:false
+    },
     categoryId:{
 
     },

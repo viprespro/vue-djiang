@@ -93,11 +93,21 @@ const routes = [{
         path: '/topic',
         name: 'topic',
         component: () =>
-            import( /* webpackChunkName: "topic" */ '../views/topic.vue'),
+            import ( /* webpackChunkName: "topic" */ '../views/topic.vue'),
         meta: {
             title: "专题页"
         }
     },
+    {
+        path: '/articleList',
+        name: 'articleList',
+        component: () =>
+            import ( /* webpackChunkName: "articleList" */ '../views/articleList.vue'),
+        meta: {
+            title: "文章列表页"
+        }
+    },
+
     {
         path: '/Search',
         name: 'Search',
@@ -180,7 +190,7 @@ const routes = [{
         path: '*',
         // redirect: '../views/404.vue',
         component: () =>
-            import( /* webpackChunkName: "404" */ '../views/404.vue'),
+            import ( /* webpackChunkName: "404" */ '../views/404.vue'),
     }
 ]
 

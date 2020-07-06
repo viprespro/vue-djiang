@@ -8,7 +8,7 @@
           <strong>最新发布 Latest</strong>
           <span class="mx-item-more">
             <!-- @click=goMore() 要的是 lastestList -->
-            <a href="javascript:;" @click="goMore(lastestList)">
+            <a href="javascript:;" @click="goArticleList(lastestList,activeMenuId)">
               查看更多
               <i class="iconfont icon-jiantouyou"></i>
             </a>
@@ -21,7 +21,6 @@
           <!-- 左边图片区域 -->
           <dt>
             <a href="javascript:;" @click="goDetails(item)">
-              
               <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
             </a>
           </dt>
@@ -46,7 +45,7 @@
             </span>
           </dd>
         </dl>
-        
+
         <!-- 定义列表结束 -->
         <!-- 加载更多按钮start-->
         <div class="mx-more-link mt">
@@ -58,7 +57,7 @@
         <!-- 底部墙-->
         <!-- <div class="listingblock mt">
           
-        </div> -->
+        </div>-->
       </div>
     </div>
   </div>
@@ -67,6 +66,10 @@
 <script>
 export default {
   props: {
+    //标识变量,判断当前这个组件来自哪个页面
+    activeMenuId:{
+
+    },
     lastestList: {
       type: Array
     },
@@ -103,14 +106,13 @@ export default {
     },
     //跳到具体详情页面
     goDetails(item) {
-      
       console.log(item.id);
       // 判断type类型
       if (item.type == 0) {
         //普通文章页
         this.$router.push({
           path: "/details-news",
-          query: { categoryId:item.categoryId,id: item.id, type: item.type}
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }
@@ -118,7 +120,7 @@ export default {
         // 音频详情页
         this.$router.push({
           path: "/details-radio",
-          query: { categoryId:item.categoryId,id: item.id, type: item.type}
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }
@@ -126,23 +128,21 @@ export default {
         //视频详情页
         this.$router.push({
           path: "/details-video",
-          query:{categoryId:item.categoryId,id: item.id, type: item.type}
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
         });
         // this.saveDetailParams();
       }
     },
-    //
-    goMore(totalData){
+    //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
+    goArticleList(totalData,activeMenuId,isMore = true) {
       //拿到当前模块下的所有数据
       console.log(totalData);
-      totalData=JSON.stringify(totalData);
+      totalData = JSON.stringify(totalData);
       //跳转到对应的文章详情主页  组件为listingNewsMore.attr-value
       this.$router.push({
-        path: '/listingNewsMore',
-        query:{totalData:totalData}
-      })
-
-      
+        path: "/articleList",
+        query: { totalData: totalData,activeMenuId:activeMenuId,isMore: isMore }
+      });
     }
   }
 };

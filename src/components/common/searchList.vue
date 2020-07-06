@@ -2,14 +2,18 @@
 <template>
   <div>
     <ul class="mx-search-list bg" v-loading="loading" style="min-height: 160px">
-
       <div v-if="list.length">
         <li class="li" v-for="item in list" :key="item.id" style="overflow: hidden;">
           <strong>
-            <a href target="_blank">{{ item.title }}</a>
+            <a href="javascript:;" @click="goDetails(item)">{{ item.title }}</a>
           </strong>
           <span>
-            <img :src="ipAddress + item.imageUrl" style="width: 140px; height: 94px; border-radius: 5px;" />
+            <a href="javascript:;" @click="goDetails(item)">
+              <img
+                :src="ipAddress + item.imageUrl"
+                style="width: 140px; height: 94px; border-radius: 5px;"
+              />
+            </a>
             <p>
               {{ item.description }}
               <font color="#f00">{{ item.keyword }}</font>
@@ -30,14 +34,14 @@
 
     <div class="page-btns bg">
       <div class="block pageStyle" style="text-align: right; padding:10px 0px;">
-        <el-pagination
+        <!-- <el-pagination
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="2"
+          :current-page="1"
           :page-size="10"
           layout="prev, pager, next"
           :total="77"
-        ></el-pagination>
+        ></el-pagination> -->
         <!-- current-page  当前的页数 -->
         <!-- page-size  当前没有显示多少条数据 -->
         <!-- total 总条数 -->
@@ -46,7 +50,7 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -60,7 +64,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['ipAddress', 'authCode'])
+    ...mapState(["ipAddress", "authCode"])
   },
 
   mounted: function() {
@@ -79,7 +83,7 @@ export default {
       console.log(this.$route.query);
       this.curId = this.$route.query.id;
       this.inputVal = this.$route.query.inputVal;
-      this.list = []
+      this.list = [];
       this.doSearch();
     }
   },
@@ -89,9 +93,9 @@ export default {
       return;
     },
     handleCurrentChange(_current) {
-      this.page = _current
-      this.list = []
-      this.doSearch()
+      this.page = _current;
+      this.list = [];
+      this.doSearch();
     },
     async doSearch() {
       this.loading = true;
@@ -108,13 +112,42 @@ export default {
         this.loading = false;
       }, 500);
       res = res.data.data;
-      if(res.list.length === 0) {
-        this.showDefault = true
-      }else {
-        this.showDefault = false
+      if (res.list.length === 0) {
+        this.showDefault = true;
+      } else {
+        this.showDefault = false;
       }
       this.list = res.list;
       // console.log(this.list);
+    },
+    //传递item, 获取item项中必要的参数
+    goDetails(item) {
+      console.log(item.id);
+      // 判断type类型
+      if (item.type == 0) {
+        //普通文章页
+        this.$router.push({
+          path: "/details-news",
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
+        });
+        // this.saveDetailParams();
+      }
+      if (item.type == 1) {
+        // 音频详情页
+        this.$router.push({
+          path: "/details-radio",
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
+        });
+        // this.saveDetailParams();
+      }
+      if (item.type == 2) {
+        //视频详情页
+        this.$router.push({
+          path: "/details-video",
+          query: { categoryId: item.categoryId, id: item.id, type: item.type }
+        });
+        // this.saveDetailParams();
+      }
     }
   }
 };

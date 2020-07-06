@@ -1,20 +1,27 @@
 
 <template>
   <div>
-		<Header :activeMenu="activeMenuId"></Header>
+		<!-- <Header :activeMenu="activeMenuId"></Header> -->
     <div id>
       <!-- 这里是新闻列表盒子 -->
       <div class="mx-listing-wrapper">
         <div class="mx-listing mx-m">
           <!-- title区域 -->
           <div class="mx-item-title">
-            <!-- 这个地方 需要根据传值 来显示h1  首页没有，其他的显示当前菜单的页面标题 -->
+            <!-- 这个地方 需要根据传值 来显示h1  首页没有，其他的显示当前菜单的页面菜单名 关键字会显示当前关键字信息 -->
             <!-- title 有的时候显示 没有的时候就隐藏 -->
-            <!-- <h1> 红色中国 </h1> -->
+            <template v-if="activeMenuId==0">
+             <!-- 首页来的 不显示 -->
+            </template>
+            <template v-if="activeMenuId==1">
+              <!-- 这里要根据activeMenuId 去获取当前页面的菜单名 -->
+              <h1> 红色中国 </h1>
+            </template>
+           
           </div>
           <!-- 新闻列表数据 -->
           <!-- 一个dl表示一项 start -->
-          <dl v-for="item in (totalData || '')" :key="item.id">
+          <dl v-for="item in (totalList || '')" :key="item.id">
             <!-- 左边图片区域 -->
             <dt>
               <a href="javascript:;" @click="goDetails(item)">
@@ -23,8 +30,8 @@
             </dt>
             <!-- 右边新闻区域内容 -->
             <dd>
-              <!-- 测试接口 -->
-              <!-- <router-link v-for="item in mlist" :key="item.id" :to="`/detail/${item.id}`"></router-link> -->
+              
+              
               <a href="javascript:;" @click="goDetails(item)">
                 <strong>{{item.title}}</strong>
               </a>
@@ -43,14 +50,14 @@
             </dd>
           </dl>
           <!-- 底部墙-->
-        <div class="listingblock mt">
+        <!-- <div class="listingblock mt">
           
-        </div>
+        </div> -->
           <!-- 一个dl表示一项 end -->
         </div>
       </div>
     </div>
-		<Footer></Footer>
+		<!-- <Footer></Footer> -->
   </div>
   <!-- 这里用来显示文章详情页 -->
 </template>
@@ -61,6 +68,14 @@ import Header from "@/components/common/Header.vue";
 //导入Footer组件
 import Footer from "@/components/common/Footer.vue";
 export default {
+  props:{
+    totalList:{
+
+    },
+    activeMenuId:{
+
+    }
+  },
   data() {
     return {
       ipAddress: "",
@@ -72,11 +87,11 @@ export default {
     Footer
   },
   created() {
-    console.log(this.$route.query);
+    // console.log(this.$route.query);
     this.ipAddress = this.$store.state.ipAddress;
-    this.totalData = JSON.parse(this.$route.query.totalData);
+    // this.totalData = JSON.parse(this.$route.query.totalData);
     // this.totalData=JSON.parse(this.$route.query);
-    console.log(this.totalData);
+    // console.log(this.totalData);
   },
   methods: {
     //跳到具体详情页面
@@ -107,7 +122,18 @@ export default {
         });
         // this.saveDetailParams();
       }
+    },
+    //遍历获取当前category 的名称
+    getCategoryName(cid,clist){
+      //console.log(clist);
+      for(let i in clist){
+       
+        if(clist[i].id==cid){
+          return clist[i].name;
+        }
+      }
     }
+
   }
 };
 </script>

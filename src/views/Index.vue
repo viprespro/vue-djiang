@@ -11,7 +11,7 @@
           <!-- c1 -->
           <div class="c1-wrapper">
             <div class="c1">
-              <swiperBox :lastestList="latestDataList" :ipAddress="ipAddress"></swiperBox>
+              <swiperBox :lastestList="latestDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></swiperBox>
             </div>
           </div>
           <!-- c2 -->
@@ -27,7 +27,7 @@
           <!-- c3 -->
           <div class="c3-wrapper">
             <div class="c3">
-              <topicInfo :topicList="topicDataList" :ipAddress="ipAddress"></topicInfo>
+              <topicInfo :topicList="topicDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></topicInfo>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
         <div class="layout">
           <div class="c1-wrapper">
             <div class="c1">
-              <categoryNav :categoryList="categoryDataList" :ipAddress="ipAddress"></categoryNav>
+              <categoryNav :categoryList="categoryDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></categoryNav>
             </div>
           </div>
         </div>
@@ -48,19 +48,19 @@
           <!-- 第一块 -->
           <div class="c1-wrapper">
             <div class="c1">
-              <sheetPicNewsShow :lastestList="latestDataList" :ipAddress="ipAddress"></sheetPicNewsShow>
+              <sheetPicNewsShow :lastestList="latestDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></sheetPicNewsShow>
             </div>
           </div>
           <!-- 第二块 -->
           <div class="c2-wrapper">
             <div class="c2">
-              <sheetPicNewsShow :lastestList="latestDataList" :ipAddress="ipAddress"></sheetPicNewsShow>
+              <sheetPicNewsShow :lastestList="latestDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></sheetPicNewsShow>
             </div>
           </div>
           <!-- 第三块 -->
           <div class="c3-wrapper">
             <div class="c3">
-              <sheetPicNewsShow :lastestList="latestDataList" :ipAddress="ipAddress"></sheetPicNewsShow>
+              <sheetPicNewsShow :lastestList="latestDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></sheetPicNewsShow>
             </div>
           </div>
         </div>
@@ -75,6 +75,7 @@
                 :lastestList="latestDataList"
                 :ipAddress="ipAddress"
                 :headMenu="commonData.headMenu"
+                :activeMenuId="activeMenuId"
               ></listingNewsLatest>
             </div>
           </div>
@@ -84,9 +85,9 @@
               <!-- img -->
               <customImg></customImg>
               <!-- topic -->
-              <topicTitleInfo :topicList="topicDataList" :ipAddress="ipAddress"></topicTitleInfo>
+              <topicTitleInfo :topicList="topicDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></topicTitleInfo>
               <!-- hot -->
-              <hotTitlePicNews :ipAddress="ipAddress" :hotList="hotDataList"></hotTitlePicNews>
+              <hotTitlePicNews :ipAddress="ipAddress" :hotList="hotDataList" :activeMenuId="activeMenuId"></hotTitlePicNews>
             </div>
           </div>
         </div>

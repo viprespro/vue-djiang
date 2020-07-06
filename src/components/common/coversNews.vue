@@ -1,10 +1,10 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-27 11:06:16
- * @LastEditTime: 2020-07-05 13:02:41
- * @LastEditors: Please set LastEditors
+ * @LastEditTime : 2020-07-06 11:10:14
+ * @LastEditors  : 曾迪
  * @Description: In User Settings Edit
- * @FilePath: \dangjianxiangmupcyidongduan\src\components\common\coversNews.vue
+ * @FilePath     : \dangjian\src\components\common\coversNews.vue
 --> 
 <template>
   <div id>
