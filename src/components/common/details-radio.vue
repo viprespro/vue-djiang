@@ -215,9 +215,9 @@ export default {
   },
   mounted() {},
   watch: {
-     '$route'(to, from) {
-        this.$router.go(0);
-      }
+    $route(to, from) {
+      this.$router.go(0);
+    }
   },
   methods: {
     // 展开和折叠
@@ -336,19 +336,27 @@ export default {
           middle = parseInt(middle % 60);
         }
       }
+
       var result = "";
       if (parseInt(theTime) >= 10) {
-        result = "0" + ":" + parseInt(theTime);
+        result = "00" + ":" + parseInt(theTime);
       } else {
-        result = "0" + ":" + "0" + parseInt(theTime);
+        result = "00" + ":" + "0" + parseInt(theTime);
       }
 
       if (middle >= 0 && parseInt(theTime) >= 10) {
-        result = parseInt(middle) + ":" + parseInt(theTime);
+        result = this.formatNumber(parseInt(middle)) + ":" + parseInt(theTime);
       } else {
-        result = parseInt(middle) + ":" + "0" + parseInt(theTime);
+        result =
+          this.formatNumber(parseInt(middle)) + ":" + "0" + parseInt(theTime);
       }
+
       return result;
+    },
+
+    formatNumber(n) {
+      n = n.toString();
+      return n[1] ? n : "0" + n;
     },
 
     // 获取音频时长 音频加载完成
@@ -374,7 +382,6 @@ export default {
 
       // 展示音频的列表
       let show_arr = [...this.showAudioList];
-
       for (let item of show_arr) {
         if (item.actived) {
           // 说明此时换了新的音频
@@ -389,6 +396,8 @@ export default {
       }
 
       var curIndex;
+      var leftIndex;
+      var rihgtIndex;
       arr.forEach((item, index) => {
         item.actived = false; // 取消所有的选中状态
         if (item.id == _id) {
@@ -396,21 +405,27 @@ export default {
         }
       });
 
-      let leftIndex = curIndex - 1;
-      let rihgtIndex = curIndex + 1;
+      // 注意边界情况
+      if(curIndex > 0) {
+        leftIndex = curIndex - 1;
+      }
+      if(curIndex < arr.length -1 ) {
+        rihgtIndex = curIndex + 1;
+      }
 
       let newArr = [];
       if (leftIndex >= 0) {
         newArr.push(arr[leftIndex]);
+        this.leftAudioId = arr[leftIndex].id;
       }
-      // 设置
+      // 设置当前选中
       arr[curIndex].actived = true;
+
       newArr.push(arr[curIndex]);
       if (rihgtIndex >= 0) {
         newArr.push(arr[rihgtIndex]);
+        this.rightAudioId = arr[rihgtIndex].id;
       }
-      this.rightAudioId = arr[rihgtIndex].id;
-      this.leftAudioId = arr[leftIndex].id;
       this.showAudioList = newArr;
 
       if (!this.isReady) return;
