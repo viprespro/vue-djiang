@@ -35,7 +35,7 @@
               <template v-else>
                 <a href="javascript:;" @click="goDetails(item)">
                   
-                  <img :src="item.imageUrl?ipAddress+item.imageUrl:''" alt />
+                  <img :src="item.imageUrl?ipAddress+item.imageUrl:ipAddress+item.path" alt />
                 </a>
               </template>
             </dt>
@@ -51,7 +51,7 @@
               </template>
               <template v-else>
                 <a href="javascript:;" @click="goDetails(item)">
-                  <strong>{{item.title}}</strong>
+                  <strong>{{item.title?item.title:item.name}}</strong>
                 </a>
               </template>
 

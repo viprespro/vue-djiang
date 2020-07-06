@@ -59,10 +59,10 @@
           <!-- 右边推荐模块 -->
           <div class="c2-wrapper">
             <div class="c2">
-              <hotKeywords :keywordList="keywordList" v-if="keywordList.length"></hotKeywords>
-              <topicSimple :recommendList="recommendList" v-if="recommendList.length"></topicSimple>
-              <sheetNewsSide :relatedList="relatedList" v-if="relatedList.length"></sheetNewsSide>
-              <topicTitleInfo :topicList="topicList" v-if="topicList.length"></topicTitleInfo>
+              <hotKeywords :keywordList="keywordList" v-if="keywordList.length" :activeMenuId="activeMenuId"></hotKeywords>
+              <topicSimple :recommendList="recommendList" v-if="recommendList.length" :activeMenuId="activeMenuId"></topicSimple>
+              <sheetNewsSide :relatedList="relatedList" v-if="relatedList.length" :activeMenuId="activeMenuId"></sheetNewsSide>
+              <topicTitleInfo :topicList="topicList" v-if="topicList.length" :activeMenuId="activeMenuId"></topicTitleInfo>
             </div>
           </div>
         </div>

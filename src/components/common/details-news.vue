@@ -44,21 +44,19 @@
                 <div class="mx-details-main">
                   <!-- 当前新闻详情 -->
                   <div v-html="detailsList.content"></div>
-                  <!-- 新闻内容 -->
-                  <!-- 文字用p -->
+                  
                 </div>
               </div>
-              <!-- 相关推荐 -->
-              <!-- <listingNewsLatest></listingNewsLatest> -->
+              
             </div>
           </div>
           <!-- c2内容块- 右边 -->
           <div class="c2-wrapper">
             <div class="c2">
-              <hotKeywords :keywordList="keywordList"></hotKeywords>
-              <topicSimple :recommendList="recommendList"></topicSimple>
-              <sheetNewsSide :relatedList="relatedList"></sheetNewsSide>
-              <topicTitleInfo :topicList="topicList"></topicTitleInfo>
+              <hotKeywords :keywordList="keywordList" :activeMenuId="activeMenuId"></hotKeywords>
+              <topicSimple :recommendList="recommendList" :activeMenuId="activeMenuId"></topicSimple>
+              <sheetNewsSide :relatedList="relatedList" :activeMenuId="activeMenuId"></sheetNewsSide>
+              <topicTitleInfo :topicList="topicList" :activeMenuId="activeMenuId"></topicTitleInfo>
             </div>
           </div>
         </div>
@@ -87,9 +85,9 @@ import { mapState } from "vuex";
 //导入jquery
 import $ from "jquery";
 export default {
-  //  props: {
-  //   id: {}
-  // },
+   props: {
+    id: {}
+  },
   data() {
     return {
       ipAddress: "",
@@ -109,7 +107,8 @@ export default {
       relatedList: [],
       //专题数据
       topicList: [],
-      categoryName: ""
+      categoryName: "",
+      activeMenuId:null
     };
   },
   computed: {

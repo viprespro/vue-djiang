@@ -63,7 +63,7 @@
       <div class="layout-wrapper">
         <div class="layout">
           <div class="c1">
-            <hotVideos :hotList="hotDataList"></hotVideos>
+            <hotVideos :hotList="hotDataList" :activeMenuId="activeMenuId"></hotVideos>
           </div>
         </div>
       </div>
@@ -165,8 +165,7 @@ export default {
       hotDataList: [],
       latestDataList: [],
       topicDataList: []
-      //存放路由导航信息 先写死
-      //topNav: "北臧大事记"
+      
     };
   },
   

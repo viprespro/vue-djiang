@@ -2,10 +2,10 @@
 <!--
  * @Author: your name
  * @Date: 2020-07-01 14:23:02
- * @LastEditTime: 2020-07-05 18:14:40
- * @LastEditors: Please set LastEditors
+ * @LastEditTime : 2020-07-06 15:25:08
+ * @LastEditors  : 曾迪
  * @Description: In User Settings Edit
- * @FilePath: \dangjian\src\components\common\sheetNewsSide.vue
+ * @FilePath     : \dangjian\src\components\common\sheetNewsSide.vue
 --> 
 <template>
   <div>
@@ -16,10 +16,10 @@
           <div class="mx-item-title">
             <strong>相关</strong>
             <span class="mx-item-more">
-              <router-link to="/">
+               <a href="javascript:;" @click="goArticleList(relatedList,activeMenuId,false,true)">
                 查看更多
                 <i class="iconfont icon-jiantouyou"></i>
-              </router-link>
+              </a>
             </span>
           </div>
         </div>
@@ -62,6 +62,17 @@ export default {
     console.log(this.relatedList)
   },
   methods:{
+    //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
+    goArticleList(totalData,activeMenuId,isTopic=false,isMore = true) {
+      //拿到当前模块下的所有数据
+      console.log(totalData);
+      totalData = JSON.stringify(totalData);
+      //跳转到对应的文章详情主页  组件为listingNewsMore.attr-value
+      this.$router.push({
+        path: "/articleList",
+        query: { totalData: totalData,activeMenuId:activeMenuId,isTopic:isTopic,isMore: isMore }
+      });
+    },
      goDetails(item) {
       console.log(item.id);
       // 判断type类型

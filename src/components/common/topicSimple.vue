@@ -1,10 +1,10 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-28 07:58:08
- * @LastEditTime: 2020-07-05 18:17:31
- * @LastEditors: Please set LastEditors
+ * @LastEditTime : 2020-07-06 15:20:11
+ * @LastEditors  : 曾迪
  * @Description: In User Settings Edit
- * @FilePath: \dangjian\src\components\common\topicSimple.vue
+ * @FilePath     : \dangjian\src\components\common\topicSimple.vue
 --> 
 
 <template>
@@ -17,33 +17,24 @@
           <div class="mx-item-title">
             <strong>推荐</strong>
             <span class="mx-item-more">
-              <a href>
+               <a href="javascript:;" @click="goArticleList(recommendList,activeMenuId,false,true)">
                 查看更多
                 <i class="iconfont icon-jiantouyou"></i>
               </a>
             </span>
           </div>
         </div>
-        <!-- 标题可隐藏 v-for="" end-->
+
         <!-- 新闻列表ul start -->
         <ul>
-            <li v-for="item in recommendList" :key="item.id">
-                <a href="javascript:;" @click="goDetails(item)" class="clearfix">
-                
-                    <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt="">
-                    <span>
-                        <strong>{{item.title}}</strong>
-                    </span>
-                </a>
-            </li>
-            <!-- <li>
-                <a href="" target="_blank" class="clearfix">
-                    <img src="../../assets/img/topicSimple1.jpg" alt="">
-                    <span>
-                        <strong>坚持以人民为中心的理论自觉</strong>
-                    </span>
-                </a>
-            </li> -->
+          <li v-for="item in recommendList" :key="item.id">
+            <a href="javascript:;" @click="goDetails(item)" class="clearfix">
+              <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
+              <span>
+                <strong>{{item.title}}</strong>
+              </span>
+            </a>
+          </li>
         </ul>
         <!-- 新闻列表 ul  end-->
       </div>
@@ -51,28 +42,44 @@
   </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 export default {
-  props:{
-    recommendList:{
+  props: {
+    recommendList: {
       type: Array
     }
   },
-  data(){
+  data() {
     return {
-       ipAddress:''
-    }
+      ipAddress: ""
+    };
   },
-  created(){
-    console.log(this)
+  created() {
+    console.log(this);
     // this.ipAddress=this.$store.state.ipAddress;
     // console.log(this.ipAddress)
   },
-  mounted(){
-    this.ipAddress=this.$store.state.ipAddress;
+  mounted() {
+    this.ipAddress = this.$store.state.ipAddress;
   },
-  methods:{
-     goDetails(item) {
+  methods: {
+    //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
+    goArticleList(totalData, activeMenuId, isTopic = false, isMore = true) {
+      //拿到当前模块下的所有数据
+      console.log(totalData);
+      totalData = JSON.stringify(totalData);
+      //跳转到对应的文章详情主页  组件为listingNewsMore.attr-value
+      this.$router.push({
+        path: "/articleList",
+        query: {
+          totalData: totalData,
+          activeMenuId: activeMenuId,
+          isTopic: isTopic,
+          isMore: isMore
+        }
+      });
+    },
+    goDetails(item) {
       console.log(item.id);
       // 判断type类型
       if (item.type == 0) {
@@ -104,10 +111,10 @@ export default {
 };
 </script>
 <style scoped="scoped" lang="scss">
-	@media only screen and (max-width:959px){
-		$times:2;
-		.mx-topic-wrapper{
-			width: 100vw;
-        }
-    }
+@media only screen and (max-width: 959px) {
+  $times: 2;
+  .mx-topic-wrapper {
+    width: 100vw;
+  }
+}
 </style>
