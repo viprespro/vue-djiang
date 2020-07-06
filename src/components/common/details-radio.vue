@@ -215,7 +215,9 @@ export default {
   },
   mounted() {},
   watch: {
-    $route: "getDetailsData"
+     '$route'(to, from) {
+        this.$router.go(0);
+      }
   },
   methods: {
     // 展开和折叠
