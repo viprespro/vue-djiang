@@ -48,7 +48,7 @@
                       <i :class="['iconfont', item.actived && flag ? '' : 'icon-caret-right']">
                         <img v-if="item.actived && flag" src="../../assets/img/sound.gif" alt />
                       </i>
-                      <img :src="ipAddress + item.imageUrl" alt />
+                      <img :src="ipAddress + item.imageUrl" style="height: 112px;" />
                       <span>
                         <strong>{{ item.title }}</strong>
                         <em>{{ item.month }}月</em>
@@ -209,7 +209,7 @@ export default {
     //渲染数据区域
     //打印传递过来的参数
     this.paramsData = this.$route.query;
-    console.log(this.$route.query);
+    // console.log(this.$route.query);
     this.nowAudioId = this.$route.query.id;
     this.getDetailsData();
   },
@@ -220,6 +220,7 @@ export default {
     }
   },
   methods: {
+
     // 展开和折叠
     toggleFoldUp() {
       this.foldFlag ^= 1;
@@ -234,6 +235,7 @@ export default {
           type: this.paramsData.type
         }
       });
+      console.log(res);
       let data = res.data;
       this.keywordList = data.keyword;
       this.relatedList = data.related;
@@ -296,17 +298,16 @@ export default {
 
     // 手动设置进度条的
     handleSetProgress(_that) {
-      const percent = (_that.offsetX / _that.target.clientWidth) * 100 + "%";
-      this.setProgress(percent);
       document.querySelector(".now audio").pause();
-      let temp =
-        this.audioTotalSeconds * (_that.offsetX / _that.target.clientWidth);
-      // 设置当前音频的时间
+      this.flag = false;
+
+      let temp = this.audioTotalSeconds * (_that.offsetX / _that.target.clientWidth);
       document.querySelector(".now audio").currentTime = temp;
 
+      const percent = (_that.offsetX / _that.target.clientWidth) * 100 + "%";
+      this.setProgress(percent);
       this.currentTime = this.formatSeconds(temp >> 0);
-
-      // this.audioPlay()
+      this.audioPlay(this.curAudioId)
     },
 
     setProgress(_percent) {
@@ -406,10 +407,10 @@ export default {
       });
 
       // 注意边界情况
-      if(curIndex > 0) {
+      if (curIndex > 0) {
         leftIndex = curIndex - 1;
       }
-      if(curIndex < arr.length -1 ) {
+      if (curIndex < arr.length - 1) {
         rihgtIndex = curIndex + 1;
       }
 
@@ -426,13 +427,20 @@ export default {
         newArr.push(arr[rihgtIndex]);
         this.rightAudioId = arr[rihgtIndex].id;
       }
+
+      for (let i = 0, len = newArr.length; i < len; i++) {
+        let temp = newArr[i].createTime.split(" ");
+        let after = temp[0].split("/");
+        newArr[i].year = after[0];
+        newArr[i].month = this.foo(after[1]);
+        newArr[i].day = after[2];
+      }
+
       this.showAudioList = newArr;
 
       if (!this.isReady) return;
-      var that = this;
       this.flag = !this.flag;
       let media = document.querySelector(".now audio");
-      //音频播放/暂停
       this.flag ? media.play() : media.pause();
     }
   }
