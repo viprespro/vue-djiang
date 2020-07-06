@@ -1,8 +1,8 @@
 <!--
  * @Date         : 2020-06-23 14:31:03
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-07-04 20:06:20
- * @FilePath     : \dangjianxiangmupcyidongduan\src\components\common\topicTitleInfo.vue
+ * @LastEditors  : 曾迪
+ * @LastEditTime : 2020-07-06 14:48:28
+ * @FilePath     : \dangjian\src\components\common\topicTitleInfo.vue
  * @Description  : 
 --> 
 <template>
@@ -14,7 +14,7 @@
         <div class="mx-item-title">
           <strong>专题 Topics</strong>
           <span class="mx-item-more">
-            <a href>
+            <a href="javascript:;" @click="goArticleList(topicList,activeMenuId,true,true)">
               查看更多
               <i class="iconfont icon-jiantouyou"></i>
             </a>
@@ -28,7 +28,7 @@
               <router-link :to="{path:'/topic',query:{
                 topicsId:item.id
               }}"  class="clearfix">
-              <img :src="ipAddress+item.path?ipAddress+item.path:''" alt />
+              <img :src="item.path?ipAddress+item.path:''" alt />
               <span>
                 <strong>{{item.name}}</strong>
                 <em>{{item.description}}</em>
@@ -37,18 +37,7 @@
             <!-- </a> -->
           </li>
            
-          <!-- 一个li end -->
-          <!-- 一个li start -->
-          <!-- <li>
-						<a href="" target="_blank" class="clearfix">
-							<img src="../../assets/img/topic-img1.jpg" alt="">
-							<span>
-								<strong>"双百人物"</strong>
-								<em>100位为新中国成立作出突出贡献的英雄模范人物和100位新中国成立以来感动中国人物</em>
-							</span>
-						</a>
-          </li>-->
-          <!-- 一个li end -->
+          
         </ul>
         
       </div>
@@ -65,6 +54,10 @@ export default {
     topicList: {
       type: Array
     },
+    //标识变量,判断当前这个组件来自哪个页面
+    activeMenuId:{
+
+    },
    
   },
   data() {
@@ -79,6 +72,19 @@ export default {
   },
   mounted() {
     this.ipAddress = this.$store.state.ipAddress;
+  },
+  methods:{
+    //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
+    goArticleList(totalData,activeMenuId,isTopic=false,isMore = true) {
+      //拿到当前模块下的所有数据
+      console.log(totalData);
+      totalData = JSON.stringify(totalData);
+      //跳转到对应的文章详情主页  组件为listingNewsMore.attr-value
+      this.$router.push({
+        path: "/articleList",
+        query: { totalData: totalData,activeMenuId:activeMenuId,isTopic:isTopic,isMore: isMore }
+      });
+    }
   }
 };
 </script>

@@ -2,9 +2,9 @@
   
 <!--
  * @Date         : 2020-06-23 15:13:41
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-07-05 23:56:01
- * @FilePath: \dangjian\src\components\common\hotTitlePicNews.vue
+ * @LastEditors  : 曾迪
+ * @LastEditTime : 2020-07-06 15:09:45
+ * @FilePath     : \dangjian\src\components\common\hotTitlePicNews.vue
  * @Description  : 
 --> 
 <template>
@@ -16,7 +16,7 @@
         <div class="mx-item-title">
           <strong>热点 Hot</strong>
           <span class="mx-item-more">
-            <a href>
+            <a href="javascript:;" @click="goArticleList(hotList,activeMenuId,false,true)">
               查看更多
               <i class="iconfont icon-jiantouyou"></i>
             </a>
@@ -32,12 +32,10 @@
                 <span>{{item.title}}</span>
               </a>
             </div>
-            
           </li>
           <!-- <div class="hotblock mt">
           
-          </div> -->
-         
+          </div>-->
         </ul>
       </div>
     </div>
@@ -49,6 +47,9 @@ export default {
   props: {
     hotList: {
       type: Array
+    },
+    activeMenuId:{
+      
     }
   },
   data() {
@@ -56,8 +57,8 @@ export default {
       ipAddress: ""
     };
   },
-  created(){
-	  this.ipAddress=this.$store.state.ipAddress;
+  created() {
+    this.ipAddress = this.$store.state.ipAddress;
   },
   methods: {
     //传递item, 获取item项中必要的参数
@@ -88,6 +89,22 @@ export default {
         });
         // this.saveDetailParams();
       }
+    },
+    //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
+    goArticleList(totalData, activeMenuId, isTopic = false, isMore = true) {
+      //拿到当前模块下的所有数据
+      console.log(totalData);
+      totalData = JSON.stringify(totalData);
+      //跳转到对应的文章详情主页  组件为listingNewsMore.attr-value
+      this.$router.push({
+        path: "/articleList",
+        query: {
+          totalData: totalData,
+          activeMenuId: activeMenuId,
+          isTopic: isTopic,
+          isMore: isMore
+        }
+      });
     }
   }
 };

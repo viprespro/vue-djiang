@@ -25,7 +25,7 @@
         <div class="layout r-80-20 clearfix">
           <div class="c1-wrapper">
             <div class="c1">
-              <listingNewsMore :totalList="totalList"></listingNewsMore> 
+              <listingNewsMore :totalList="totalList" :activeMenuId="activeMenuId" :isTopic="isTopic"></listingNewsMore> 
             </div>
           </div>
           <!-- c2内容块- 右边 -->
@@ -89,8 +89,9 @@ export default {
       //标志变量
       isMore:null,
       //标识页面变量
-      activeMenuId:null
-
+      activeMenuId:null,
+      //topic
+      isTopic:null
     };
   },
   computed: {
@@ -115,9 +116,12 @@ export default {
     this.isMore=this.$route.query.isMore;
     //
     this.activeMenuId=this.$route.query.activeMenuId;
+    //判断是否是专题的查看跟多过来的
+    this.isTopic=this.$route.query.isTopic;
     console.log(this.$route.query)
     console.log(this.isMore)
     console.log(this.totalList)
+    console.log(this.isTopic)
     //加载首批数据
     // this.getDetailsData();
   },

@@ -21,6 +21,7 @@
                 :lastestList="latestDataList"
                 :ipAddress="ipAddress"
                 :hasBackgroundImg="hasBackgroundImg"
+                :activeMenuId="activeMenuId"
               ></sheetNewsShow>
             </div>
           </div>

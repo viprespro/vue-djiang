@@ -85,16 +85,21 @@
           <div class="c1-wrapper">
             <div class="c1">
               
-              <listingNewsLatest :lastestList="latestDataList" :categoryList="categoryDataList"></listingNewsLatest>
+             <listingNewsLatest
+                :lastestList="latestDataList"
+                :ipAddress="ipAddress"
+               
+                :activeMenuId="activeMenuId"
+              ></listingNewsLatest>
             </div>
           </div>
           <!-- 右边 -->
           <div class="c2-wrapper">
             <div class="c2">
               <!-- topic -->
-              <topicTitleInfo :topicList="topicDataList"></topicTitleInfo>
+              <topicTitleInfo :topicList="topicDataList" :activeMenuId="activeMenuId"></topicTitleInfo>
               <!-- hot -->
-              <hotTitlePicNews :hotList="hotDataList"></hotTitlePicNews>
+              <hotTitlePicNews :hotList="hotDataList" :activeMenuId="activeMenuId"></hotTitlePicNews>
             </div>
           </div>
         </div>

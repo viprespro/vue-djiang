@@ -49,7 +49,7 @@
         <!-- 定义列表结束 -->
         <!-- 加载更多按钮start-->
         <div class="mx-more-link mt">
-          <a href="javascript:;" @click="goMore(lastestList)">
+          <a href="javascript:;" @click="goArticleList(lastestList,activeMenuId,false,true)">
             查看更多
             <i class="iconfont icon-jiantouyou"></i>
           </a>
@@ -134,14 +134,15 @@ export default {
       }
     },
     //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
-    goArticleList(totalData,activeMenuId,isMore = true) {
+    //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
+    goArticleList(totalData,activeMenuId,isTopic=false,isMore = true) {
       //拿到当前模块下的所有数据
       console.log(totalData);
       totalData = JSON.stringify(totalData);
       //跳转到对应的文章详情主页  组件为listingNewsMore.attr-value
       this.$router.push({
         path: "/articleList",
-        query: { totalData: totalData,activeMenuId:activeMenuId,isMore: isMore }
+        query: { totalData: totalData,activeMenuId:activeMenuId,isTopic:isTopic,isMore: isMore }
       });
     }
   }
