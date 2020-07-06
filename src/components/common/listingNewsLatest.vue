@@ -133,7 +133,7 @@ export default {
         // this.saveDetailParams();
       }
     },
-    //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
+    
     //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
     goArticleList(totalData,activeMenuId,isTopic=false,isMore = true) {
       //拿到当前模块下的所有数据

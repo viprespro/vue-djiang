@@ -1,58 +1,80 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-22 22:41:12
- * @LastEditTime: 2020-07-03 15:08:24
- * @LastEditors: Ares
+ * @LastEditTime : 2020-07-06 18:11:02
+ * @LastEditors  : 曾迪
  * @Description: In User Settings Edit
- * @FilePath: \dangjian\src\components\common\hotKeywords.vue
+ * @FilePath     : \dangjian\src\components\common\hotKeywords.vue
 --> 
 
 <template>
-	<!-- hotKeywords 共用组件 -->
-	<div class="mx-tag-wrapper" style="">
-		<div class="mx-tag mx-m">
-			<div class="mx-item-title">
-				<strong>热点关键字</strong>
-			</div>
-			<div class="mx-tag-box" >
-				
-				<!-- <a href=""></a> -->
-				<!-- <a href="">{{item[item.id]}}</a> -->
-				<router-link to="/" v-for="(item,i) in keywordList" :key="i">{{item}}</router-link>
-				
-				<!-- <router-link to="/"> 人大常委会</router-link>
-				<router-link to="/">非遗传人</router-link>
-				<router-link to="/"> 浙江省龙游县</router-link>
-				<router-link to="/"> 海南省海口市</router-link>
-				<router-link to="/"> 全国人大常委会会议</router-link>
-				<router-link to="/">新基建</router-link> -->
-			</div>
-		</div>
-	</div>
+  <!-- hotKeywords 共用组件 -->
+  <div class="mx-tag-wrapper" style>
+    <div class="mx-tag mx-m">
+      <div class="mx-item-title">
+        <strong>热点关键字</strong>
+      </div>
+      <div class="mx-tag-box">
+        <!-- <a href=""></a> -->
+        <!-- <a href="">{{item[item.id]}}</a> -->
+        <!-- <router-link to="/" v-for="(item,i) in keywordList" :key="i">{{item}}</router-link> -->
+				<a href="javascript:;" @click="getParamsToList(item,categoryId,true)" v-for="(item,i) in keywordList" :key="i">{{item}}</a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 // keywordList
 export default {
- props: {
-     keywordList: {
+  props: {
+    keywordList: {
       type: Array
-    },
-   
-  },
-  mounted(){
-	  console.log(this.keywordList)
-  }
-}
+		},
+		categoryId:{
+			
+		},
+	
+	},
+	data(){
+		return {}
+	},
+	created(){
 
+	},
+  mounted() {
+    console.log(this.keywordList);
+	},
+	methods:{
+		//携带keyword 到articleList组件中去 isKeyWords标志面包屑
+		getParamsToList(item,categoryId,isKeywords=false){
+			console.log(item,categoryId);
+			//跳到articleList组件中去
+			this.$router.push({
+				path:"/articleList",
+				query:{keywords:item,categoryId:categoryId,isKeywords:isKeywords}
+			})
+		},
+		//跳到文章列表展示页 isMore 默认是查看更多跳转过去的
+    goArticleList(totalData,activeMenuId,isTopic=false,isMore = true) {
+      //拿到当前模块下的所有数据
+      console.log(totalData);
+      totalData = JSON.stringify(totalData);
+      //跳转到对应的文章详情主页  组件为listingNewsMore.attr-value
+      this.$router.push({
+        path: "/articleList",
+        query: { totalData: totalData,activeMenuId:activeMenuId,isTopic:isTopic,isMore: isMore }
+      });
+    }
+	}
+};
 </script>
 
 <style scoped="scoped">
-	@media only screen and (max-width:959px){
-		.mx-tag-wrapper{
-			/* width: 100%; */
-			width: 100vw;
-		}
-	}
-	
+@media only screen and (max-width: 959px) {
+  .mx-tag-wrapper {
+    /* width: 100%; */
+    width: 100vw;
+  }
+}
 </style>

@@ -1,16 +1,17 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-22 22:41:12
- * @LastEditTime: 2020-07-06 01:15:03
- * @LastEditors: Please set LastEditors
+ * @LastEditTime : 2020-07-06 18:19:18
+ * @LastEditors  : 曾迪
  * @Description: In User Settings Edit
- * @FilePath: \dangjianxiangmupcyidongduan\src\App.vue
+ * @FilePath     : \dangjian\src\App.vue
 --> 
 
 <template>
   <div id="app">
    <!-- <Header :activeMenu="activeMenuId"></Header> -->
-    <!-- <keep-alive include="details-news,details-video,details-radio,details-essay"> -->
+   <!-- include="details-news,details-video,details-radio,details-essay" -->
+    <!-- <keep-alive >  -->
       <router-view></router-view>
     <!-- </keep-alive> -->
     <!-- <Footer></Footer> -->

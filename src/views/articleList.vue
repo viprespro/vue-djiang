@@ -1,6 +1,6 @@
 
 <template>
-<!-- 这里是备用文章页面 -->
+  <!-- 这里是备用文章页面 -->
   <div id="details-news">
     <Header></Header>
     <!-- 这是新闻详情页 -->
@@ -25,14 +25,19 @@
         <div class="layout r-80-20 clearfix">
           <div class="c1-wrapper">
             <div class="c1">
-              <listingNewsMore :totalList="totalList" :activeMenuId="activeMenuId" :isTopic="isTopic"></listingNewsMore> 
+              <listingNewsMore
+                :totalList="totalList"
+                :activeMenuId="activeMenuId"
+                :isTopic="isTopic"
+                :keywordsData="keywordsData"
+                :isKeywords="isKeywords"
+              ></listingNewsMore>
             </div>
           </div>
           <!-- c2内容块- 右边 -->
           <div class="c2-wrapper">
             <div class="c2">
               <!-- <hotKeywords :keywordList="keywordList"></hotKeywords> -->
-             
             </div>
           </div>
         </div>
@@ -50,7 +55,7 @@ import breadCrumbNav from "@/components/common/breadCrumbNav.vue";
 //
 
 //导入查看更多组件
-import listingNewsMore from "@/components/common/listingNewsMore.vue"
+import listingNewsMore from "@/components/common/listingNewsMore.vue";
 
 //导入 右边推荐模块
 
@@ -67,31 +72,35 @@ export default {
   // },
   data() {
     return {
-      ipAddress:'',
-      categoryDataList:[],
-      categoryId:'',
+      ipAddress: "",
+      categoryDataList: [],
+      categoryId: "",
       // 需要传到breadCrumbnav组件的值
-      breadCrumbList:{},
+      breadCrumbList: {},
       // 参数信息
       paramsData: {},
       //页面数据
       detailsList: {},
       //热门关键字
-      keywordList:[],
+      keywordList: [],
       //推荐数据
-      recommendList:[],
+      recommendList: [],
       //相关数据
-      ralatedList:[],
+      ralatedList: [],
       //专题数据
-      topicList:[],
+      topicList: [],
       //模块所有数据
-      totalList:[],
+      totalList: [],
       //标志变量
-      isMore:null,
+      isMore: null,
       //标识页面变量
-      activeMenuId:null,
+      activeMenuId: null,
       //topic
-      isTopic:null
+      isTopic: null,
+      //判断是否是关键词点击跳转过来的
+      isKeywords:true,
+      //存储关键词的检索数据
+      keywordsData:[]
     };
   },
   computed: {
@@ -102,83 +111,67 @@ export default {
   },
   created() {
     //ip地址
-    this.ipAddress=this.$store.state.ipAddress;
+    this.ipAddress = this.$store.state.ipAddress;
     // 共用菜单数据赋值
-    this.categoryDataList=this.$store.state.commonData.headMenu;
+    this.categoryDataList = this.$store.state.commonData.headMenu;
     //
     this.paramsData = this.$route.query;
-    // 拿到categoryId
-    this.categoryId=this.paramsData.categoryId;
+    
     // console.log(this.$route.query.totalData);
-    //进行数据字符串转码
-    this.totalList=JSON.parse(this.$route.query.totalData);
-    //拿到标志变量 看一下是否是查看更多按钮跳转过来的
-    this.isMore=this.$route.query.isMore;
-    //
-    this.activeMenuId=this.$route.query.activeMenuId;
-    //判断是否是专题的查看跟多过来的
-    this.isTopic=this.$route.query.isTopic;
-    console.log(this.$route.query)
-    console.log(this.isMore)
-    console.log(this.totalList)
-    console.log(this.isTopic)
-    //加载首批数据
-    // this.getDetailsData();
+    //总的数据存在进行数据字符串转码
+    if (this.$route.query.totalData) {
+      this.totalList = JSON.parse(this.$route.query.totalData);
+      //拿到标志变量 看一下是否是查看更多按钮跳转过来的
+      this.isMore = this.$route.query.isMore;
+      //
+      this.activeMenuId = this.$route.query.activeMenuId;
+      //判断是否是专题的查看更多过来的
+      this.isTopic = this.$route.query.isTopic;
+    }
+    //获取关键词点击传过来的参数
+
+    console.log(this.$route.query);
+    //标志变量用来标识控制面包屑组件和listingNewsMore的参数
+    this.isKeywords=this.$route.query.isKeywords;
+    this.categoryId=this.$route.query.categoryId;
+    this.keywords=this.$route.query.keywords;
+    //加载接口数据
+    this.getKeywordsData();
   },
   mounted() {
     //操作dom
-    
     // this.dplayerInit();
-    
     // console.log(this.$route.query);
     // console.log(this.paramsData.type);
   },
   updated() {
     //dom更新后
-    
-    
   },
   methods: {
-    //利用传递过来的参数获取对应id的详情
-    async getDetailsData() {
-      //获取localStore的参数列表
-      
-     
-      // let { data: res } = await this.$http.get("/api/detail", {
-      //   params: {
-      //     access_token: localStorage.getItem("Authorization"),
-      //     category_id: this.paramsData.category_id,
-      //     id: this.paramsData.id,
-      //     type: this.paramsData.type
-      //   }
-      // });
-      // if(res.code!=0) return;
-      // let data = res.data;
-      // console.log(data)
-      // //页面详情数据
-      // this.detailsList = data.detail;
-      // //拿到面包屑菜单所需的data
-      // this.breadCrumbList={menuId: this.detailsList.categoryId,articleTitle: this.detailsList.title};
-      // //关键字数据
-      // this.keywordList=data.keyword;
-      // //推荐数据
-      // this.recommendList=data.recommend;
-      // //相关数据
-      // this.ralatedList=data.related;
-      // //专题数据
-      // this.topicList=data.topics;
-      // //标题
-      // this.categoryName=data.categoryName;
-      // console.log(this.recommendList)
-    }
+    //请求关键字接口
+    async getKeywordsData(){
+      let {data:res}=await this.$http.get("/api/keywords",{
+        params:{
+          code: localStorage.getItem("authCode"),
+          keywords:this.keywords,
+          category_id:this.categoryId
+          
+        }
+      });
+      if(res.code!=0) return;
+      let data=res.data;
+      console.log(data);
+      this.keyWordsData=data;
+    },
+    
   },
   components: {
     Header,
     breadCrumbNav,
     listingNewsMore,
-    
+
     hotKeywords,
-    
+
     Footer
   }
 };

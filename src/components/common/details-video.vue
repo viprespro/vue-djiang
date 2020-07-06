@@ -10,7 +10,11 @@
         <div class="layout phone-none">
           <div class="c1-wrapper">
             <div class="c1">
-              <breadCrumbNav></breadCrumbNav>
+              <breadCrumbNav
+                :categoryList="categoryDataList"
+                :categoryId="categoryId"
+                :breadCrumbList="breadCrumbList"
+              ></breadCrumbNav>
             </div>
           </div>
         </div>

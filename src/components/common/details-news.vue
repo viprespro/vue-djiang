@@ -53,7 +53,7 @@
           <!-- c2内容块- 右边 -->
           <div class="c2-wrapper">
             <div class="c2">
-              <hotKeywords :keywordList="keywordList" :activeMenuId="activeMenuId"></hotKeywords>
+              <hotKeywords :keywordList="keywordList" :activeMenuId="activeMenuId" :categoryId="categoryId"></hotKeywords>
               <topicSimple :recommendList="recommendList" :activeMenuId="activeMenuId"></topicSimple>
               <sheetNewsSide :relatedList="relatedList" :activeMenuId="activeMenuId"></sheetNewsSide>
               <topicTitleInfo :topicList="topicList" :activeMenuId="activeMenuId"></topicTitleInfo>
@@ -122,10 +122,11 @@ export default {
     this.ipAddress = this.$store.state.ipAddress;
     // 共用菜单数据赋值
     this.categoryDataList = this.$store.state.commonData.headMenu;
-    //
+    //this.activeMenuId=this.paramsData.categoryId
     this.paramsData = this.$route.query;
     // 拿到categoryId
     this.categoryId = this.paramsData.categoryId;
+    //加载详情数据
     this.getDetailsData();
   },
   watch:{
@@ -179,8 +180,7 @@ export default {
       this.topicList = data.topics;
       //标题
        document.title = this.detailsList.title; // 设置标题
-      console.log(this.recommendList);
-      console.log(this.relatedList)
+      console.log( this.detailsList);
     },
     //处理富文本
     dealHtml() {

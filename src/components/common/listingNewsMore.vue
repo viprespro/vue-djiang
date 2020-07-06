@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <!-- <Header :activeMenu="activeMenuId"></Header> -->
+    
     <div id>
       <!-- 这里是新闻列表盒子 -->
       <div class="mx-listing-wrapper">
@@ -14,72 +14,114 @@
             <template v-if="activeMenuId==0">
               <!-- 首页来的 不显示 -->
             </template>
-            <template v-if="activeMenuId">
+            <template v-else-if="activeMenuId">
               <!-- 这里要根据activeMenuId 去获取当前页面的菜单名 -->
               <h1>{{getCategoryName(activeMenuId,categoryDataList)}}</h1>
             </template>
+            <template v-else>
+
+            </template>
           </div>
-          <!-- 新闻列表数据 -->
-          <!-- 一个dl表示一项 start -->
-          <dl v-for="item in (totalList || '')" :key="item.id">
-            <!-- 左边图片区域 -->
-            <dt>
-              <!-- 专题页跳转到详情页处理 -->
-              <template v-if="isTopic">
-                <router-link :to="{path:'/topic',query:{
-                topicsId:item.id
-              }}">
-                <img :src="item.path?ipAddress+item.path:''" alt />
-                </router-link>
-              </template>
-              <template v-else>
-                <a href="javascript:;" @click="goDetails(item)">
-                  
-                  <img :src="item.imageUrl?ipAddress+item.imageUrl:ipAddress+item.path" alt />
-                </a>
-              </template>
-            </dt>
-            <!-- 右边新闻区域内容 -->
-            <dd>
-              <!-- 专题页跳转到详情页处理 -->
-              <template v-if="isTopic">
-                <router-link :to="{path:'/topic',query:{
-                topicsId:item.id
-              }}">
-                <strong>{{item.name}}</strong>
-                </router-link>
-              </template>
-              <template v-else>
-                <a href="javascript:;" @click="goDetails(item)">
-                  <strong>{{item.title?item.title:item.name}}</strong>
-                </a>
-              </template>
 
-              <span class="mx-listing-sum">{{item.description}}</span>
-              <span>
-                <!-- <router-link :to="{path: `/category/${category_id}`}">{{categoryName}}</router-link>
-              <em>|</em>
-                <em>{{item.categoryId}}</em>-->
-                <!-- <em>{{headMenu}}</em> -->
-
-                <!-- <a href="">阅读1</a> -->
-                <!-- <em> | </em> -->
-                <em class="user-time"></em>
-                <em class="user-time time-phone">{{item.createTime}}</em>
-              </span>
-            </dd>
-          </dl>
-          <!-- 底部墙-->
-          <!-- <div class="listingblock mt">
           
-          </div>-->
-          <!-- 一个dl表示一项 end -->
+          <!-- 关键字数据渲染start -->
+          <template v-if="isKeywords==true">
+            <dl v-for="item in (keywordsData || '')" :key="item.id">
+              <dt>
+                
+               
+                  <a href="javascript:;" @click="goDetails(item)">
+                    <img :src="item.imageUrl?ipAddress+item.imageUrl:ipAddress+item.path" alt />
+                  </a>
+               
+              </dt>
+
+              <dd>
+                <!-- 专题页跳转到详情页处理 -->
+               
+               
+                  <a href="javascript:;" @click="goDetails(item)">
+                    <strong>{{item.title?item.title:item.name}}</strong>
+                  </a>
+               
+
+                <span class="mx-listing-sum">{{item.description}}</span>
+                <span>
+                  <!-- <router-link :to="{path: `/category/${category_id}`}">{{categoryName}}</router-link>
+              <em>|</em>
+                  <em>{{item.categoryId}}</em>-->
+                  <!-- <em>{{headMenu}}</em> -->
+
+                  <!-- <a href="">阅读1</a> -->
+                  <!-- <em> | </em> -->
+                  <em class="user-time"></em>
+                  <em class="user-time time-phone">{{item.createTime}}</em>
+                </span>
+              </dd>
+            </dl>
+          </template>
+          <!-- 关键字数据渲染end -->
+          <!-- 查看更多的数据渲染 start -->
+          <template v-else>
+            <dl v-for="item in (totalList || '')" :key="item.id">
+              <dt>
+                <!-- 专题页跳转到详情页处理 -->
+                <template v-if="isTopic">
+                  <router-link
+                    :to="{path:'/topic',query:{
+                topicsId:item.id
+              }}"
+                  >
+                    <img :src="item.path?ipAddress+item.path:''" alt />
+                  </router-link>
+                </template>
+                <template v-else>
+                  {{item.imageUrl}}
+                  <a href="javascript:;" @click="goDetails(item)">
+                    <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
+                  </a>
+                </template>
+              </dt>
+
+              <dd>
+                <!-- 专题页跳转到详情页处理 -->
+                <template v-if="isTopic">
+                  <router-link
+                    :to="{path:'/topic',query:{
+                topicsId:item.id
+              }}"
+                  >
+                    <strong>{{item.name}}</strong>
+                  </router-link>
+                </template>
+                <template v-else>
+                  <a href="javascript:;" @click="goDetails(item)">
+                    <strong>{{item.title?item.title:''}}</strong>
+                  </a>
+                </template>
+
+                <span class="mx-listing-sum">{{item.description}}</span>
+                <span>
+                  <!-- <router-link :to="{path: `/category/${category_id}`}">{{categoryName}}</router-link>
+              <em>|</em>
+                  <em>{{item.categoryId}}</em>-->
+                  <!-- <em>{{headMenu}}</em> -->
+
+                  <!-- <a href="">阅读1</a> -->
+                  <!-- <em> | </em> -->
+                  <em class="user-time"></em>
+                  <em class="user-time time-phone">{{item.createTime}}</em>
+                </span>
+              </dd>
+            </dl>
+          </template>
+          <!-- 查看更多的数据渲染 end -->
         </div>
       </div>
     </div>
-    <!-- <Footer></Footer> -->
+   
   </div>
-  <!-- 这里用来显示文章详情页 -->
+  
 </template>
 
 <script>
@@ -91,8 +133,10 @@ export default {
   props: {
     totalList: {},
     activeMenuId: {},
-    isTopic:{
-
+    isTopic: {},
+    keywordsData: {},
+    isKeywords:{
+      type:Boolean
     }
   },
   data() {
@@ -111,6 +155,7 @@ export default {
     this.ipAddress = this.$store.state.ipAddress;
     // 共用菜单数据赋值
     this.categoryDataList = this.$store.state.commonData.headMenu;
+    // console.log(typeof(this.isKeywords))
     // this.totalData = JSON.parse(this.$route.query.totalData);
     // this.totalData=JSON.parse(this.$route.query);
     // console.log(this.totalData);

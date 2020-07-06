@@ -9,7 +9,11 @@
         <div class="layout phone-none">
           <div class="c1-wrapper">
             <div class="c1">
-              <breadCrumbNav></breadCrumbNav>
+              <breadCrumbNav
+                :categoryList="categoryDataList"
+                :categoryId="categoryId"
+                :breadCrumbList="breadCrumbList"
+              ></breadCrumbNav>
             </div>
           </div>
         </div>
@@ -208,9 +212,18 @@ export default {
   created() {
     //渲染数据区域
     //打印传递过来的参数
+    //ip地址
+    this.ipAddress = this.$store.state.ipAddress;
+    // 共用菜单数据赋值
+    this.categoryDataList = this.$store.state.commonData.headMenu;
+    //
+    this.paramsData = this.$route.query;
+    // 拿到categoryId
+    this.categoryId = this.paramsData.categoryId;
     this.paramsData = this.$route.query;
     console.log(this.$route.query);
     this.nowAudioId = this.$route.query.id;
+     this.activeMenuId=this.paramsData.categoryId
     this.getDetailsData();
   },
   mounted() {},

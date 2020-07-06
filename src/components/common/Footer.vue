@@ -44,7 +44,7 @@ export default {
   },
   created(){
     this.commonData=this.$store.state.commonData;
-    console.log(this.commonData);
+    // console.log(this.commonData);
   }
 
 }
