@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-22 22:41:12
- * @LastEditTime : 2020-07-07 12:17:19
+ * @LastEditTime : 2020-07-07 17:11:38
  * @LastEditors  : 曾迪
  * @Description: In User Settings Edit
  * @FilePath     : \党建项目git同步目录\dangjianxiangmupcyidongduan\src\App.vue
@@ -75,31 +75,7 @@ export default {
     saveState() {
       sessionStorage.setItem("state", JSON.stringify(this.$store.state));
     },
-    // footAuto() {
-    //   var _wh = $(window).height();
-    //   var _dh = $(document).height();
-    //   var _bh = $(document.body).height();
-    //   var _content = $(".content").height();
-    //   // var content = document.querySelector(".Memorabilia-content").clientHeight;
-    //   console.log(_wh, _content);
-      
-    //   if ( _content < _wh) {
-    //     $(".mx-footer").css({
-    //       width: "100%",
-    //       position: "fixed",
-    //       bottom: "0",
-    //       left: "0",
-    //        'z-index': "111",
-    //     });
-    //   } else {
-    //     $(".mx-footer").css({
-    //       width: "100%",
-    //       position: "static",
-    //       bottom: "auto",
-    //       left: "auto"
-    //     });
-    //   }
-    // }
+   
     
   },
   components: {

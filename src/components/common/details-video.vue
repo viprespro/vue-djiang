@@ -314,7 +314,7 @@ export default {
         mutex: true,
         video: {
           // 测试demo
-          url: this.$store.state.ipAddress + "/" + this.detailsInfo.videoUrl,
+          url:this.detailsInfo.videoUrl,
           type: "auto"
         }
       });

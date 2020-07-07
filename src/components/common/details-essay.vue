@@ -165,7 +165,7 @@ export default {
         let srcUrl = $(this).attr("src");
         if (srcUrl.indexOf("file") != -1) {
           //console.log(2)
-          newSrcUrl = that.ipAddress + srcUrl.slice(2);
+          newSrcUrl =srcUrl.slice(2);
 
           $(this).attr("src", newSrcUrl);
         }

@@ -159,15 +159,7 @@ const routes = [{
 
 
     },
-    {
-        path: '/moreContent',
-        name: 'moreContent',
-        component: () =>
-            import ( /* webpackChunkName: "moreContent" */ '../components/common/moreContent.vue'),
-        meta: {
-            // title: "查看更多"
-        }
-    },
+
     {
         path: '/Footer',
         name: 'Footer',

@@ -52,7 +52,7 @@
                       <i :class="['iconfont', item.actived && flag ? '' : 'icon-caret-right']">
                         <img v-if="item.actived && flag" src="../../assets/img/sound.gif" alt />
                       </i>
-                      <img :src="ipAddress + item.imageUrl" style="height: 112px;" />
+                      <img :src="item.imageUrl" style="height: 112px;" />
                       <span>
                         <strong>{{ item.title }}</strong>
                         <em>{{ item.month }}月</em>
@@ -60,7 +60,7 @@
                         <em>{{ item.year }}年</em>
                       </span>
                       <audio
-                        :src="ipAddress + item.audioUrl"
+                        :src="item.audioUrl"
                         loop="loop"
                         preload="auto"
                         class="audio-control"

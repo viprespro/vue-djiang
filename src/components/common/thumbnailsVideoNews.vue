@@ -8,7 +8,7 @@
           <li v-for="item in (latestList || '').slice(0,4)" :key="item.id">
             <div class="mx-thumbnails-box">
               <a href="javascript:;" @click="goDetails(item)">
-                <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
+                <img :src="item.imageUrl?item.imageUrl:''" alt />
                 <span>
                   <!-- 播放图标需要定位 -->
                   <template v-if="item.type==0"></template>

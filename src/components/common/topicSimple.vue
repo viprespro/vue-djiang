@@ -1,10 +1,10 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-28 07:58:08
- * @LastEditTime: 2020-07-06 23:45:28
- * @LastEditors: Please set LastEditors
+ * @LastEditTime : 2020-07-07 17:02:29
+ * @LastEditors  : 曾迪
  * @Description: In User Settings Edit
- * @FilePath     : \dangjian\src\components\common\topicSimple.vue
+ * @FilePath     : \党建项目git同步目录\dangjianxiangmupcyidongduan\src\components\common\topicSimple.vue
 --> 
 
 <template>
@@ -29,7 +29,7 @@
         <ul>
           <li v-for="item in recommendList" :key="item.id">
             <a href="javascript:;" @click="goDetails(item)" class="clearfix">
-              <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
+              <img :src="item.imageUrl?item.imageUrl:''" alt />
               <span>
                 <strong>{{item.title}}</strong>
               </span>
@@ -55,12 +55,12 @@ export default {
     };
   },
   created() {
-    console.log(this);
-    // this.ipAddress=this.$store.state.ipAddress;
-    // console.log(this.ipAddress)
+    this.ipAddress = this.$store.state.ipAddress;
+    
+    
   },
   mounted() {
-    this.ipAddress = this.$store.state.ipAddress;
+    
   },
   methods: {
     //跳到文章列表展示页 isMore 默认是查看更多跳转过去的

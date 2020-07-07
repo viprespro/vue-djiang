@@ -21,7 +21,7 @@
           <!-- 左边图片区域 -->
           <dt>
             <a href="javascript:;" @click="goDetails(item)">
-              <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
+              <img :src="item.imageUrl?item.imageUrl:''" alt />
             </a>
           </dt>
           <!-- 右边新闻区域内容 -->

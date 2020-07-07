@@ -10,7 +10,7 @@
           <span>
             <a href="javascript:;" @click="goDetails(item)">
               <img
-                :src="ipAddress + item.imageUrl"
+                :src="item.imageUrl"
                 style="width: 140px; height: 94px; border-radius: 5px;"
               />
             </a>

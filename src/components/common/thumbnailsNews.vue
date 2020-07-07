@@ -8,7 +8,7 @@
           <li v-for="item in (lastestList || '').slice(0,4)" :key="item.id">
             <div class="mx-thumbnails-box">
               <a href="javascript:;" @click="goDetails(item)">
-                <img :src="`${ipAddress}${item.imageUrl}`" alt />
+                <img :src="`${item.imageUrl}`" alt />
                 <span>{{item.title}}</span>
               </a>
               <!-- 新闻简介-->

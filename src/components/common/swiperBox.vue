@@ -10,7 +10,7 @@
 
             <div class="swiper-slide" v-for="item in (lastestList || '').slice(0,4)" :key="item.id">
               <a href="javascript:;" @click="goDetails(item)" class="sliding-img-box">
-                <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" :class="isCoursePage?'coursesImg':''"/>
+                <img :src="item.imageUrl?item.imageUrl:''" :class="isCoursePage?'coursesImg':''"/>
 
                 <div class="mx-sliding-text ellipsis-s">
                   <a href="javascript:;" @click="goDetails(item)">{{item.title}}</a>

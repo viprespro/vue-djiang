@@ -2,9 +2,9 @@
   
 <!--
  * @Date         : 2020-06-23 15:13:41
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-07-06 23:43:46
- * @FilePath     : \dangjian\src\components\common\hotTitlePicNews.vue
+ * @LastEditors  : 曾迪
+ * @LastEditTime : 2020-07-07 16:56:51
+ * @FilePath     : \党建项目git同步目录\dangjianxiangmupcyidongduan\src\components\common\hotTitlePicNews.vue
  * @Description  : 
 --> 
 <template>
@@ -28,7 +28,7 @@
           <li v-for="item in (hotList || '').slice(0,3)" :key="item.id">
             <div class="mx-thumbnails-box">
               <a href="javascript:;" @click="goDetails(item)">
-                <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
+                <img :src="item.imageUrl?item.imageUrl:''" alt />
                 <span>{{item.title}}</span>
               </a>
             </div>

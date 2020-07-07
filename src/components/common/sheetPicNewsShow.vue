@@ -12,7 +12,7 @@
           >
             <a href="javascript:;" @click="goDetails(item)">
               <!-- <img src="../../assets/img/b1.jpg" alt=""> -->
-              <img :src="item.imageUrl?ipAddress+item.imageUrl:''" alt />
+              <img :src="item.imageUrl?item.imageUrl:''" alt />
               {{item.title}}
             </a>
             <em>{{item.createTime | timeCut}}</em>

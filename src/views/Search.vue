@@ -18,6 +18,7 @@
                       placeholder="请输入关键字"
                       name="keyword"
                       class="input"
+                      
                     />
                     <div class="bt" @click="doSearch()">搜索</div>
                   </form>

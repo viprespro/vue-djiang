@@ -1,7 +1,7 @@
 <!--
  * @Date         : 2020-07-03 15:20:40
  * @LastEditors  : 曾迪
- * @LastEditTime : 2020-07-07 16:46:52
+ * @LastEditTime : 2020-07-07 17:11:30
  * @FilePath     : \党建项目git同步目录\dangjianxiangmupcyidongduan\src\views\topic.vue
  * @Description  : 
 --> 
@@ -22,7 +22,7 @@
                   <div class="mx-column-topic mx-column-title mx-m">
                     <div class="mx-column-icon">
                       <img
-                        :src="ipAddress+detailDataList.path?ipAddress+detailDataList.path:''"
+                        :src="detailDataList.path?detailDataList.path:''"
                         alt
                       />
                     </div>

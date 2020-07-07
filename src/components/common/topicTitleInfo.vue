@@ -1,7 +1,7 @@
 <!--
  * @Date         : 2020-06-23 14:31:03
  * @LastEditors  : 曾迪
- * @LastEditTime : 2020-07-07 14:33:02
+ * @LastEditTime : 2020-07-07 17:03:01
  * @FilePath     : \党建项目git同步目录\dangjianxiangmupcyidongduan\src\components\common\topicTitleInfo.vue
  * @Description  : 
 --> 
@@ -28,7 +28,7 @@
               <router-link :to="{path:'/topic',query:{
                 topicsId:item.id
               }}"  class="clearfix">
-              <img :src="item.path?ipAddress+item.path:''" alt />
+              <img :src="item.path?item.path:''" alt />
               <span>
                 <strong>{{item.name}}</strong>
                 <em>{{item.description}}</em>
@@ -66,12 +66,11 @@ export default {
     };
   },
   created() {
-    console.log(this);
-    // this.ipAddress=this.$store.state.ipAddress;
-    // console.log(this.ipAddress)
+     this.ipAddress = this.$store.state.ipAddress;
+    
   },
   mounted() {
-    this.ipAddress = this.$store.state.ipAddress;
+   
   },
   methods:{
     //跳到文章列表展示页 isMore 默认是查看更多跳转过去的

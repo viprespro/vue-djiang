@@ -158,7 +158,7 @@ export default {
         //版权信息
         copyright: data.copyright,
         //网站logo地址
-        logoUrl: `${this.$store.state.ipAddress}${data.logo}`
+        logoUrl: `${data.logo}`
       };
       //存放到vuex store
       this.saveCommonData(commonData);

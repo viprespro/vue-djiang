@@ -19,7 +19,7 @@
           <li v-for="item in (hotList || '').slice(0,8)" :key="item.id">
             <div class="mx-thumbnails-box">
               <a href="javascript:;" @click="goDetails(item)">
-                <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
+                <img :src="item.imageUrl?item.imageUrl:''" alt />
                 <span>
                   <template v-if="item.type==0"></template>
                   <template v-if="item.type==1">

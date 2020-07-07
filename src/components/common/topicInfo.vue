@@ -13,7 +13,7 @@
               }}"
               class="clearfix"
             >
-              <img :src="item.path?ipAddress+item.path:''" alt />
+              <img :src="item.path?item.path:''" alt />
               <span>
                 <strong>{{item.name}}</strong>
                 <em>{{item.description}}</em>

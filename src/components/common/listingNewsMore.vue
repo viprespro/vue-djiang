@@ -26,7 +26,7 @@
             <dl v-for="item in (keywordsData.list || '')" :key="item.id">
               <dt>
                 <a href="javascript:;" @click="goDetails(item)">
-                  <img :src="item.imageUrl?ipAddress+item.imageUrl:''" alt />
+                  <img :src="item.imageUrl?item.imageUrl:''" alt />
                 </a>
               </dt>
 
@@ -62,13 +62,13 @@
                 topicsId:item.id
               }}"
                   >
-                    <img :src="item.path?ipAddress+item.path:''" alt />
+                    <img :src="item.path?item.path:''" alt />
                   </router-link>
                 </template>
 
                 <template v-if="isTopic==0">
                   <a href="javascript:;" @click.prevent="goDetails(item)">
-                    <img :src="item.imageUrl?ipAddress+item.imageUrl:''" alt />
+                    <img :src="item.imageUrl?item.imageUrl:''" alt />
                   </a>
                 </template>
               </dt>
