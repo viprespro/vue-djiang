@@ -51,6 +51,8 @@
 </template>
 <script>
 import { mapState } from "vuex";
+//导入footer控制
+import {footAuto} from "@/lib/domFixed.js"
 export default {
   data() {
     return {
@@ -67,7 +69,7 @@ export default {
     ...mapState(["ipAddress", "authCode"])
   },
 
-  mounted: function() {
+  mounted() {
     const id = this.$route.query.id;
     // console.log(id);
     if (id) {
@@ -75,8 +77,17 @@ export default {
       this.inputVal = this.$route.query.inputVal;
       this.doSearch();
     }
+    // footAuto();
+    // window.onresize=function(){
+    //   footAuto();
+    // }
   },
-
+  updated() {
+     footAuto();
+    window.onresize=function(){
+      footAuto();
+    }
+  },
   watch: {
     $route: function() {
       // 得到参数id值

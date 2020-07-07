@@ -49,7 +49,7 @@
         <!-- 定义列表结束 -->
         <!-- 加载更多按钮start-->
         <div class="mx-more-link mt">
-          <a href="javascript:;" @click="goArticleList(lastestList,activeMenuId,false,true)">
+          <a href="javascript:;" @click="goArticleList(lastestList,activeMenuId,0,1)">
             查看更多
             <i class="iconfont icon-jiantouyou"></i>
           </a>
@@ -135,7 +135,7 @@ export default {
     },
     
     //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
-    goArticleList(totalData,activeMenuId,isTopic=false,isMore = true) {
+    goArticleList(totalData,activeMenuId,isTopic=0,isMore =1) {
       //拿到当前模块下的所有数据
       console.log(totalData);
       totalData = JSON.stringify(totalData);

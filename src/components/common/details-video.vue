@@ -3,7 +3,7 @@
     <!-- Header组件 -->
     <Header></Header>
     <!-- 视频插件 -->
-    <div class="details-video-content clearfix">
+    <div class="content clearfix">
       <!-- 三级标题区域 start -->
       <!-- {{id}} -->
       <div class="layout-wrapper">
@@ -229,13 +229,19 @@ import topicTitleInfo from "../../components/common/topicTitleInfo.vue";
 import Footer from "../../components/common/Footer.vue";
 // 导入视频插件
 import DPlayer from "dplayer";
-
+//导入footer控制
+import {footAuto} from "@/lib/domFixed.js"
 export default {
   // props: {
   //   id: {}
   // },
   data() {
     return {
+      activeMenuId:null,
+      categoryDataList: [],
+      categoryId: "",
+      // 需要传到breadCrumbnav组件文章的值
+      breadCrumbList: {},
       detailsInfo: {},
       paramsData: {},
       relatedList: [], // 相关
@@ -245,7 +251,12 @@ export default {
     };
   },
   created(){
-    
+    // 共用菜单数据赋值
+    this.categoryDataList = this.$store.state.commonData.headMenu;
+    //this.activeMenuId=this.paramsData.categoryId
+    this.paramsData = this.$route.query;
+    // 拿到categoryId
+    this.categoryId = this.paramsData.categoryId;
     this.getDetailsData();
   },
   mounted() {
@@ -253,6 +264,9 @@ export default {
     // this.dplayerInit();
 
     console.log(this.paramsData);
+  },
+  updated() {
+    footAuto();
   },
   watch: {
     $route: "getDetailsData"
@@ -278,7 +292,13 @@ export default {
       this.topicList = data.topics;
       this.recommendList = data.recommend;
       this.hotList = data.hot;
-
+      //标题
+       document.title = this.detailsInfo.title; // 设置标题
+       //拿到面包屑菜单所需的data
+      this.breadCrumbList = {
+        menuId: this.detailsInfo.categoryId,
+        articleTitle: this.detailsInfo.title
+      };
       console.log(this.detailsInfo.videoUrl);
       this.dplayerInit();
     },

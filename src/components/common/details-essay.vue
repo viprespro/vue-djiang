@@ -289,7 +289,7 @@ export default {
   .mx-story-book-page p {
     display: block;
     margin: 40px 0 0 !important;
-    font-size: 32px;
+    font-size: 32px !important;
     line-height: 2;
     /* color: #5d2e00; */
   }

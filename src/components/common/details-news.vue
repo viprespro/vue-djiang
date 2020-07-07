@@ -2,7 +2,7 @@
   <div id="details-news">
     <Header></Header>
     <!-- 这是新闻详情页 -->
-    <div class="detail-news-content">
+    <div class="content">
       <!-- {{id}} -->
       <!-- 第一块部分 3级标题 -->
       <div class="layout-wrapper">
@@ -84,6 +84,8 @@ import Footer from "@/components/common/Footer.vue";
 import { mapState } from "vuex";
 //导入jquery
 import $ from "jquery";
+//导入footer控制
+import {footAuto} from "@/lib/domFixed.js"
 export default {
    props: {
     id: {}
@@ -93,7 +95,7 @@ export default {
       ipAddress: "",
       categoryDataList: [],
       categoryId: "",
-      // 需要传到breadCrumbnav组件的值
+      // 需要传到breadCrumbnav组件文章的值
       breadCrumbList: {},
       // 参数信息
       paramsData: {},
@@ -135,15 +137,13 @@ export default {
   mounted() {
     //操作dom
     
-    // this.dplayerInit();
-
-    // console.log(this.$route.query);
-    // console.log(this.paramsData.type);
+   
   },
   updated() {
     //dom更新后
     //处理富文本
     this.dealHtml();
+    footAuto();
   },
   methods: {
     //利用传递过来的参数获取对应id的详情

@@ -4,14 +4,18 @@
     <Header :activeMenu="activeMenuId"></Header>
     <!-- 头结束 -->
     <!-- Index内容开始 -->
-    <div class="index-content">
+    <div class="content">
       <!-- 第一部分3块 -->
       <div class="layout-wrapper special-themes">
         <div class="layout r-42-33-25 clearfix">
           <!-- c1 -->
           <div class="c1-wrapper">
             <div class="c1">
-              <swiperBox :lastestList="latestDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></swiperBox>
+              <swiperBox
+                :lastestList="latestDataList"
+                :ipAddress="ipAddress"
+                :activeMenuId="activeMenuId"
+              ></swiperBox>
             </div>
           </div>
           <!-- c2 -->
@@ -28,7 +32,11 @@
           <!-- c3 -->
           <div class="c3-wrapper">
             <div class="c3">
-              <topicInfo :topicList="topicDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></topicInfo>
+              <topicInfo
+                :topicList="topicDataList"
+                :ipAddress="ipAddress"
+                :activeMenuId="activeMenuId"
+              ></topicInfo>
             </div>
           </div>
         </div>
@@ -38,7 +46,11 @@
         <div class="layout">
           <div class="c1-wrapper">
             <div class="c1">
-              <categoryNav :categoryList="categoryDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></categoryNav>
+              <categoryNav
+                :categoryList="categoryDataList"
+                :ipAddress="ipAddress"
+                :activeMenuId="activeMenuId"
+              ></categoryNav>
             </div>
           </div>
         </div>
@@ -49,19 +61,31 @@
           <!-- 第一块 -->
           <div class="c1-wrapper">
             <div class="c1">
-              <sheetPicNewsShow :lastestList="latestDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></sheetPicNewsShow>
+              <sheetPicNewsShow
+                :lastestList="latestDataList"
+                :ipAddress="ipAddress"
+                :activeMenuId="activeMenuId"
+              ></sheetPicNewsShow>
             </div>
           </div>
           <!-- 第二块 -->
           <div class="c2-wrapper">
             <div class="c2">
-              <sheetPicNewsShow :lastestList="latestDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></sheetPicNewsShow>
+              <sheetPicNewsShow
+                :lastestList="latestDataList"
+                :ipAddress="ipAddress"
+                :activeMenuId="activeMenuId"
+              ></sheetPicNewsShow>
             </div>
           </div>
           <!-- 第三块 -->
           <div class="c3-wrapper">
             <div class="c3">
-              <sheetPicNewsShow :lastestList="latestDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></sheetPicNewsShow>
+              <sheetPicNewsShow
+                :lastestList="latestDataList"
+                :ipAddress="ipAddress"
+                :activeMenuId="activeMenuId"
+              ></sheetPicNewsShow>
             </div>
           </div>
         </div>
@@ -86,9 +110,17 @@
               <!-- img -->
               <customImg></customImg>
               <!-- topic -->
-              <topicTitleInfo :topicList="topicDataList" :ipAddress="ipAddress" :activeMenuId="activeMenuId"></topicTitleInfo>
+              <topicTitleInfo
+                :topicList="topicDataList"
+                :ipAddress="ipAddress"
+                :activeMenuId="activeMenuId"
+              ></topicTitleInfo>
               <!-- hot -->
-              <hotTitlePicNews :ipAddress="ipAddress" :hotList="hotDataList" :activeMenuId="activeMenuId"></hotTitlePicNews>
+              <hotTitlePicNews
+                :ipAddress="ipAddress"
+                :hotList="hotDataList"
+                :activeMenuId="activeMenuId"
+              ></hotTitlePicNews>
             </div>
           </div>
         </div>
@@ -99,12 +131,9 @@
     <!-- 尾部开始 -->
     <Footer></Footer>
     <!-- 尾部结束 -->
-    <floatMenu></floatMenu> 
   </div>
 </template>
 <style scoped="scoped">
-
-
 .layout-wrapper {
   width: 100%;
   display: block;
@@ -223,7 +252,7 @@ import hotTitlePicNews from "@/components/common/hotTitlePicNews.vue";
 //导入Footer组件
 import Footer from "@/components/common/Footer.vue";
 // 导入floatMenu组件
-import floatMenu from "@/components/common/floatMenu.vue";
+
 //导入jquery
 // import $ from "jquery";
 //导入swiper
@@ -233,6 +262,8 @@ import Swiper from "swiper";
 //导入vuex
 import { mapState, mapMutations } from "vuex";
 import { Loading } from "element-ui";
+//导入footer控制
+import {footAuto} from "../lib/domFixed.js"
 // import Vue from 'vue';
 export default {
   data() {
@@ -268,7 +299,14 @@ export default {
     console.log(this.authCode);
     console.log(this.ipAddress);
   },
-
+  updated() {
+    let that = this;
+    footAuto();
+    //调整窗口重新调整footer
+    window.onresize = function() {
+      footAuto();
+    };
+  },
   //计算属性
   computed: {
     ...mapState(["authCode", "ipAddress", "commonData"])
@@ -333,7 +371,8 @@ export default {
         // 	el: '.swiper-scrollbar',
         // },
       });
-    }
+    },
+    
   },
   components: {
     Header,
@@ -346,8 +385,7 @@ export default {
     topicTitleInfo,
     hotTitlePicNews,
     sheetPicNewsShow,
-    Footer,
-    floatMenu
+    Footer
   }
 };
 </script>

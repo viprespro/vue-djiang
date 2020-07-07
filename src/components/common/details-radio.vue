@@ -3,7 +3,7 @@
     <!-- header -->
     <Header></Header>
     <!--主体内容 -->
-    <div class="detail-radio-content clearfix">
+    <div class="content clearfix">
       <!-- 三级标题区域 start -->
       <div class="mx-layout layout-wrapper">
         <div class="layout phone-none">
@@ -168,7 +168,9 @@ import topicTitleInfo from "../../components/common/topicTitleInfo.vue";
 //导入Footer组件
 import Footer from "@/components/common/Footer.vue";
 //导入vuex
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
+//导入footer控制
+import {footAuto} from "@/lib/domFixed.js"
 export default {
   components: {
     Header,
@@ -181,6 +183,11 @@ export default {
   },
   data() {
     return {
+      activeMenuId:null,
+      categoryDataList: [],
+      categoryId: "",
+      // 需要传到breadCrumbnav组件文章的值
+      breadCrumbList: {},
       //标志变量
       flag: false,
       isReady: false,
@@ -203,11 +210,7 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      // 导入需要ip地址
-      ipAddress: state => state.ipAddress,
-      commonData: state => state.commonData
-    })
+   
   },
   created() {
     //渲染数据区域
@@ -227,6 +230,9 @@ export default {
     this.getDetailsData();
   },
   mounted() {},
+  updated() {
+    footAuto();
+  },
   watch: {
     $route(to, from) {
       this.$router.go(0);
@@ -257,6 +263,11 @@ export default {
       this.hotList = data.hot;
       this.detail = data.detail;
       document.title = this.detail.title; // 设置标题
+      //拿到面包屑菜单所需的data
+      this.breadCrumbList = {
+        menuId: this.detail.categoryId,
+        articleTitle: this.detail.title
+      };
       // 处理音频数组数据
       let arr;
       if (this.relatedList.length >= 3) {

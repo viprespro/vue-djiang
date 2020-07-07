@@ -5,7 +5,7 @@
     <Header :activeMenu="activeMenuId"></Header>
     <!-- 头结束 -->
     <!-- 大事记内容开始 -->
-    <div class="Memorabilia-content">
+    <div class="content">
       <!-- 面包屑导航start -->
       <div class="phone-none">
         <div class="layout-wrapper">
@@ -110,7 +110,7 @@
     <!-- 尾部开始 -->
     <Footer></Footer>
     <!-- 尾部结束 -->
-    <floatMenu></floatMenu>
+    
   </div>
 </template>
 
@@ -145,13 +145,13 @@ import hotTitlePicNews from "@/components/common/hotTitlePicNews.vue";
 
 //导入Footer组件
 import Footer from "@/components/common/Footer.vue";
-import floatMenu from "@/components/common/floatMenu.vue";
+
 //导入jquery
 import $ from "jquery";
 //导入swiper
 import Swiper from "swiper";
-// 导入token.js
-// import tokenFun from "@/api/token";
+//导入footer控制
+import {footAuto} from "../lib/domFixed.js"
 export default {
   data() {
     return {
@@ -199,6 +199,14 @@ export default {
     
     //获取swiper
     this.getSwiper();
+  },
+  updated() {
+    // let that=this;
+    footAuto();
+    //调整窗口重新调整footer
+    window.onresize=function(){
+       footAuto();
+    }
   },
   methods: {
     async getData() {
@@ -255,7 +263,8 @@ export default {
         // 	el: '.swiper-scrollbar',
         // },
       });
-    }
+    },
+    
   },
   components: {
     Header,
@@ -273,7 +282,7 @@ export default {
     hotTitlePicNews,
     sheetPicNewsShow,
     Footer,
-    floatMenu
+    
   }
 };
 </script>

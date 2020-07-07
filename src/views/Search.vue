@@ -112,17 +112,10 @@ export default {
     Footer
   },
   mounted() {
-    //dom元素更新
-    // console.log(document.body.clientHeight);
-    // console.log(document.documentElement.clientHeight)
-    // document.querySelector('.search-content').style.height=document.documentElement.clientHeight;
-    // console.log(document.querySelector('.search-content').clientHeight)
-    //给搜索页设置最小高度
-    // document.querySelector(".search-content").style.minHeight =
-    //   document.documentElement.clientHeight -
-    //   document.querySelector(".mx-header").clientHeight -
-    //   document.querySelector(".mx-footer").clientHeight +
-    //   "px";
+   footAuto();
+    window.onresize=function(){
+      footAuto();
+    }
   },
   updated() {
     footAuto();

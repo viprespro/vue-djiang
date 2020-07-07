@@ -1,11 +1,12 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-22 22:41:12
- * @LastEditTime : 2020-07-06 18:11:02
- * @LastEditors  : 曾迪
+ * @LastEditTime: 2020-07-07 00:54:20
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath     : \dangjian\src\components\common\hotKeywords.vue
+ * @FilePath: \dangjianxiangmupcyidongduan\src\components\common\hotKeywords.vue
 --> 
+
 
 <template>
   <!-- hotKeywords 共用组件 -->
@@ -18,7 +19,8 @@
         <!-- <a href=""></a> -->
         <!-- <a href="">{{item[item.id]}}</a> -->
         <!-- <router-link to="/" v-for="(item,i) in keywordList" :key="i">{{item}}</router-link> -->
-				<a href="javascript:;" @click="getParamsToList(item,categoryId,true)" v-for="(item,i) in keywordList" :key="i">{{item}}</a>
+        <!-- {{keywordList}} -->
+				<a href="javascript:;" @click="getParamsToList(item,categoryId,1,keywordList)" v-for="(item,i) in keywordList" :key="i">{{item}}</a>
       </div>
     </div>
   </div>
@@ -44,15 +46,20 @@ export default {
 	},
   mounted() {
     console.log(this.keywordList);
-	},
+  },
+  watch:{
+    $route:function(){
+      
+    }
+  },
 	methods:{
 		//携带keyword 到articleList组件中去 isKeyWords标志面包屑
-		getParamsToList(item,categoryId,isKeywords=false){
+		getParamsToList(item,categoryId,isKeywords=0,keywordList){
 			console.log(item,categoryId);
 			//跳到articleList组件中去
 			this.$router.push({
 				path:"/articleList",
-				query:{keywords:item,categoryId:categoryId,isKeywords:isKeywords}
+				query:{keywords:item,categoryId:categoryId,isKeywords:isKeywords,keywordList:keywordList}
 			})
 		},
 		//跳到文章列表展示页 isMore 默认是查看更多跳转过去的

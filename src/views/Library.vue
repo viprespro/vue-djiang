@@ -1,18 +1,17 @@
 <template>
   <div id="app" style="overflow:unset;">
     <!-- 头开始 -->
-     <Header :activeMenu="activeMenuId"></Header>
+    <Header :activeMenu="activeMenuId"></Header>
     <!-- 头结束 -->
     <!-- 内容开始 -->
-    <div class="Memorabilia-content">
+    <div class="content">
       <!-- 面包屑导航start -->
       <div class="phone-none">
         <div class="layout-wrapper">
           <div class="layout">
             <div class="c1-wrapper">
               <div class="c1">
-                
-                 <breadCrumbNav :categoryList="categoryDataList" :categoryId="categoryId"></breadCrumbNav>
+                <breadCrumbNav :categoryList="categoryDataList" :categoryId="categoryId"></breadCrumbNav>
               </div>
             </div>
           </div>
@@ -24,7 +23,7 @@
         <div class="layout">
           <div class="c1-wrapper">
             <div class="c1">
-              <columnTitleInfo  :categoryDetailList="categoryDetailDataList"></columnTitleInfo>
+              <columnTitleInfo :categoryDetailList="categoryDetailDataList"></columnTitleInfo>
             </div>
           </div>
         </div>
@@ -36,7 +35,7 @@
           <div class="c1-wrapper">
             <div class="c1">
               <!-- 暂时渲染hot数据 -->
-                <coversNews :hotList="hotDataList" :categoryId="categoryId"></coversNews>
+              <coversNews :latestList="latestDataList" :categoryId="categoryId"></coversNews>
             </div>
           </div>
         </div>
@@ -48,7 +47,6 @@
     <!-- 尾部开始 -->
     <Footer></Footer>
     <!-- 尾部结束 -->
-    <floatMenu></floatMenu> 
   </div>
 </template>
 
@@ -62,7 +60,7 @@ import breadCrumbNav from "@/components/common/breadCrumbNav.vue";
 import columnTitleInfo from "@/components/common/columnTitleInfo.vue";
 import columnClassNav from "@/components/common/columnClassNav.vue";
 //导入coversNews
-import coversNews from "@/components/common/coversNews.vue"
+import coversNews from "@/components/common/coversNews.vue";
 
 //导入Footer组件
 import Footer from "@/components/common/Footer.vue";
@@ -73,75 +71,85 @@ import $ from "jquery";
 import Swiper from "swiper";
 // 导入token.js
 // import tokenFun from "@/api/token";
+//导入footer控制
+import {footAuto} from "../lib/domFixed.js"
 export default {
   data() {
     return {
-      ipAddress:'',
+      ipAddress: "",
       activeMenuId: 0,
-      categoryId:'',
+      categoryId: "",
       // 是否有背景图
-      hasBackgroundImg:false,
+      hasBackgroundImg: false,
       //是否是courses页面,来单独控制course页图片大小
-      isCoursePage:true,
+      isCoursePage: true,
       //用于存放接口取来的数据
       // 所有菜单信息
-      categoryDataList:[],
+      categoryDataList: [],
       //菜单详情页
       categoryDetailDataList: [],
       hotDataList: [],
       latestDataList: [],
       topicDataList: []
-     
     };
   },
   //生命周期
-  created(){
+  created() {
     console.log(this.$store.state.commonData.headMenu);
     //ip地址
-    this.ipAddress=this.$store.state.ipAddress;
+    this.ipAddress = this.$store.state.ipAddress;
     // 共用菜单数据赋值
-    this.categoryDataList=this.$store.state.commonData.headMenu;
+    this.categoryDataList = this.$store.state.commonData.headMenu;
     // console.log(this.$route.path.slice(-1));
     //获取地址栏的activemenuId
     this.activeMenuId = this.$route.path.slice(-1);
     // 拿到category_id
-    this.categoryId=this.$route.path.slice(-1);
+    this.categoryId = this.$route.path.slice(-1);
+    // console.log(this.$route.path.slice(-1));
+    // this.activeMenuId=this.$route.path.slice(-1);
 
     //加载首屏数据
     this.getData();
     // console.log(this.categoryDetailDataList)
     console.log(this.categoryDataList);
     // 2020/07/03 10:35:36
-    
   },
-  beforeDestroy(){
+  beforeDestroy() {
     // window.removeEventListener('resize', this.handleResize)
   },
-  mounted(){
+  mounted() {
+    //dom更新
     //获取swiper
     this.getSwiper();
-     console.log(this.$route.path.slice(-1));
-    this.activeMenuId=this.$route.path.slice(-1);
+    // this.footAuto();
+  },
+  updated() {
+    
+    footAuto();
+    //调整窗口重新调整footer
+    window.onresize=function(){
+       footAuto();
+    }
   },
   methods: {
     async getData() {
       //去请求分类页接口  需要参数  token   category_id
-      let {data:res}=await this.$http.get('api/category',{
-        params:{
-          code: localStorage.getItem('authCode'),
-          categoryId:this.categoryId
+      let { data: res } = await this.$http.get("api/category", {
+        params: {
+          code: localStorage.getItem("authCode"),
+          categoryId: this.categoryId
         }
-      })
+      });
       console.log(res);
-      if(res.code!=0) return "数据获取失败";
-      let data=res.data;
+      if (res.code != 0) return "数据获取失败";
+      let data = res.data;
       //取出所有的数据块
-      this.categoryDetailDataList=data.categoryDetail;
-      this.hotDataList=data.hot;
-      this.latestDataList=data.latest;
-      this.topicDataList=data.topics;
+      this.categoryDetailDataList = data.categoryDetail;
+      this.hotDataList = data.hot;
+      this.latestDataList = data.latest;
+      this.topicDataList = data.topics;
       // 处理数据
-      this.hotDataList=this.handleCreateTime(this.hotDataList);
+      this.latestDataList = this.handleCreateTime(this.latestDataList);
     },
     foo(str) {
       let arr = [
@@ -161,10 +169,10 @@ export default {
       str = Number(str);
       return arr[str - 1];
     },
-    handleCreateTime(arr){
+    handleCreateTime(arr) {
       //处理时间 字段拆分年月日
       // console.log(arr);
-      for(var i=0;i<arr.length;i++){
+      for (var i = 0; i < arr.length; i++) {
         // console.log(arr[i]);
         //console.log(arr[i].createTime)
         let temp = arr[i].createTime.split(" ");
@@ -176,7 +184,6 @@ export default {
         arr[i].day = after[2];
       }
       return arr;
-
     },
     getSwiper() {
       new Swiper(".swiper-container", {
@@ -211,7 +218,8 @@ export default {
         // 	el: '.swiper-scrollbar',
         // },
       });
-    }
+    },
+    
   },
   components: {
     Header,

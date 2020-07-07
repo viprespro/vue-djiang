@@ -1,10 +1,11 @@
 <!--
- * @Date         : 2020-06-22 11:55:52
+ * @Date         : 2020-07-06 18:33:06
  * @LastEditors  : 曾迪
- * @LastEditTime : 2020-07-06 12:04:47
- * @FilePath     : \dangjian\src\components\common\breadCrumbNav.vue
+ * @LastEditTime : 2020-07-07 14:48:38
+ * @FilePath     : \党建项目git同步目录\dangjianxiangmupcyidongduan\src\components\common\breadCrumbNav.vue
  * @Description  : 
 --> 
+
 <template>
   <div>
     <!-- 这是面板屑导航共用组件 -->
@@ -13,8 +14,15 @@
         <router-link to="/">党建平台</router-link>
         <em class="divider">/</em>
         <!-- 查看更多页面显示样式 start -->
-        <template v-if="isMore">
+        <template v-if="isMore==1">
           <span>查看更多</span>
+        </template>
+      
+        <template v-if="isTopic==1">
+          <span>查看更多</span>
+        </template>
+        <template v-if="isKeywords==1">
+          <span>关键字：{{keywords}}</span>
         </template>
          <!-- 查看更多页面显示样式 end -->
          <!-- 主菜单页面显示样式 start -->
@@ -43,8 +51,11 @@
 <script>
 export default {
   props: {
+    isTopic:{
+
+    },
     isMore:{
-      default:false
+      // default:false
     },
     categoryId:{
 
@@ -57,7 +68,9 @@ export default {
     breadCrumbList: {
       // type:Object,
       default: ""
-    }
+    },
+    isKeywords: {},
+    keywords:{}
   },
   data() {
     return {

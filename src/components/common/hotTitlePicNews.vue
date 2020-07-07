@@ -2,8 +2,8 @@
   
 <!--
  * @Date         : 2020-06-23 15:13:41
- * @LastEditors  : 曾迪
- * @LastEditTime : 2020-07-06 15:09:45
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-07-06 23:43:46
  * @FilePath     : \dangjian\src\components\common\hotTitlePicNews.vue
  * @Description  : 
 --> 
@@ -16,7 +16,7 @@
         <div class="mx-item-title">
           <strong>热点 Hot</strong>
           <span class="mx-item-more">
-            <a href="javascript:;" @click="goArticleList(hotList,activeMenuId,false,true)">
+            <a href="javascript:;" @click="goArticleList(hotList,activeMenuId,0,1)">
               查看更多
               <i class="iconfont icon-jiantouyou"></i>
             </a>
@@ -91,7 +91,7 @@ export default {
       }
     },
     //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
-    goArticleList(totalData, activeMenuId, isTopic = false, isMore = true) {
+    goArticleList(totalData, activeMenuId, isTopic = 0, isMore =1) {
       //拿到当前模块下的所有数据
       console.log(totalData);
       totalData = JSON.stringify(totalData);

@@ -105,14 +105,18 @@ export default {
   created() {
     this.getCommonData();
   },
-  mounted() {},
+  mounted() {
+    //
+    
+  },
   computed: {
     // 计算属性
     ...mapState({
       // 导入需要ip地址
       ipAddress: state => state.ipAddress,
       commonData: state => state.commonData
-    })
+    }),
+    
   },
 
   methods: {

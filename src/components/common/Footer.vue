@@ -1,5 +1,5 @@
 <template>
-  <div :class="['mx-footer', 'mx-m',isSearchPage?'add-footer':'']" id="FooterBox">
+  <div class="mx-footer mx-m" id="FooterBox">
     <div class="layout-footer-wrapper">
       <div class="layout-footer">
         <div class="c1-wrapper">
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import $ from "jquery";
 export default {
   props:{
     isSearchPage:{
@@ -45,7 +46,10 @@ export default {
   created(){
     this.commonData=this.$store.state.commonData;
     // console.log(this.commonData);
-  }
+  },
+  mounted() {
+    
+  },
 
 }
 </script>
@@ -61,14 +65,7 @@ export default {
    right: 0; */
   background: #7c1618;
 }
-.add-footer{
-   width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index:111;
-   right: 0;
-}
+
 /* 内容块基本设置 */
 .c1,
 .c2,

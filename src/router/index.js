@@ -112,7 +112,7 @@ const routes = [{
         path: '/Search',
         name: 'Search',
         component: () =>
-            import ( /* webpackChunkName: "Search" */ '../views/Search/Search.vue'),
+            import ( /* webpackChunkName: "Search" */ '../views/Search.vue'),
         meta: {
             title: "搜索页"
         },

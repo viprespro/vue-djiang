@@ -1,8 +1,7 @@
 
 <template>
   <div>
-    
-    <div id>
+    <div class="">
       <!-- 这里是新闻列表盒子 -->
       <div class="mx-listing-wrapper">
         <div class="mx-listing mx-m">
@@ -18,32 +17,23 @@
               <!-- 这里要根据activeMenuId 去获取当前页面的菜单名 -->
               <h1>{{getCategoryName(activeMenuId,categoryDataList)}}</h1>
             </template>
-            <template v-else>
-
-            </template>
+            <template v-else></template>
           </div>
 
-          
           <!-- 关键字数据渲染start -->
-          <template v-if="isKeywords==true">
-            <dl v-for="item in (keywordsData || '')" :key="item.id">
+          <template v-if="isKeywords==1">
+            <!-- {{keywordsData.list}} -->
+            <dl v-for="item in (keywordsData.list || '')" :key="item.id">
               <dt>
-                
-               
-                  <a href="javascript:;" @click="goDetails(item)">
-                    <img :src="item.imageUrl?ipAddress+item.imageUrl:ipAddress+item.path" alt />
-                  </a>
-               
+                <a href="javascript:;" @click="goDetails(item)">
+                  <img :src="item.imageUrl?ipAddress+item.imageUrl:''" alt />
+                </a>
               </dt>
 
               <dd>
-                <!-- 专题页跳转到详情页处理 -->
-               
-               
-                  <a href="javascript:;" @click="goDetails(item)">
-                    <strong>{{item.title?item.title:item.name}}</strong>
-                  </a>
-               
+                <a href="javascript:;" @click="goDetails(item)">
+                  <strong>{{item.title?item.title:''}}</strong>
+                </a>
 
                 <span class="mx-listing-sum">{{item.description}}</span>
                 <span>
@@ -62,11 +52,11 @@
           </template>
           <!-- 关键字数据渲染end -->
           <!-- 查看更多的数据渲染 start -->
-          <template v-else>
+          <template v-if="isKeywords==0">
             <dl v-for="item in (totalList || '')" :key="item.id">
               <dt>
                 <!-- 专题页跳转到详情页处理 -->
-                <template v-if="isTopic">
+                <template v-if="isTopic==1">
                   <router-link
                     :to="{path:'/topic',query:{
                 topicsId:item.id
@@ -75,17 +65,17 @@
                     <img :src="item.path?ipAddress+item.path:''" alt />
                   </router-link>
                 </template>
-                <template v-else>
-                  {{item.imageUrl}}
-                  <a href="javascript:;" @click="goDetails(item)">
-                    <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
+
+                <template v-if="isTopic==0">
+                  <a href="javascript:;" @click.prevent="goDetails(item)">
+                    <img :src="item.imageUrl?ipAddress+item.imageUrl:''" alt />
                   </a>
                 </template>
               </dt>
 
               <dd>
                 <!-- 专题页跳转到详情页处理 -->
-                <template v-if="isTopic">
+                <template v-if="isTopic==1">
                   <router-link
                     :to="{path:'/topic',query:{
                 topicsId:item.id
@@ -94,7 +84,9 @@
                     <strong>{{item.name}}</strong>
                   </router-link>
                 </template>
-                <template v-else>
+                <template v-if="isTopic==0">
+                  <!-- 对应详情页 -->
+                  
                   <a href="javascript:;" @click="goDetails(item)">
                     <strong>{{item.title?item.title:''}}</strong>
                   </a>
@@ -119,9 +111,7 @@
         </div>
       </div>
     </div>
-   
   </div>
-  
 </template>
 
 <script>
@@ -129,15 +119,16 @@
 import Header from "@/components/common/Header.vue";
 //导入Footer组件
 import Footer from "@/components/common/Footer.vue";
+//导入footer控制
+import {footAuto} from "@/lib/domFixed.js"
 export default {
   props: {
     totalList: {},
     activeMenuId: {},
     isTopic: {},
     keywordsData: {},
-    isKeywords:{
-      type:Boolean
-    }
+    isKeywords: {},
+    keywords:{}
   },
   data() {
     return {
@@ -160,6 +151,21 @@ export default {
     // this.totalData=JSON.parse(this.$route.query);
     // console.log(this.totalData);
     // console.log(this.activeMenuId)
+  },
+  mounted(){
+    //  footAuto();
+    // window.onresize=function(){
+    //   footAuto();
+    //   console.log(1111)
+      
+    // }
+  },
+  updated() {
+    footAuto();
+    window.onresize=function(){
+      footAuto();
+      // console.log(222)
+    }
   },
   methods: {
     //遍历获取当前category 的名称

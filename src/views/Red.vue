@@ -5,7 +5,7 @@
     <Header :activeMenu="activeMenuId"></Header>
     <!-- 头结束 -->
     <!-- 大事记内容开始 -->
-    <div class="Memorabilia-content">
+    <div class="content">
       <!-- 面包屑导航start -->
       <div class="phone-none">
         <div class="layout-wrapper">
@@ -149,6 +149,8 @@ import Footer from "@/components/common/Footer.vue";
 import $ from "jquery";
 //导入swiper
 import Swiper from "swiper";
+//导入footer控制
+import {footAuto} from "../lib/domFixed.js"
 // 导入token.js
 // import tokenFun from "@/api/token";
 export default {
@@ -198,6 +200,14 @@ export default {
     
     //获取swiper
     this.getSwiper();
+  },
+  updated() {
+    
+    footAuto();
+    //调整窗口重新调整footer
+    window.onresize=function(){
+       footAuto();
+    }
   },
   methods: {
     async getData() {
@@ -254,7 +264,8 @@ export default {
         // 	el: '.swiper-scrollbar',
         // },
       });
-    }
+    },
+    
   },
   components: {
     Header,

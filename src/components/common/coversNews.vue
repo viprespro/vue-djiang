@@ -1,10 +1,10 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-27 11:06:16
- * @LastEditTime : 2020-07-06 11:10:14
+ * @LastEditTime : 2020-07-07 16:33:38
  * @LastEditors  : 曾迪
  * @Description: In User Settings Edit
- * @FilePath     : \dangjian\src\components\common\coversNews.vue
+ * @FilePath     : \党建项目git同步目录\dangjianxiangmupcyidongduan\src\components\common\coversNews.vue
 --> 
 <template>
   <div id>
@@ -12,13 +12,13 @@
       <div class="mx-covers mx-m clearfix">
         <!-- 一列一个ul  4个li-->
         <ul class="mx-covers-ul">
-          <li v-for="item in (hotList || '').slice(0,8)" :key="item.id">
+          <li v-for="item in (latestList || '').slice(0,8)" :key="item.id">
             <!-- 是党建文库下的普通文章 -->
             <template v-if="categoryId==6">
               <router-link
                 :to="{path:'/details-essay',query: { categoryId: item.categoryId, id: item.id, type: item.type }}"
               >
-                <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
+                <img :src="item.imageUrl?item.imageUrl:''" alt />
                 <span>
                   <strong>{{item.title}}</strong>
                   <em>{{item.month}}月</em>
@@ -36,7 +36,7 @@
                 <template v-if="item.type==2">
                   <i class="iconfont icon-caret-right"></i>
                 </template>
-                <img :src="ipAddress+item.imageUrl?ipAddress+item.imageUrl:''" alt />
+                <img :src="item.imageUrl?item.imageUrl:''" alt />
                 <span>
                   <strong>{{item.title}}</strong>
                   <em>{{item.month}}月</em>
@@ -57,7 +57,7 @@
 export default {
   props: {
     categoryId: {},
-    hotList: {}
+    latestList: {}
   },
   data() {
     return {
@@ -114,14 +114,7 @@ export default {
     width: 100vw;
   }
   .mx-covers-ul {
-    background-image: linear-gradient(
-      #90683c 0%,
-      #e2c594 10%,
-      #e9d2b0 50%,
-      #90683c 50%,
-      #e2c594 60%,
-      #e9d2b0 100%
-    );
+     background-color: #e2c594;
   }
   .mx-covers-ul::before,
   .mx-covers-ul li::before {

@@ -4,7 +4,7 @@
      <Header :activeMenu="activeMenuId"></Header>
     <!-- 头结束 -->
     <!-- 内容开始 -->
-    <div class="Memorabilia-content">
+    <div class="content">
       <!-- 面包屑导航start -->
       <div class="phone-none">
         <div class="layout-wrapper">
@@ -75,7 +75,7 @@
     <!-- 尾部开始 -->
     <Footer></Footer>
     <!-- 尾部结束 -->
-    <floatMenu></floatMenu>
+   
   </div>
 </template>
 <style scoped="scoped">
@@ -147,6 +147,8 @@ import $ from "jquery";
 import Swiper from "swiper";
 // 导入token.js
 // import tokenFun from "@/api/token";
+//导入footer控制
+import {footAuto} from "../lib/domFixed.js"
 export default {
   data() {
     return {
@@ -196,6 +198,15 @@ export default {
     this.getSwiper();
     // console.log(this.$route.path.slice(-1));
     this.activeMenuId=this.$route.path.slice(-1);
+  },
+  updated() {
+    let that=this;
+    footAuto();
+    //调整窗口重新调整footer
+    window.onresize=function(){
+       footAuto();
+      //  console.log(1111)
+    }
   },
   methods: {
     async getData() {
@@ -248,7 +259,8 @@ export default {
         // 	el: '.swiper-scrollbar',
         // },
       });
-    }
+    },
+    
   },
   components: {
     Header,

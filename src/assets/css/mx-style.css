@@ -29,10 +29,15 @@
 .mt {
     margin: 20px 0 0;
 }
+
+
 /* 做底墙 */
+
 .listingblock {
-    height:59px;
+    height: 59px;
 }
+
+
 /* 加载更多按钮 样式 */
 
 .mx-more-link {
@@ -274,6 +279,7 @@
     font-size: 18px;
     margin-top: 56%;
 }
+
 .mx-thumbnails-cos2 .mx-thumbnails-box i {
     /* top:-12px; */
 }
@@ -454,7 +460,10 @@
     line-height: 20px;
     display: block;
 }
+
+
 /* 专题页公用样式 start */
+
 .mx-column-topic {
     background: #c01;
 }
@@ -466,27 +475,34 @@
     display: inline-block;
     vertical-align: middle;
 }
-.mx-column-topic .mx-column-icon img{
-    width:100%;
+
+.mx-column-topic .mx-column-icon img {
+    width: 100%;
     display: block;
     vertical-align: middle;
 }
-.mx-column-topic  .mx-column-text{
+
+.mx-column-topic .mx-column-text {
     display: inline-block;
     vertical-align: middle;
-    width:-webkit-calc(100% - 220px);
+    width: -webkit-calc(100% - 220px);
 }
-.mx-column-topic .mx-column-text h2{
-    font-size:24px;
-    line-height:24px;
-    height:24px;
-    color:#fff;
+
+.mx-column-topic .mx-column-text h2 {
+    font-size: 24px;
+    line-height: 24px;
+    height: 24px;
+    color: #fff;
 }
-.mx-column-topic .mx-column-text em{
-    padding:5px 0 0;
-    color:rgba(255,255,255,0.8);
+
+.mx-column-topic .mx-column-text em {
+    padding: 5px 0 0;
+    color: rgba(255, 255, 255, 0.8);
 }
+
+
 /* 专题页公用样式 end */
+
 
 /* 列表类  二级导航 start */
 
@@ -651,7 +667,8 @@
     width: 100% !important;
     font-size: 20px;
 }
-.mx-sheet-first span{
+
+.mx-sheet-first span {
     display: block;
     padding: 18px 0px 0;
     line-height: 22px;
@@ -663,6 +680,7 @@
     font-weight: normal;
     margin: 0 0 5px 0;
 }
+
 .mx-sheet-first em {
     display: none !important;
 }
@@ -796,6 +814,7 @@
 
 .mx-covers {
     display: block;
+    /* background-image: linear-gradient(#90683c 5%, #e2c594 35%, #e9d2b0 60%); */
 }
 
 
@@ -805,8 +824,8 @@
     float: left;
     width: 100%;
     position: relative;
-    background-color: #e9d2b0;
-    background-image: linear-gradient(#90683c 5%, #e2c594 35%, #e9d2b0 60%);
+    background-color: #e2c594;
+    /* background-image: linear-gradient(#90683c 5%, #e2c594 35%, #e9d2b0 60%); */
     z-index: 101;
 }
 
@@ -817,8 +836,8 @@
     position: relative;
     padding: 30px 0 15px 0;
     z-index: 106;
-     background-color: #e9d2b0;
-     background-image: linear-gradient(#90683c 5%, #e2c594 35%, #e9d2b0 60%);
+    /* background-color: #e9d2b0; */
+    /* background-image: linear-gradient(#90683c 5%, #e2c594 35%, #e9d2b0 60%); */
 }
 
 
@@ -838,8 +857,9 @@
     bottom: 0px;
     z-index: 105;
 }
+
 .mx-covers-ul li::after,
-.mx-covers-ul::after{
+.mx-covers-ul::after {
     content: '';
     width: 100%;
     height: 12px;
@@ -851,6 +871,7 @@
     bottom: 14px;
     z-index: 105;
 }
+
 .mx-covers-ul li a {
     display: inline-block;
     box-shadow: 0 0 15px rgba(112, 67, 18, 0.9);
@@ -1175,7 +1196,7 @@
     background-image: linear-gradient(#f3ecdc 0px, #fffdf8 100px);
     color: #5d2e00;
     padding: 50px 80px 40px;
-    font-size: 1.2em;
+    font-size: 16px;
     border: 1px #e2c594 solid;
     position: relative;
     min-height: 100vh;
@@ -1201,7 +1222,7 @@
 .mx-story-book-page p {
     display: block;
     margin: 20px 0 0 !important;
-    font-size: 16px;
+    /* font-size: 16px; */
     line-height: 2;
     /* color: #5d2e00; */
 }

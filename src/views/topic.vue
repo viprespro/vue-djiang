@@ -1,8 +1,8 @@
 <!--
  * @Date         : 2020-07-03 15:20:40
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-07-04 16:23:05
- * @FilePath     : \dangjian\src\views\topic.vue
+ * @LastEditors  : 曾迪
+ * @LastEditTime : 2020-07-07 16:46:52
+ * @FilePath     : \党建项目git同步目录\dangjianxiangmupcyidongduan\src\views\topic.vue
  * @Description  : 
 --> 
 <template>
@@ -126,6 +126,8 @@ import Footer from "@/components/common/Footer.vue";
 import $ from "jquery";
 //导入swiper
 import Swiper from "swiper";
+//导入footer控制
+import {footAuto} from "../lib/domFixed.js"
 // 导入token.js
 // import tokenFun from "@/api/token";
 export default {
@@ -156,10 +158,25 @@ export default {
     //加载首屏数据
     this.getData();
   },
+  watch:{
+    // 强制刷新
+     $route(to, from) {
+      this.$router.go(0);
+    }
+  },
   beforeDestroy() {},
   mounted() {
     //获取swiper
     this.getSwiper();
+    // this.footAuto();
+  },
+  updated() {
+    let that=this;
+    footAuto();
+    //调整窗口重新调整footer
+    window.onresize=function(){
+       footAuto();
+    }
   },
   methods: {
     async getData() {
@@ -186,15 +203,7 @@ export default {
         this.latestDataList = data.latest;
       }
     },
-    test() {},
-    // 获取当前页面的尺寸。
-    handleResize(event) {
-      this.fullWidth = document.documentElement.clientWidth;
-      console.log(this.fullWidth);
-      // document.querySelector('.layout-12-wrapper').style.width=this.fullWidth;
-      //修改所有swiper-slide的尺寸
-      document.querySelectorAll(".swiper-slide").style.width = this.fullWidth;
-    },
+    
     getSwiper() {
       new Swiper(".swiper-container", {
         direction: "horizontal",
@@ -228,7 +237,8 @@ export default {
         // 	el: '.swiper-scrollbar',
         // },
       });
-    }
+    },
+    
   },
   components: {
     Header,

@@ -1,10 +1,10 @@
 
 <template>
   <!-- 这里是备用文章页面 -->
-  <div id="details-news">
+  <div id="details-news" >
     <Header></Header>
     <!-- 这是新闻详情页 -->
-    <div class="detail-news-content">
+    <div class="content">
       <!-- {{id}} -->
       <!-- 第一块部分 3级标题 -->
       <div class="layout-wrapper">
@@ -15,7 +15,7 @@
                 isMore  显示 查看更多 
                 isKeyword  显示 关键字
               -->
-              <breadCrumbNav :isMore="isMore" :activeMenuId="activeMenuId"></breadCrumbNav>
+              <breadCrumbNav :isTopic="isTopic" :isMore="isMore" :activeMenuId="activeMenuId" :isKeywords="isKeywords" :keywords="keywords"></breadCrumbNav>
             </div>
           </div>
         </div>
@@ -66,6 +66,8 @@ import Footer from "@/components/common/Footer.vue";
 import { mapState } from "vuex";
 //导入jquery
 // import $ from "jquery";
+//导入footer控制
+import {footAuto} from "@/lib/domFixed.js"
 export default {
   //  props: {
   //   id: {}
@@ -96,11 +98,13 @@ export default {
       //标识页面变量
       activeMenuId: null,
       //topic
-      isTopic: null,
+      isTopic: 0,
       //判断是否是关键词点击跳转过来的
-      isKeywords:true,
+      isKeywords: 0,
       //存储关键词的检索数据
-      keywordsData:[]
+      keywordsData: [],
+      keywords:'',
+      keywordList:[]
     };
   },
   computed: {
@@ -115,8 +119,8 @@ export default {
     // 共用菜单数据赋值
     this.categoryDataList = this.$store.state.commonData.headMenu;
     //
-    this.paramsData = this.$route.query;
-    
+    //this.paramsData = this.$route.query;
+    console.log(this.$route.query)
     // console.log(this.$route.query.totalData);
     //总的数据存在进行数据字符串转码
     if (this.$route.query.totalData) {
@@ -127,41 +131,57 @@ export default {
       this.activeMenuId = this.$route.query.activeMenuId;
       //判断是否是专题的查看更多过来的
       this.isTopic = this.$route.query.isTopic;
+      console.log(this.isTopic)
     }
+    console.log(this.isTopic)
     //获取关键词点击传过来的参数
+    if (this.$route.query.keywords) {
+      console.log(this.$route.query);
+      //标志变量用来标识控制面包屑组件和listingNewsMore的参数
+      this.isKeywords = this.$route.query.isKeywords;
+      this.categoryId = this.$route.query.categoryId;
+      // 传递过来的关键字参数
+      this.keywords = this.$route.query.keywords;
+      //获取传递过来的关键字数组复用
+      this.keywordList=this.$route.query.keywordList;
+    }
 
-    console.log(this.$route.query);
-    //标志变量用来标识控制面包屑组件和listingNewsMore的参数
-    this.isKeywords=this.$route.query.isKeywords;
-    this.categoryId=this.$route.query.categoryId;
-    this.keywords=this.$route.query.keywords;
     //加载接口数据
     this.getKeywordsData();
   },
   mounted() {
     //操作dom
-    // this.dplayerInit();
-    // console.log(this.$route.query);
-    // console.log(this.paramsData.type);
+    footAuto();
+    //调整窗口重新调整footer
+   //调整窗口重新调整footer
+    window.onresize=function(){
+       footAuto();
+    }
   },
   updated() {
     //dom更新后
+    // let that=this;
+    footAuto();
+    //调整窗口重新调整footer
+    //调整窗口重新调整footer
+    window.onresize=function(){
+       footAuto();
+    }
   },
   methods: {
     //请求关键字接口
-    async getKeywordsData(){
-      let {data:res}=await this.$http.get("/api/keywords",{
-        params:{
+    async getKeywordsData() {
+      let { data: res } = await this.$http.get("/api/keywords", {
+        params: {
           code: localStorage.getItem("authCode"),
-          keywords:this.keywords,
-          category_id:this.categoryId
-          
+          keywords: this.keywords,
+          category_id: this.categoryId
         }
       });
-      if(res.code!=0) return;
-      let data=res.data;
+      if (res.code != 0) return;
+      let data = res.data;
       console.log(data);
-      this.keyWordsData=data;
+      this.keywordsData = data;
     },
     
   },

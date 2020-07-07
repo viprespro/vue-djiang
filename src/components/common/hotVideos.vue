@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     //跳到文章列表展示页 isMore 默认是查看更多跳转过去的
-    goArticleList(totalData,activeMenuId,isTopic=false,isMore = true) {
+    goArticleList(totalData,activeMenuId,isTopic=0,isMore =1) {
       //拿到当前模块下的所有数据
       console.log(totalData);
       totalData = JSON.stringify(totalData);
