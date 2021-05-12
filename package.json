@@ -20,7 +20,7 @@
     "postcss-px2rem": "^0.3.0",
     "px2rem-loader": "^0.1.9",
     "sass-loader": "^8.0.2",
-    "swiper": "^5.4.2",
+    "swiper": "^6.5.1",
     "vue": "^2.6.11",
     "vue-dplayer": "^0.0.10",
     "vue-html-loader": "^1.2.4",
